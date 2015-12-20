@@ -105,21 +105,21 @@
 	);
 	
 	// Load config?
-	foreach($input["events"] as $e)
-	{
+	foreach($input["events"] as $e) {
 		if($e["condition"] == "if" || $e["condition"] == "elseif")
 			$condition = $e["condition"].' <b>'.$e["variable"].'</b> '.$e["end"];
 		else 
 			$condition = $e["condition"];
 		
 		$data .= '
-			<tr>
+			<tr '.($e["condition"] == "if" || $e["condition"] == "elseif" || $e["condition"] == "else" ? 'class="can-sort"' : '').'>
 				<td>'.$e["encja"].'</td>
 				<td>'.$condition.'</td>
 				<td>
 					<div class="actiones">';
 						foreach($e["actions"] as $a) {
-							if(empty($a['action'])) continue;
+							if(empty($a['action'])) 
+								continue;
 							$name = $value = '';
 							if(isset($a['GUID']))
 							{
@@ -129,24 +129,26 @@
 										break;
 									}
 								}
-								if(empty($name)) continue;
+								if(empty($name)) 
+									continue;
 								$value = $a['action'];
 							}
 							else if(isset($a['Variable']))
 							{
-								$name = 'V: '.$a['Variable'];
+								$name = 'V: <b>'.$a['Variable'].'</b>';
 								$value = $a['action'].' '.$a['value'];
 							}
-							$data .= '
-								<div class="tbl-1" style="border-right: 1px solid #afafaf">
-									<b>'.$name.'</b>
+							$data .= '<div>
+								<div '.(isset($a['GUID']) ? 'data-guid="'.$a['GUID'].'"' : '').' class="tbl-1" style="border-right: 1px solid #afafaf">
+									'.$name.'
 								</div>
 								<div class="tbl-2">
 									'.$value.'
-								</div>';
+								</div>
+								<div class="clear"></div>
+							</div>';
 						}
 		$data .= '	</div>
-					<div class="clear"></div>
 					<a add-action="" style="font-size: 13px; color: #afafaf;">Add action</a>
 				</td>
 			</tr>
@@ -167,6 +169,7 @@
     <head>
 		<title>Projekt Haris</title>
  		<script type="text/javascript" src="js/jquery.js"></script>
+ 		<script type="text/javascript" src="js/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
 		
 		<link rel="stylesheet" href="style/global.css" type="text/css" />	
@@ -192,6 +195,8 @@
 					<tr>
 					<?= $data ?>
 				</table>
+				<a data-generate="" class="button">Generate JSON</a>
+				<textarea id="generated" class="hidden"></textarea>
 				<div class="variable hidden main_width">
 					<div class="right"><a close-div="">X</a></div>
 					<form action="" method="" name="add_variable">
@@ -230,9 +235,11 @@
 					<div class="right"><a close-div="">X</a></div>
 					<ul>
 						<?php if(count($input['variables'])): ?>
-							<li><a data-if="if">if</a></li>
-							<li><a data-if="elseif">elseif</a></li>
-							<li><a data-if="else">else</a></li>
+							<div class="guid-0 hidden">
+								<li><a data-if="if">if</a></li>
+								<li><a data-if="elseif">elseif</a></li>
+								<li><a data-if="else">else</a></li>
+							</div>
 						<?php endif; ?>
 						<?php foreach($input["items"] as $i): ?>
 							<div class="guid-<?= $i['GUID']; ?> hidden">
