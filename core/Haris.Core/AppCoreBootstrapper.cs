@@ -1,6 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using Caliburn.Micro;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
+using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
 
 namespace Haris.Core
@@ -18,9 +20,14 @@ namespace Haris.Core
 
 		private void ConfigureKernel()
 		{
-			Kernel.Register(Component.For<IEventAggregator>().ImplementedBy<EventAggregator>().LifestyleSingleton());
+			Kernel.Register(Component.For<IEventAggregator>().Instance(new EventAggregator {PublicationThreadMarshaller = QueueAsync}));
 			Kernel.Register(
 				Classes.FromAssemblyInThisApplication().BasedOn<IHarisModule>().WithServiceFromInterface().LifestyleSingleton());
+		}
+
+		private void QueueAsync(Action action)
+		{
+			AsyncActionsQueue.Enqueue(action);
 		}
 
 		private void RunInitializers()

@@ -1,4 +1,6 @@
-﻿#if NETFX_CORE && !WinRT
+﻿using Haris.Core.Events;
+
+#if NETFX_CORE && !WinRT
 #define WinRT
 #endif
 
@@ -17,7 +19,7 @@ namespace Caliburn.Micro {
     ///   Denotes a class which can handle a particular type of message.
     /// </summary>
     /// <typeparam name = "TMessage">The type of message to handle.</typeparam>
-    public interface IHandle<TMessage> : IHandle {  //don't use contravariance here
+    public interface IHandle<TMessage> : IHandle where TMessage: BaseEvent {  //don't use contravariance here
         /// <summary>
         ///   Handles the message.
         /// </summary>

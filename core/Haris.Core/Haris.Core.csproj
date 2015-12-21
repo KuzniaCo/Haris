@@ -43,11 +43,14 @@
     <Compile Include="Caliburn.Micro\ExtensionMethods.cs" />
     <Compile Include="Events\BaseEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Infrastructure\ActionQueue.cs" />
+    <Compile Include="Infrastructure\AsyncActionsQueue.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
