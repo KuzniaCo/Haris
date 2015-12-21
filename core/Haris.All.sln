@@ -5,12 +5,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haris.Core", "Haris.Core\Ha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haris.Core.UnitTests", "Haris.Core.UnitTests\Haris.Core.UnitTests.csproj", "{CC35C810-8751-4792-ACA9-C3561D9F99F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haris.HostApp", "Haris.HostApp\Haris.HostApp.csproj", "{38DF5078-5B6D-482B-B4CB-1AD657033972}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38DF5078-5B6D-482B-B4CB-1AD657033972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38DF5078-5B6D-482B-B4CB-1AD657033972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38DF5078-5B6D-482B-B4CB-1AD657033972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38DF5078-5B6D-482B-B4CB-1AD657033972}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CC35C810-8751-4792-ACA9-C3561D9F99F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CC35C810-8751-4792-ACA9-C3561D9F99F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC35C810-8751-4792-ACA9-C3561D9F99F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
