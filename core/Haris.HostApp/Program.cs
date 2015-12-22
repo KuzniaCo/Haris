@@ -7,12 +7,13 @@ namespace Haris.HostApp
 	{
 		public static void Main (string[] args)
 		{
+			Console.WriteLine("-----------------------");
+			Console.WriteLine("Press Ctrl+C to quit...");
+			Console.WriteLine("-----------------------");
 			var bootstrapper = new AppCoreBootstrapper();
 			bootstrapper.Run();
-			Console.WriteLine("-----------------------");
-			Console.WriteLine("Press Enter to quit...");
-			Console.ReadLine();
-			bootstrapper.Shutdown();
+			Console.CancelKeyPress += delegate { bootstrapper.Shutdown(); };
+			while(true) Console.ReadLine();
 		}
 	}
 }
