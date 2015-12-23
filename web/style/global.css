@@ -1,0 +1,116 @@
+* {
+	-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+}
+html, input, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline; }
+	
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block; }
+	
+body {
+	line-height: 1; }
+	
+ol, ul {
+	list-style: none; }
+	
+blockquote, q {
+	quotes: none; }
+	
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none; }
+	
+table {
+	border-collapse: collapse;
+	border-spacing: 0; }
+	
+a { cursor: pointer; text-decoration: none; color: #000; -moz-transition: all 500ms ease 0s; -webkit-transition: all 500ms ease 0s; -o-transition: all 500ms ease 0s; -ms-transition: all 500ms ease 0s; }
+
+a, a:hover, a:active, a:focus {
+   outline: none;
+   -moz-outline-style: none;
+}
+
+*::-moz-focus-inner {
+    border: 0;
+}
+
+img { pointer-events: none; border:none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; }
+b { font-weight: bold; display: inline; }
+
+html { overflow-x: hidden; }
+body { border-top: 3px solid #2f71f6; background: #F7F7F7; font-family: 'Aller', sans-serif; font-size: 15px; position: relative; }
+
+h1 { text-align: center; margin-bottom: 20px; font-size: 30px; }
+
+.main_width { background-color: #e6e6e5; border: 1px solid #c4c4c3; width: 980px; margin: 0px auto; position: relative; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; margin-bottom: 150px; }
+.right { float: right !important; }
+.left { float: left !important; }
+.clear { clear: both; }
+
+.hidden { display: none; }
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1;
+	background-color: rgba(0,0,0,0.7);
+	display: none;
+}
+main { padding: 20px 10px; }
+
+main table td { background-color: #fff; padding: 3px; border: 1px solid #c4c4c3; vertical-align: top;}
+main table tr.header { text-align: center; }
+
+main table tr:not(.header) td { padding: 5px; }
+
+.if, .actions, .variable, .variable-condition { z-index: 1; background-color: #fff; border: 1px solid #c4c4c3; position: fixed; top: 15%; height: 50vh; }
+.if li a { display: block; padding: 10px; }
+.if li a:hover { background-color: #222; color: #fff; }
+.if ul { /*height: 50%; overflow-y: auto; */}
+
+.actions .tbl-3 { width: 33.33333%; height: 100%; overflow-y: auto; min-height: 1px; }
+.actions ul.action-element li a { display: block; padding: 10px; }
+.actions ul.action-element li a:hover, .actions ul.action-element li a.active { background-color: #222; color: #fff; }
+
+.actiones .tbl-1 { width: 30%; }
+.actiones .tbl-2 { width: 70%; }
+.actiones .tbl-2, .actiones .tbl-1 { float: left; padding: 5px; margin-top: 3px; } 
+
+.variable, .variable-condition, .action3 { padding: 10px; }
+
+#variable_table { margin-bottom: 10px; }
+
+input, textarea, select, a.button { 
+	font-family: 'Open Sans', sans-serif;
+	color: #000;
+	margin-bottom: 10px;
+	margin-top: 3px;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	padding: 10px; 
+	outline: none;  
+}
+input[type=submit], a.button { padding: 10px 20px; }
+a.button { width: 100%; display: block; text-align: center; }
+textarea { width: 100%; min-width: 100%; max-width: 100%; min-height: 150px; }
+
+footer { background-color: #222; position: fixed; width: 100%; text-align: center; left: 0; bottom: 0; border-top: 5px solid #2f71f6; }
+footer a { display: inline-block;  padding: 10px;}
+footer a:hover { background-color: #AFAFAF; }
+footer ul.main li { position: relative; display: inline;  }
+footer ul.main li a { min-width: 150px; color: #fff; }
+footer ul.main li a:hover { background-color: #2a2929; }
+footer .elements { background-color: #222; z-index: 3; position: absolute; width: 100%; bottom: 26px; left: 0; height: 250px; overflow-y: auto; border: 1px solid #2f71f6; border-bottom: none; }
+footer .elements a { width: 100%; text-align: center; border: none; min-width: auto !important; }
+footer .elements a:hover { background-color: #2a2929; }
+
