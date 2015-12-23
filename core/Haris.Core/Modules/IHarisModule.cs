@@ -11,7 +11,14 @@ namespace Haris.Core.Modules
 		void Init();
 	}
 
-	public class TestHarisModule : IHarisModule, IHandle<SampleTimeEvent>
+	public abstract class HarisModuleBase<TPayload> : IHarisModule, IHandle<TPayload> where TPayload: BaseEvent
+	{
+		public abstract void Dispose();
+		public abstract void Init();
+		public abstract void Handle(TPayload message);
+	}
+
+	public class TestHarisModule : HarisModuleBase<SampleTimeEvent>
 	{
 		private readonly IEventAggregator _eventAggregator;
 
@@ -20,19 +27,19 @@ namespace Haris.Core.Modules
 			_eventAggregator = eventAggregator;
 		}
 
-		public void Init()
+		public override void Init()
 		{
 			Console.WriteLine("Test module running...");
 			_eventAggregator.Subscribe(this);
 		}
 
-		public void Dispose()
+		public override void Dispose()
 		{
 			Console.WriteLine("Test module disposing...");
 			_eventAggregator.Unsubscribe(this);
 		}
 
-		public void Handle(SampleTimeEvent message)
+		public override void Handle(SampleTimeEvent message)
 		{
 			Console.WriteLine("{0}: {1}", message.Time, message.Id);
 		}
