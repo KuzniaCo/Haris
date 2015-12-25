@@ -1,4 +1,5 @@
 using System;
+using Haris.Core.Events.AttachedProperties;
 
 namespace Haris.Core.Events
 {

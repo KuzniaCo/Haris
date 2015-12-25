@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Haris.Core.Events.AttachedProperties;
 
 namespace Haris.Core.Events
 {

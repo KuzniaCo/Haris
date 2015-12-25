@@ -1,6 +1,6 @@
 using System;
 
-namespace Haris.Core.Events
+namespace Haris.Core.Events.AttachedProperties
 {
 	public interface IAttachedProperty
 	{
