@@ -41,8 +41,11 @@
     <Compile Include="AppCoreBootstrapper.cs" />
     <Compile Include="Caliburn.Micro\EventAggregator.cs" />
     <Compile Include="Caliburn.Micro\ExtensionMethods.cs" />
+    <Compile Include="Events\AttachedProperties\AttachedPropertyKey.cs" />
     <Compile Include="Events\BaseEvent.cs" />
+    <Compile Include="Events\AttachedProperties\IAttachedProperty.cs" />
     <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Events\LocationProperty.cs" />
     <Compile Include="Infrastructure\ActionQueue.cs" />
     <Compile Include="Infrastructure\AsyncActionsQueue.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
