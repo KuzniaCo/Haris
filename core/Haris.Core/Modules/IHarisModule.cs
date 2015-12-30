@@ -41,17 +41,15 @@ namespace Haris.Core.Modules
 
 		public override void Handle(SampleTimeEvent message)
 		{
-			Console.WriteLine("{0}: {1}", message.Time, message.Id);
+			Console.WriteLine("{0}: {1}", message.Payload, message.Id);
 		}
 	}
 
-	public class SampleTimeEvent: BaseEvent
+	public class SampleTimeEvent: BaseEvent<DateTime>
 	{
-		public DateTime Time { get; set; }
-
-		public SampleTimeEvent(DateTime time)
+		public SampleTimeEvent(DateTime payload)
 		{
-			Time = time;
+			Payload = payload;
 		}
 	}
 
