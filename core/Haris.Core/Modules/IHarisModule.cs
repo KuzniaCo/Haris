@@ -47,9 +47,8 @@ namespace Haris.Core.Modules
 
 	public class SampleTimeEvent: BaseEvent<DateTime>
 	{
-		public SampleTimeEvent(DateTime payload)
+		public SampleTimeEvent(DateTime payload): base(payload)
 		{
-			Payload = payload;
 		}
 	}
 

@@ -18,5 +18,14 @@ namespace Haris.Core.Events
 	public abstract class BaseEvent<TPayload>: BaseEvent, IEvent<TPayload>
 	{
 		public TPayload Payload { get; protected set; }
+        
+	    protected BaseEvent()
+	    {
+	    }
+
+	    protected BaseEvent(TPayload payload)
+	    {
+	        Payload = payload;
+	    }
 	}
 }
