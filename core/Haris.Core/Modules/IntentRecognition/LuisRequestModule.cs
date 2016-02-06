@@ -13,7 +13,7 @@ namespace Haris.Core.Modules.IntentRecognition
 	{
 		private readonly IEventAggregator _eventAggregator;
 		private readonly ILuisUrlProvider _luisUrlProvider;
-		private CancellationTokenSource _cts;
+		private readonly CancellationTokenSource _cts;
 
 		public LuisRequestModule(IEventAggregator eventAggregator, ILuisUrlProvider luisUrlProvider)
 		{
@@ -24,7 +24,8 @@ namespace Haris.Core.Modules.IntentRecognition
 
 		public override void Dispose()
 		{
-			if (_cts != null) _cts.Cancel();
+			if (_cts != null)
+				_cts.Cancel();
 		}
 
 		public override void Init()

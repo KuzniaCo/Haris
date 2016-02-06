@@ -27,12 +27,19 @@ namespace Haris.Core.Modules.ConsoleInput
 		{
 			Task.Run(() =>
 			{
-				while (true)
+				while (_cts.IsCancellationRequested == false)
 				{
 					Console.WriteLine("Type commands to send to LUIS:");
 					var cmd = Console.ReadLine();
 					if (cmd != null)
+					{
 						_eventAggregator.Publish(new CommandTextAcquiredEvent(cmd));
+					}
+					else
+					{
+						break;
+					}
+					
 				}
 			}, _cts.Token);
 			_eventAggregator.Subscribe(this);

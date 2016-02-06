@@ -4,6 +4,7 @@ using Haris.Core.Events.Samples;
 
 namespace Haris.Core.Modules.Samples
 {
+	[DisableModule]
 	public class TestHarisModule : HarisModuleBase<SampleTimeEvent>
 	{
 		private readonly IEventAggregator _eventAggregator;
