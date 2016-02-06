@@ -1,28 +1,30 @@
 ﻿using System;
+using System.Linq;
 using Caliburn.Micro;
-using Castle.MicroKernel;
-using Castle.MicroKernel.Registration;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
+using SimpleInjector;
 
 namespace Haris.Core
 {
 	public class AppCoreBootstrapper
 	{
-		public IKernel Kernel { get; private set; }
+		public Container Container { get; private set; }
 
 		public void Run()
 		{
-			Kernel = new DefaultKernel();
+			Container = new Container();
 			ConfigureKernel();
 			RunInitializers();
 		}
 
 		private void ConfigureKernel()
 		{
-			Kernel.Register(Component.For<IEventAggregator>().Instance(new EventAggregator {PublicationThreadMarshaller = QueueAsync}));
-			Kernel.Register(
-				Classes.FromAssemblyInThisApplication().BasedOn<IHarisModule>().WithServiceFromInterface().LifestyleSingleton());
+			Container.Options.AllowOverridingRegistrations = true;
+			Container.RegisterSingleton<IEventAggregator>(() => new EventAggregator {PublicationThreadMarshaller = QueueAsync});
+
+			var types = GetType().Assembly.GetTypes().Where(t => t.IsAbstract == false && t.IsClass && t.GetInterfaces().Any(i => i == typeof(IHarisModule))).ToList();
+			Container.RegisterCollection<IHarisModule>(types);
 		}
 
 		private void QueueAsync(Action action)
@@ -32,7 +34,7 @@ namespace Haris.Core
 
 		private void RunInitializers()
 		{
-			foreach (var module in Kernel.ResolveAll<IHarisModule>())
+			foreach (var module in Container.GetAllInstances<IHarisModule>())
 			{
 				module.Init();
 			}
@@ -40,11 +42,11 @@ namespace Haris.Core
 
 		public void Shutdown()
 		{
-			foreach (var module in Kernel.ResolveAll<IHarisModule>())
+			foreach (var module in Container.GetAllInstances<IHarisModule>())
 			{
 				module.Dispose();
-				Kernel.ReleaseComponent(module);
 			}
+			Container.Dispose();
 		}
 
 	}
