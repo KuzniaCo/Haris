@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -61,31 +60,6 @@ namespace Haris.Core.Modules.IntentRecognition
 			var response = await client.ExecuteGetTaskAsync<LuisResponseDto>(request, _cts.Token);
 			if(response.StatusCode == HttpStatusCode.OK)
 				_eventAggregator.Publish(new LuisApiResponse(response.Data));
-		}
-	}
-
-	public class LuisApiResponseConsoleWriterModule : HarisModuleBase<LuisApiResponse>
-	{
-		private readonly IEventAggregator _eventAggregator;
-
-		public LuisApiResponseConsoleWriterModule(IEventAggregator eventAggregator)
-		{
-			_eventAggregator = eventAggregator;
-		}
-
-		public override void Dispose()
-		{
-			
-		}
-
-		public override void Init()
-		{
-			_eventAggregator.Subscribe(this);
-		}
-
-		public override void Handle(LuisApiResponse message)
-		{
-			Console.WriteLine("Luis API response:\n{0} {1}", message.Payload.MostProbableIntent.Intent, message.Payload.Entities.First().Entity);
 		}
 	}
 }

@@ -54,6 +54,7 @@
     <Compile Include="Infrastructure\AsyncActionsQueue.cs" />
     <Compile Include="Modules\ConsoleInput\ConsoleCommandInputModule.cs" />
     <Compile Include="Modules\DisableModuleAttribute.cs" />
+    <Compile Include="Modules\IntentRecognition\LuisApiResponseConsoleWriterModule.cs" />
     <Compile Include="Modules\IntentRecognition\LuisRequestModule.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
