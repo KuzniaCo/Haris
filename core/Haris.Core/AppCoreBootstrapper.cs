@@ -21,7 +21,7 @@ namespace Haris.Core
 		private void ConfigureKernel()
 		{
 			Container.Options.AllowOverridingRegistrations = true;
-			Container.RegisterSingleton<IEventAggregator>(() => new EventAggregator {PublicationThreadMarshaller = QueueAsync});
+			Container.RegisterSingleton<IEventAggregator>(new EventAggregator {PublicationThreadMarshaller = QueueAsync});
 
 			var types = GetType().Assembly.GetTypes().Where(t => t.IsAbstract == false && t.IsClass && t.GetInterfaces().Any(i => i == typeof(IHarisModule))).ToList();
 			Container.RegisterCollection<IHarisModule>(types);
