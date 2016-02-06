@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Haris.Core;
 
 namespace Haris.HostApp
@@ -12,8 +13,13 @@ namespace Haris.HostApp
 			Console.WriteLine("-----------------------");
 			var bootstrapper = new AppCoreBootstrapper();
 			bootstrapper.Run();
-			Console.CancelKeyPress += delegate { bootstrapper.Shutdown(); };
-			while(true) Console.ReadLine();
+			var mre = new ManualResetEvent(false);
+			Console.CancelKeyPress += delegate
+			{
+				bootstrapper.Shutdown();
+				mre.Set();
+			};
+			mre.WaitOne();
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using Caliburn.Micro;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
+using Haris.Core.Services;
 using SimpleInjector;
 
 namespace Haris.Core
@@ -22,13 +23,21 @@ namespace Haris.Core
 		{
 			Container.Options.AllowOverridingRegistrations = true;
 			Container.RegisterSingleton<IEventAggregator>(new EventAggregator {PublicationThreadMarshaller = QueueAsync});
+			Container.RegisterSingleton<ILuisUrlProvider, LuisUrlProvider>();
 
 			var types =
 				GetType()
 					.Assembly.GetTypes()
-					.Where(t => t.IsAbstract == false && t.IsClass && t.GetInterfaces().Any(i => i == typeof (IHarisModule)))
+					.Where(RegistrationPredicate)
 					.ToList();
 			Container.RegisterCollection<IHarisModule>(types);
+		}
+
+		private bool RegistrationPredicate(Type t)
+		{
+			return t.IsAbstract == false 
+				&& t.GetCustomAttributes(false).All(a => a is DisableModuleAttribute == false)
+				&& t.IsClass && t.GetInterfaces().Any(i => i == typeof (IHarisModule));
 		}
 
 		private void QueueAsync(Action action)

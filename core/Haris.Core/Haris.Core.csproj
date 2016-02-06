@@ -28,6 +28,10 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SimpleInjector, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.3.1.2\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
@@ -42,15 +46,21 @@
     <Compile Include="Events\AttachedProperties\AttachedPropertyKey.cs" />
     <Compile Include="Events\BaseEvent.cs" />
     <Compile Include="Events\AttachedProperties\IAttachedProperty.cs" />
+    <Compile Include="Events\Command\CommandTextAcquiredEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Events\IntentRecognition\LuisApiRequest.cs" />
     <Compile Include="Events\LocationProperty.cs" />
     <Compile Include="Infrastructure\ActionQueue.cs" />
     <Compile Include="Infrastructure\AsyncActionsQueue.cs" />
+    <Compile Include="Modules\ConsoleInput\ConsoleCommandInputModule.cs" />
+    <Compile Include="Modules\DisableModuleAttribute.cs" />
+    <Compile Include="Modules\IntentRecognition\LuisRequestModule.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
     <Compile Include="Events\Samples\SampleTimeEvent.cs" />
     <Compile Include="Modules\Samples\TestHarisModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\LuisUrlProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

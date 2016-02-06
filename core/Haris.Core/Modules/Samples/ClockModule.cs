@@ -6,6 +6,7 @@ using Haris.Core.Events.Samples;
 
 namespace Haris.Core.Modules.Samples
 {
+	[DisableModule]
 	public class ClockModule : IHarisModule
 	{
 		private readonly IEventAggregator _eventAggregator;
