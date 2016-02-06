@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Haris.Core.Events.IntentRecognition;
-using Haris.Core.Services;
 using Haris.Core.Services.Luis;
+using Haris.DataModel.Luis;
 using RestSharp;
 
 namespace Haris.Core.Modules.IntentRecognition
@@ -57,9 +58,9 @@ namespace Haris.Core.Modules.IntentRecognition
 			var client = new RestClient(_luisUrlProvider.BaseUrl);
 			var url = _luisUrlProvider.GetUrlForQuery(command);
 			var request = new RestRequest(url);
-			var data = await client.ExecuteGetTaskAsync(request, _cts.Token);
-			if(data.StatusCode == HttpStatusCode.OK)
-				_eventAggregator.Publish(new LuisApiResponse(data.Content));
+			var response = await client.ExecuteGetTaskAsync<LuisResponseDto>(request, _cts.Token);
+			if(response.StatusCode == HttpStatusCode.OK)
+				_eventAggregator.Publish(new LuisApiResponse(response.Data));
 		}
 	}
 
@@ -84,7 +85,7 @@ namespace Haris.Core.Modules.IntentRecognition
 
 		public override void Handle(LuisApiResponse message)
 		{
-			Console.WriteLine("Luis API response:\n{0}", message.Payload);
+			Console.WriteLine("Luis API response:\n{0} {1}", message.Payload.MostProbableIntent.Intent, message.Payload.Entities.First().Entity);
 		}
 	}
 }

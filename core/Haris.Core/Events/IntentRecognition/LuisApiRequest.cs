@@ -1,4 +1,6 @@
-﻿namespace Haris.Core.Events.IntentRecognition
+﻿using Haris.DataModel.Luis;
+
+namespace Haris.Core.Events.IntentRecognition
 {
 	public class LuisApiRequest: BaseEvent<string>
 	{
@@ -8,9 +10,9 @@
 		}
 	}
 
-	public class LuisApiResponse : BaseEvent<string>
+	public class LuisApiResponse : BaseEvent<LuisResponseDto>
 	{
-		public LuisApiResponse(string result): base(result)
+		public LuisApiResponse(LuisResponseDto result): base(result)
 		{
 			
 		}

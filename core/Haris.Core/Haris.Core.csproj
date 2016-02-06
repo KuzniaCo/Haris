@@ -65,6 +65,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Haris.DataModel\Haris.DataModel.csproj">
+      <Project>{329EDE23-6531-44A7-8D53-0A156A89AB7B}</Project>
+      <Name>Haris.DataModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
