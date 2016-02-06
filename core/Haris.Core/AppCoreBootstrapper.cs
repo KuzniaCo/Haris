@@ -3,7 +3,6 @@ using System.Linq;
 using Caliburn.Micro;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
-using Haris.Core.Services;
 using Haris.Core.Services.Luis;
 using SimpleInjector;
 
@@ -16,13 +15,12 @@ namespace Haris.Core
 		public void Run()
 		{
 			Container = new Container();
-			ConfigureKernel();
+			ConfigureContainer();
 			RunInitializers();
 		}
 
-		private void ConfigureKernel()
+		private void ConfigureContainer()
 		{
-			Container.Options.AllowOverridingRegistrations = true;
 			Container.RegisterSingleton<IEventAggregator>(new EventAggregator {PublicationThreadMarshaller = QueueAsync});
 			Container.RegisterSingleton<ILuisUrlProvider, LuisUrlProvider>();
 
