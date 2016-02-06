@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Haris.Core.Events.IntentRecognition;
 using Haris.Core.Services;
+using Haris.Core.Services.Luis;
 using RestSharp;
 
 namespace Haris.Core.Modules.IntentRecognition

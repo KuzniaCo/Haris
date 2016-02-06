@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Haris.Core.Services
+namespace Haris.Core.Services.Luis
 {
 	public interface ILuisUrlProvider
 	{

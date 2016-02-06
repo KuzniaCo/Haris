@@ -4,6 +4,7 @@ using Caliburn.Micro;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
 using Haris.Core.Services;
+using Haris.Core.Services.Luis;
 using SimpleInjector;
 
 namespace Haris.Core

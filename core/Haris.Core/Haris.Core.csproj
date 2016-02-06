@@ -60,7 +60,7 @@
     <Compile Include="Events\Samples\SampleTimeEvent.cs" />
     <Compile Include="Modules\Samples\TestHarisModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\LuisUrlProvider.cs" />
+    <Compile Include="Services\Luis\LuisUrlProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
