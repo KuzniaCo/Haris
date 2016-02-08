@@ -3,6 +3,7 @@ using System.Linq;
 using Caliburn.Micro;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
+using Haris.Core.Modules.IntentRecognition.Core;
 using Haris.Core.Services.Luis;
 using SimpleInjector;
 
@@ -23,6 +24,7 @@ namespace Haris.Core
 		{
 			Container.RegisterSingleton<IEventAggregator>(new EventAggregator {PublicationThreadMarshaller = QueueAsync});
 			Container.RegisterSingleton<ILuisUrlProvider, LuisUrlProvider>();
+			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
 
 			var types =
 				GetType()

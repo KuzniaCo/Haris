@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Haris.Core.Events.Command;
-using Haris.Core.Events.IntentRecognition;
+using Haris.Core.Events.System;
+using Haris.DataModel.Luis;
 
 namespace Haris.Core.Modules.ConsoleInput
 {
-	public class ConsoleCommandInputModule: HarisModuleBase<CommandTextAcquiredEvent>
+	public class ConsoleCommandInputModule: HarisModuleBase<SystemActionRequest>
 	{
 		private readonly IEventAggregator _eventAggregator;
-		private CancellationTokenSource _cts;
+		private readonly CancellationTokenSource _cts;
 
 		public ConsoleCommandInputModule(IEventAggregator eventAggregator)
 		{
@@ -45,9 +47,20 @@ namespace Haris.Core.Modules.ConsoleInput
 			_eventAggregator.Subscribe(this);
 		}
 
-		public override void Handle(CommandTextAcquiredEvent message)
+		public override void Handle(SystemActionRequest message)
 		{
-			_eventAggregator.Publish(new LuisApiRequest(message.Payload));
+			Task.Run(() =>
+			{
+				var action = message.Payload;
+				if (action == null || action.OriginalIntent is LuisResponseDto == false)
+				{
+					Console.WriteLine("ERR: Not a LUIS recognizer or empty result.");
+					return;
+				}
+				var intent = (LuisResponseDto) action.OriginalIntent;
+				Console.WriteLine("LUIS API response: {0} {1}", intent.MostProbableIntent.Intent,
+					intent.Entities.DefaultIfEmpty(new LuisEntity {Entity = "NONE"}).First().Entity);
+			}, _cts.Token);
 		}
 	}
 }
