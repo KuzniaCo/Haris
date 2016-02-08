@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,6 +45,7 @@ namespace Haris.Core.Services.Luis
 			var response = await client.ExecuteGetTaskAsync<LuisResponseDto>(request, ct);
 			if (response.StatusCode == HttpStatusCode.OK)
 				return response.Data;
+			Console.WriteLine(response.StatusCode);
 			throw new Exception(response.ErrorMessage);//TODO Add custom exception + handling
 		}
 	}
