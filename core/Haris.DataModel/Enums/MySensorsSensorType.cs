@@ -1,4 +1,4 @@
-﻿namespace Haris.DataModel.Enum
+﻿namespace Haris.DataModel.Enums
 {
 	internal enum MySensorsSensorType
 	{

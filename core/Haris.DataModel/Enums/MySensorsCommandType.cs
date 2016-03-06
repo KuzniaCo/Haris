@@ -1,6 +1,6 @@
-﻿namespace Haris.DataModel.Enum
+﻿namespace Haris.DataModel.Enums
 {
-	internal enum MySensorsCommandType
+	public enum MySensorsCommandType
 	{
 		C_PRESENTATION = 0,
 		C_SET = 1,
