@@ -1,0 +1,26 @@
+﻿{
+    query: "turn on the tv",
+    intents: [
+        {
+            intent: "TurnOn",
+            score: 0.9955859
+        },
+        {
+            intent: "None",
+            score: 0.0106267622
+        },
+        {
+            intent: "TurnOff",
+            score: 1.58084035e-7
+        }
+    ],
+    entities: [
+        {
+            entity: "tv",
+            type: "Entertainment",
+            startIndex: 12,
+            endIndex: 13,
+            score: 0.982878864
+        }
+    ]
+}
