@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Haris.DataModel.Luis;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -18,8 +19,8 @@ namespace Haris.Core.UnitTests._Tests
 		{
 			var file = File.ReadAllText("TestData/TurnOnTvResponse.txt");
 
-			object obj = null;
-			Assert.DoesNotThrow(() => obj = JsonConvert.DeserializeObject(file));
+			LuisResponseDto obj = null;
+			Assert.DoesNotThrow(() => obj = JsonConvert.DeserializeObject<LuisResponseDto>(file));
 			Assert.IsNotNull(obj);
 		}
 	}
