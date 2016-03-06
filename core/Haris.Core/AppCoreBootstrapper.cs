@@ -24,6 +24,7 @@ namespace Haris.Core
 		{
 			Container.RegisterSingleton<IEventAggregator>(new EventAggregator {PublicationThreadMarshaller = QueueAsync});
 			Container.RegisterSingleton<ILuisUrlProvider, LuisUrlProvider>();
+			Container.RegisterSingleton<ILuisClient, LuisClient>();
 			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
 
 			var types =
