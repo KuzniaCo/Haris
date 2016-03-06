@@ -40,6 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action\ActionDescriptorDto.cs" />
+    <Compile Include="Enum\MySensorsPayloadType.cs" />
+    <Compile Include="Enum\MySensorsCommandType.cs" />
+    <Compile Include="Enum\MySensorsDataType.cs" />
+    <Compile Include="Enum\MySensorsInternalMessageType.cs" />
+    <Compile Include="Enum\MySensorsSensorType.cs" />
+    <Compile Include="Enum\MySensorsStreamType.cs" />
     <Compile Include="Luis\LuisEntity.cs" />
     <Compile Include="Luis\LuisIntent.cs" />
     <Compile Include="Luis\LuisResponseDto.cs" />
