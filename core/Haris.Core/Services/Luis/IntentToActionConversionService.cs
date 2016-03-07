@@ -1,13 +1,22 @@
 using System.Linq;
 using Haris.DataModel.Action;
-using Haris.DataModel.IntentRecognition;
 using Haris.DataModel.Luis;
 
 namespace Haris.Core.Services.Luis
 {
-	public class IntentToActionConversionService
+	public interface IIntentToActionConversionService
 	{
-		private CubeConfigDto[] _configuration = new CubeConfigDto[0];
+		ActionDescriptorDto[] GetActions(LuisResponseDto response);
+	}
+
+	public class IntentToActionConversionService : IIntentToActionConversionService
+	{
+		private readonly ILuisIntentToActionMappingRepository _intentToActionMappingRepository;
+		
+		public IntentToActionConversionService(ILuisIntentToActionMappingRepository intentToActionMappingRepository)
+		{
+			_intentToActionMappingRepository = intentToActionMappingRepository;
+		}
 
 		public ActionDescriptorDto[] GetActions(LuisResponseDto response)
 		{
@@ -21,12 +30,16 @@ namespace Haris.Core.Services.Luis
 			{
 				return new ActionDescriptorDto[0];
 			}
-
+			var config = _intentToActionMappingRepository.CurrentConfig;
 			var actions =
-				_configuration
+				config
 					.SelectMany(c => c.Entities.Where(e => e.EntityTags.Contains(thing.Entity)))
 					.SelectMany(ecd => ecd.IntentConfigurations.Where(ic => ic.IntentLabel == intent.IntentLabel))
 					.SelectMany(ic => ic.Actions).ToArray();
+			foreach (var action in actions)
+			{
+				action.OriginalIntent = intent;
+			}
 			return actions;
 		}
 	}

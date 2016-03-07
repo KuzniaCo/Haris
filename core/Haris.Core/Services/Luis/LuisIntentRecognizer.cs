@@ -11,10 +11,12 @@ namespace Haris.Core.Services.Luis
 	public class LuisIntentRecognizer: IIntentRecognizer
 	{
 		private readonly ILuisClient _luisClient;
+		private readonly IIntentToActionConversionService _intentToActionConversionService;
 
-		public LuisIntentRecognizer(ILuisClient luisClient)
+		public LuisIntentRecognizer(ILuisClient luisClient, IIntentToActionConversionService intentToActionConversionService)
 		{
 			_luisClient = luisClient;
+			_intentToActionConversionService = intentToActionConversionService;
 		}
 
 		public async Task<IReadOnlyCollection<ActionDescriptorDto>> InterpretIntent(CommandTextAcquiredEvent evt)
@@ -30,7 +32,7 @@ namespace Haris.Core.Services.Luis
 
 		private IReadOnlyCollection<ActionDescriptorDto> InterpretIntentInternal(LuisResponseDto response)
 		{
-			return new[] {new ActionDescriptorDto {OriginalIntent = response}};
+			return _intentToActionConversionService.GetActions(response);
 		}
 	}
 }

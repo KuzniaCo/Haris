@@ -2,7 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Haris.Core.Events.Command;
+using Haris.Core.Modules.IntentRecognition.Core;
 using Haris.Core.Services.Luis;
+using Haris.DataModel.IntentRecognition;
 using Haris.DataModel.Luis;
 using Newtonsoft.Json;
 using NSubstitute;
@@ -11,20 +13,24 @@ using NUnit.Framework;
 namespace Haris.Core.UnitTests._Tests
 {
 	[TestFixture]
-	public class IntentRecognitionTests
+	public class IntentRecognitionTests: TestBase
 	{
-		private LuisIntentRecognizer _recognizer;
-		private ILuisClient _luisClientMock;
-		private const string TurnOnTheTvCommand = "turn on the tv";
+		protected const string TurnOnTheTvCommand = "turn on the tv";
 
-		[SetUp]
-		public void Init()
+		private IIntentRecognizer _recognizer;
+		private ILuisClient _luisClientMock;
+		private ILuisIntentToActionMappingRepository _luisIntentToActionMappingRepoMock;
+
+		[TestFixtureSetUp]
+		public void TfSetUp()
 		{
 			var turnOnTvFile = File.ReadAllText("TestData/TurnOnTvResponse.txt");
 			var turnOnTvIntent = JsonConvert.DeserializeObject<LuisResponseDto>(turnOnTvFile);
 
-			_luisClientMock = Substitute.For<ILuisClient>();
-			_luisClientMock.AskLuis("", CancellationToken.None).Returns(info =>
+			var luisIntentConfigFile = File.ReadAllText("TestData/CubesConfig.txt");
+			var luisIntentConfig = JsonConvert.DeserializeObject<CubeConfigDto[]>(luisIntentConfigFile);
+			var luisClientMock = Substitute.For<ILuisClient>();
+			luisClientMock.AskLuis("", CancellationToken.None).ReturnsForAnyArgs(info =>
 			{
 				switch (info.Arg<string>())
 				{
@@ -34,7 +40,21 @@ namespace Haris.Core.UnitTests._Tests
 				return Task.FromResult<LuisResponseDto>(null);
 			});
 
-			_recognizer = new LuisIntentRecognizer(_luisClientMock);
+			var luisIntentToActionMappingRepoMock = Substitute.For<ILuisIntentToActionMappingRepository>();
+			luisIntentToActionMappingRepoMock.CurrentConfig.Returns(luisIntentConfig);
+
+			Container.RegisterSingleton(luisClientMock);
+			Container.RegisterSingleton(luisIntentToActionMappingRepoMock);
+			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
+			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
+		}
+
+		[SetUp]
+		public void Init()
+		{
+			_recognizer = Container.GetInstance<IIntentRecognizer>();
+			_luisClientMock = Container.GetInstance<ILuisClient>();
+			_luisIntentToActionMappingRepoMock = Container.GetInstance<ILuisIntentToActionMappingRepository>();
 		}
 
 		[Test]
@@ -67,6 +87,12 @@ namespace Haris.Core.UnitTests._Tests
 			var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
 
 			await _luisClientMock.Received(1).AskLuis(TurnOnTheTvCommand, CancellationToken.None);
+		}
+
+		[Test]
+		public void CubesConfigIsRead()
+		{
+			Assert.IsNotEmpty(_luisIntentToActionMappingRepoMock.CurrentConfig);
 		}
 	}
 }

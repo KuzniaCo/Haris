@@ -40,10 +40,17 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleInjector, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.3.1.2\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="TestData\CubesConfig.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\TurnOnTvInBedroomResponse.txt" />
     <Content Include="TestData\TurnOnTvResponse.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -61,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="_Tests\IntentRecognitionTests.cs" />
+    <Compile Include="_Tests\TestBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

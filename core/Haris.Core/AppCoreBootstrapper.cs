@@ -17,7 +17,12 @@ namespace Haris.Core
 		{
 			Container = new Container();
 			ConfigureContainer();
+			InitializeMappings();
 			RunInitializers();
+		}
+
+		private void InitializeMappings()
+		{
 		}
 
 		private void ConfigureContainer()

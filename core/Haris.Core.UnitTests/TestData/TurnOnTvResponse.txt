@@ -17,7 +17,7 @@
     entities: [
         {
             entity: "tv",
-            type: "Entertainment",
+            type: "Thing",
             startIndex: 12,
             endIndex: 13,
             score: 0.982878864
