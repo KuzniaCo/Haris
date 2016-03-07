@@ -56,6 +56,7 @@
     <Compile Include="Modules\DisableModuleAttribute.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IIntentRecognizer.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IntentRecognitionHub.cs" />
+    <Compile Include="Modules\MySensors\MySensorControllerModule.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
     <Compile Include="Events\Samples\SampleTimeEvent.cs" />
