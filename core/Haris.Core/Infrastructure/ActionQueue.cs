@@ -33,8 +33,11 @@ namespace Haris.Core.Infrastructure
 
 		public void Start()
 		{
-			Mre.Reset();
-			_actionsQueue = new ConcurrentQueue<Action>();
+			lock (_syncObject)
+			{
+				Mre.Reset();
+				_actionsQueue = _actionsQueue ?? new ConcurrentQueue<Action>(); 
+			}
 			ThreadPool.QueueUserWorkItem(_ => Run(), null);
 		}
 
