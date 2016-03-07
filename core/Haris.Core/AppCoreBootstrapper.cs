@@ -31,6 +31,8 @@ namespace Haris.Core
 			Container.RegisterSingleton<ILuisUrlProvider, LuisUrlProvider>();
 			Container.RegisterSingleton<ILuisClient, LuisClient>();
 			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
+			Container.RegisterSingleton<ILuisIntentToActionMappingRepository, LuisIntentToActionMappingRepository>();
+			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
 
 			var types =
 				GetType()

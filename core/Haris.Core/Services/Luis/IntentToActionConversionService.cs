@@ -38,7 +38,7 @@ namespace Haris.Core.Services.Luis
 					.SelectMany(ic => ic.Actions).ToArray();
 			foreach (var action in actions)
 			{
-				action.OriginalIntent = intent;
+				action.OriginalIntent = response;
 			}
 			return actions;
 		}

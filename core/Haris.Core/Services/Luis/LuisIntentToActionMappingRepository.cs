@@ -13,13 +13,17 @@ namespace Haris.Core.Services.Luis
 
 	public class LuisIntentToActionMappingRepository : ILuisIntentToActionMappingRepository
 	{
-		private const string ConfigFileName = "intentsToActions.json";
+		private const string ConfigFileName = @"Config\intentsToActions.json";
 		private CubeConfigDto[] _config;
 		private readonly ReaderWriterLockSlim _rw;
 
 		public LuisIntentToActionMappingRepository()
 		{
 			_rw = new ReaderWriterLockSlim();
+			if (File.Exists(ConfigFileName) == false)
+			{
+				throw new InvalidDataException("LUIS intents config does not exist");
+			}
 		}
 
 		private CubeConfigDto[] ReadConfig()
