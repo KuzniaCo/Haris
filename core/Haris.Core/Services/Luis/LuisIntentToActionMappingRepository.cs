@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
 using Haris.DataModel.IntentRecognition;
 using Newtonsoft.Json;
@@ -13,22 +14,22 @@ namespace Haris.Core.Services.Luis
 
 	public class LuisIntentToActionMappingRepository : ILuisIntentToActionMappingRepository
 	{
-		private const string ConfigFileName = @"Config\intentsToActions.json";
+		private readonly string _configFileName = Path.Combine(Environment.CurrentDirectory, "Config", "intentsToActions.json");
 		private CubeConfigDto[] _config;
 		private readonly ReaderWriterLockSlim _rw;
 
 		public LuisIntentToActionMappingRepository()
 		{
 			_rw = new ReaderWriterLockSlim();
-			if (File.Exists(ConfigFileName) == false)
+			if (File.Exists(_configFileName) == false)
 			{
-				throw new InvalidDataException("LUIS intents config does not exist");
+				throw new InvalidDataException("LUIS intents config does not exist in "+Environment.CurrentDirectory);
 			}
 		}
 
 		private CubeConfigDto[] ReadConfig()
 		{
-			var file = File.ReadAllText(ConfigFileName);
+			var file = File.ReadAllText(_configFileName);
 
 			return JsonConvert.DeserializeObject<CubeConfigDto[]>(file, new Newtonsoft.Json.Converters.StringEnumConverter());
 		}
@@ -36,7 +37,7 @@ namespace Haris.Core.Services.Luis
 		private void SaveConfig()
 		{
 			var contents = JsonConvert.SerializeObject(_config);
-			File.WriteAllText(ConfigFileName, contents);
+			File.WriteAllText(_configFileName, contents);
 		}
 
 		public CubeConfigDto[] CurrentConfig
