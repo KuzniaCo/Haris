@@ -1,0 +1,33 @@
+﻿{
+  "query": "turn off the light in the bedroom",
+  "intents": [
+    {
+      "intent": "TurnOff",
+      "score": 0.994210839
+    },
+    {
+      "intent": "TurnOn",
+      "score": 0.19535391
+    },
+    {
+      "intent": "None",
+      "score": 0.003775213
+    }
+  ],
+  "entities": [
+    {
+      "entity": "bedroom",
+      "type": "Room",
+      "startIndex": 26,
+      "endIndex": 32,
+      "score": 0.869963169
+    },
+    {
+      "entity": "light",
+      "type": "Illumination",
+      "startIndex": 13,
+      "endIndex": 17,
+      "score": 0.998248935
+    }
+  ]
+}

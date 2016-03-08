@@ -17,14 +17,22 @@ namespace Haris.Core
 		{
 			Container = new Container();
 			ConfigureContainer();
+			InitializeMappings();
 			RunInitializers();
+		}
+
+		private void InitializeMappings()
+		{
 		}
 
 		private void ConfigureContainer()
 		{
 			Container.RegisterSingleton<IEventAggregator>(new EventAggregator {PublicationThreadMarshaller = QueueAsync});
 			Container.RegisterSingleton<ILuisUrlProvider, LuisUrlProvider>();
+			Container.RegisterSingleton<ILuisClient, LuisClient>();
 			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
+			Container.RegisterSingleton<ILuisIntentToActionMappingRepository, LuisIntentToActionMappingRepository>();
+			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
 
 			var types =
 				GetType()

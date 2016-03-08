@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Haris.Core.Events.Command;
 using Haris.Core.Modules.IntentRecognition.Core;
 using Haris.DataModel.Action;
 using Haris.DataModel.Luis;
-using RestSharp;
 
 namespace Haris.Core.Services.Luis
 {
 	public class LuisIntentRecognizer: IIntentRecognizer
 	{
-		private readonly ILuisUrlProvider _luisUrlProvider;
+		private readonly ILuisClient _luisClient;
+		private readonly IIntentToActionConversionService _intentToActionConversionService;
 
-		public LuisIntentRecognizer(ILuisUrlProvider luisUrlProvider)
+		public LuisIntentRecognizer(ILuisClient luisClient, IIntentToActionConversionService intentToActionConversionService)
 		{
-			_luisUrlProvider = luisUrlProvider;
+			_luisClient = luisClient;
+			_intentToActionConversionService = intentToActionConversionService;
 		}
 
 		public async Task<IReadOnlyCollection<ActionDescriptorDto>> InterpretIntent(CommandTextAcquiredEvent evt)
@@ -28,25 +26,13 @@ namespace Haris.Core.Services.Luis
 
 		public async Task<IReadOnlyCollection<ActionDescriptorDto>> InterpretIntent(CommandTextAcquiredEvent evt, CancellationToken ct)
 		{
-			var response = await AskLuis(evt.Payload, ct);
+			var response = await _luisClient.AskLuis(evt.Payload, ct);
 			return InterpretIntentInternal(response);
 		}
 
 		private IReadOnlyCollection<ActionDescriptorDto> InterpretIntentInternal(LuisResponseDto response)
 		{
-			return new[] {new ActionDescriptorDto {OriginalIntent = response}};
-		}
-
-		private async Task<LuisResponseDto> AskLuis(string command, CancellationToken ct)
-		{
-			var client = new RestClient(_luisUrlProvider.BaseUrl);
-			var url = _luisUrlProvider.GetUrlForQuery(command);
-			var request = new RestRequest(url);
-			var response = await client.ExecuteGetTaskAsync<LuisResponseDto>(request, ct);
-			if (response.StatusCode == HttpStatusCode.OK)
-				return response.Data;
-			Console.WriteLine(response.StatusCode);
-			throw new Exception(response.ErrorMessage);//TODO Add custom exception + handling
+			return _intentToActionConversionService.GetActions(response);
 		}
 	}
 }
