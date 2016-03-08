@@ -1,0 +1,28 @@
+﻿[{
+		"CubeId" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
+		"Entities" : [{
+				"EntityTags" : ["tv", "television"],
+				"IntentConfigurations" : [{
+						"IntentLabel" : "TurnOn",
+						"Actions" : [{
+								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
+								"ActionId" : 1,
+								"ActionParameter" : true,
+								"OriginalIntent" : null
+							}
+						]
+					}, {
+						"IntentLabel" : "TurnOff",
+						"Actions" : [{
+								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
+								"ActionId" : 1,
+								"ActionParameter" : false,
+								"OriginalIntent" : null
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]
