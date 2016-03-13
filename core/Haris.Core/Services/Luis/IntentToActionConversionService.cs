@@ -21,7 +21,7 @@ namespace Haris.Core.Services.Luis
 		public ActionDescriptorDto[] GetActions(LuisResponseDto response)
 		{
 			var intent = response.MostProbableIntent;
-			var entities = response.Entities.Where(e => e.Type == "Thing").ToList();
+			var entities = response.Entities.Where(e => e.Type == "Thing" || e.Type == "Illumination").ToList();
 			var thing = entities.FirstOrDefault();
 			var properties = response.Entities.Where(e => e.Type == "Property").ToList();
 			var numbers = response.Entities.Where(e => e.Type == "builtin.number").ToList();
@@ -29,6 +29,7 @@ namespace Haris.Core.Services.Luis
 			if (thing == null)
 			{
 				return new ActionDescriptorDto[0];
+				
 			}
 			var config = _intentToActionMappingRepository.CurrentConfig;
 			var actions =
@@ -39,6 +40,10 @@ namespace Haris.Core.Services.Luis
 			foreach (var action in actions)
 			{
 				action.OriginalIntent = response;
+			}
+			if (actions.Length == 0)
+			{
+				actions = new[] {new ActionDescriptorDto() {OriginalIntent = response}};
 			}
 			return actions;
 		}

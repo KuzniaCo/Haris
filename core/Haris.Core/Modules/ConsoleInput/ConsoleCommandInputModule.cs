@@ -58,11 +58,12 @@ namespace Haris.Core.Modules.ConsoleInput
 					return;
 				}
 				var intent = (LuisResponseDto) action.OriginalIntent;
-				Console.WriteLine("{2}> LUIS API response: {0} {1}", intent.MostProbableIntent.Intent,
+				Console.WriteLine("{2}> {3}{4}: {0} {1}", intent.MostProbableIntent.Intent,
 					string.Join(", ",
 						intent.Entities.DefaultIfEmpty(new LuisEntity {Entity = "NONE"})
 							.OrderByDescending(e => e.Score)
-							.Select(e => string.Format("{0}:{1}", e.Entity, e.Type))), DateTime.Now.ToString("HH:m:s"));
+							.Select(e => string.Format("{0}:{1}", e.Entity, e.Type))), DateTime.Now.ToString("HH:m:s"),
+								action.TargetGuid == null ? "LUIS API response" : "", action.TargetGuid);
 			}, _cts.Token);
 		}
 	}
