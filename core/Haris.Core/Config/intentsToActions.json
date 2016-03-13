@@ -7,8 +7,7 @@
 						"Actions" : [{
 								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
 								"ActionId" : 1,
-								"ActionParameter" : true,
-								"OriginalIntent" : null
+								"ActionParameter" : true
 							}
 						]
 					}, {
@@ -16,17 +15,14 @@
 						"Actions" : [{
 								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
 								"ActionId" : 1,
-								"ActionParameter" : false,
-								"OriginalIntent" : null
+								"ActionParameter" : false
 							}
 						]
 					}, {
 						"IntentLabel" : "Set",
 						"Actions" : [{
 								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
-								"ActionId" : 2,
-								"ActionParameter" : false,
-								"OriginalIntent" : null
+								"ActionId" : 2
 							}
 						]
 					}
