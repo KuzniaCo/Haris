@@ -24,7 +24,7 @@ namespace Haris.Core.Services.Luis
 			var response = await client.ExecuteGetTaskAsync<LuisResponseDto>(request, ct);
 			if (response.StatusCode == HttpStatusCode.OK)
 				return response.Data;
-			Console.WriteLine("{0:HH:m:s}> Error asking LUIS: {1} with code {2}", DateTime.Now, response.ErrorMessage,
+			Logging.Logger.LogError("{0:HH:m:s}> Error asking LUIS: {1} with code {2}", DateTime.Now, response.ErrorMessage,
 				response.StatusCode);
 			throw new Exception(response.ErrorMessage);//TODO Add custom exception + handling
 		}

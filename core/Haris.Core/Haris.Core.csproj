@@ -70,6 +70,7 @@
     <Compile Include="Events\Samples\SampleTimeEvent.cs" />
     <Compile Include="Modules\Samples\TestHarisModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Logging\Logger.cs" />
     <Compile Include="Services\Luis\ILuisClient.cs" />
     <Compile Include="Services\Luis\IntentToActionConversionService.cs" />
     <Compile Include="Services\Luis\LuisClient.cs" />
@@ -91,4 +92,3 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
-

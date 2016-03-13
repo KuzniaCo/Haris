@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Linq;
+using Haris.Core.Services.Logging;
 using Haris.DataModel.Action;
 using Haris.DataModel.Luis;
 
@@ -28,8 +30,8 @@ namespace Haris.Core.Services.Luis
 
 			if (thing == null)
 			{
+				Logger.LogError("No entity of type \"Thing\" or \"Illumination\" found");
 				return new ActionDescriptorDto[0];
-				
 			}
 			var config = _intentToActionMappingRepository.CurrentConfig;
 			var actions =
