@@ -34,7 +34,7 @@ namespace Haris.Core.Modules.ConsoleInput
 				{
 					Logger.LogPrompt("Type commands to send to LUIS:");
 					var cmd = Console.ReadLine();
-					if (cmd != null)
+					if (string.IsNullOrWhiteSpace(cmd) == false)
 					{
 						_eventAggregator.Publish(new CommandTextAcquiredEvent(cmd));
 					}
