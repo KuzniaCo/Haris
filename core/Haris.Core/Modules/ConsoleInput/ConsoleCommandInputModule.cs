@@ -59,7 +59,10 @@ namespace Haris.Core.Modules.ConsoleInput
 				}
 				var intent = (LuisResponseDto) action.OriginalIntent;
 				Console.WriteLine("{2}> LUIS API response: {0} {1}", intent.MostProbableIntent.Intent,
-					intent.Entities.DefaultIfEmpty(new LuisEntity {Entity = "NONE"}).First().Entity, DateTime.Now.ToString("HH:m:s"));
+					string.Join(", ",
+						intent.Entities.DefaultIfEmpty(new LuisEntity {Entity = "NONE"})
+							.OrderByDescending(e => e.Score)
+							.Select(e => string.Format("{0}:{1}", e.Entity, e.Type))), DateTime.Now.ToString("HH:m:s"));
 			}, _cts.Token);
 		}
 	}
