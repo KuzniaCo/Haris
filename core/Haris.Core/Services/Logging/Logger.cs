@@ -33,8 +33,7 @@ namespace Haris.Core.Services.Logging
 
 		private static void LogInternal(string message)
 		{
-			Console.Write(DateTime.Now.ToString("HH:mm:ss> "));
-			Console.WriteLine(message);
+			Console.WriteLine(DateTime.Now.ToString("HH:mm:ss> ") + message);
 		}
 
 		private static void ColorWrap(ConsoleColor color, string format, params object[] parameters)
