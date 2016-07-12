@@ -1,6 +1,7 @@
 using System;
 using Caliburn.Micro;
 using Haris.Core.Events.Samples;
+using Haris.Core.Services.Logging;
 
 namespace Haris.Core.Modules.Samples
 {
@@ -16,19 +17,19 @@ namespace Haris.Core.Modules.Samples
 
 		public override void Init()
 		{
-			Console.WriteLine("Test module running...");
+			Logger.LogInfo("Test module running...");
 			_eventAggregator.Subscribe(this);
 		}
 
 		public override void Dispose()
 		{
-			Console.WriteLine("Test module disposing...");
+			Logger.LogInfo("Test module disposing...");
 			_eventAggregator.Unsubscribe(this);
 		}
 
 		public override void Handle(SampleTimeEvent message)
 		{
-			Console.WriteLine("{0}: {1}", message.Payload, message.Id);
+			Logger.LogInfo("{0}: {1}", message.Payload, message.Id);
 		}
 	}
 }

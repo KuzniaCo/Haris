@@ -22,8 +22,9 @@ namespace Haris.Core.UnitTests._Tests
 		private ILuisIntentToActionMappingRepository _luisIntentToActionMappingRepoMock;
 
 		[TestFixtureSetUp]
-		public void TfSetUp()
+		public override void TestFixtureSetUp()
 		{
+			base.TestFixtureSetUp();
 			var turnOnTvFile = File.ReadAllText("TestData/TurnOnTvResponse.txt");
 			var turnOnTvIntent = JsonConvert.DeserializeObject<LuisResponseDto>(turnOnTvFile);
 

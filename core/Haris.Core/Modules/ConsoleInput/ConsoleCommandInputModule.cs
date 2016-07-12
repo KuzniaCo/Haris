@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Haris.Core.Events.Command;
 using Haris.Core.Events.System;
+using Haris.Core.Services.Logging;
 using Haris.DataModel.Luis;
 
 namespace Haris.Core.Modules.ConsoleInput
@@ -31,13 +32,13 @@ namespace Haris.Core.Modules.ConsoleInput
 			{
 				while (_cts.IsCancellationRequested == false)
 				{
-					Console.WriteLine("Type commands to send to LUIS:");
+					Logger.LogPrompt("Type commands to send to LUIS:");
 					var cmd = Console.ReadLine();
-					if (cmd != null)
+					if (string.IsNullOrWhiteSpace(cmd) == false)
 					{
 						_eventAggregator.Publish(new CommandTextAcquiredEvent(cmd));
 					}
-					else
+					else if(cmd == null)
 					{
 						break;
 					}
@@ -54,12 +55,16 @@ namespace Haris.Core.Modules.ConsoleInput
 				var action = message.Payload;
 				if (action == null || action.OriginalIntent is LuisResponseDto == false)
 				{
-					Console.WriteLine("ERR: Not a LUIS recognizer or empty result.");
+					Logger.LogError("Not a LUIS recognizer or empty result.");
 					return;
 				}
 				var intent = (LuisResponseDto) action.OriginalIntent;
-				Console.WriteLine("{2}> LUIS API response: {0} {1}", intent.MostProbableIntent.Intent,
-					intent.Entities.DefaultIfEmpty(new LuisEntity {Entity = "NONE"}).First().Entity, DateTime.Now.ToString("HH:m:s"));
+				Logger.LogInfo("{2}{3}: {0} {1}", intent.MostProbableIntent.Intent,
+					string.Join(", ",
+						intent.Entities.DefaultIfEmpty(new LuisEntity {Entity = "NONE"})
+							.OrderByDescending(e => e.Score)
+							.Select(e => string.Format("{0}:{1}", e.Entity, e.Type))),
+								action.TargetGuid == null ? "LUIS API response" : "", action.TargetGuid);
 			}, _cts.Token);
 		}
 	}

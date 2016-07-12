@@ -8,7 +8,7 @@ namespace Haris.Core.UnitTests._Tests
 		protected Container Container;
 
 		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
+		public virtual void TestFixtureSetUp()
 		{
 			Container = new Container();
 			Container.Options.AllowOverridingRegistrations = true;
