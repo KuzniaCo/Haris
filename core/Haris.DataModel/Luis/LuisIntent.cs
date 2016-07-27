@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Haris.DataModel.IntentRecognition;
 
 namespace Haris.DataModel.Luis
@@ -7,6 +8,7 @@ namespace Haris.DataModel.Luis
 	{
 		public string Intent { get; set; }
 		public double Score { get; set; }
+		public List<LuisAction> Actions { get; set; }
 
 		public IntentLabel IntentLabel
 		{

@@ -8,6 +8,7 @@ using Haris.DataModel.IntentRecognition;
 using Haris.DataModel.Luis;
 using Newtonsoft.Json;
 using NSubstitute;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Haris.Core.UnitTests._Tests
@@ -94,6 +95,16 @@ namespace Haris.Core.UnitTests._Tests
 		public void CubesConfigIsRead()
 		{
 			Assert.IsNotEmpty(_luisIntentToActionMappingRepoMock.CurrentConfig);
+		}
+
+		[Test]
+		public void ActionsGetDeserialized()
+		{
+			var file = File.ReadAllText("TestData/TurnOffTvInBedroomResponseWithActions.txt");
+			var response = JsonConvert.DeserializeObject<LuisResponseDto>(file);
+
+			Assert.That(response, Is.Not.Null);
+			Assert.AreEqual(2, response.Intents.Count(i => i.Actions != null && i.Actions.Count > 0));
 		}
 	}
 }

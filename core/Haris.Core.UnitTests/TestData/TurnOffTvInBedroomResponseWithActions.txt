@@ -1,0 +1,95 @@
+﻿{
+  "query": "turn on the tv in the living room",
+  "intents": [
+    {
+      "intent": "TurnOn",
+      "score": 0.9931204,
+      "actions": [
+        {
+          "triggered": true,
+          "name": "TurnOn",
+          "parameters": [
+            {
+              "name": "room",
+              "required": false,
+              "value": [
+                {
+                  "entity": "living room",
+                  "type": "Room",
+                  "score": 0.945437431
+                }
+              ]
+            },
+            {
+              "name": "thing",
+              "required": true,
+              "value": [
+                {
+                  "entity": "tv",
+                  "type": "Thing",
+                  "score": 0.9999793
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "intent": "TurnOff",
+      "score": 0.0109806564
+    },
+    {
+      "intent": "None",
+      "score": 0.00328416075
+    },
+    {
+      "intent": "Set",
+      "score": 8.01052646E-09
+    },
+    {
+      "intent": "Get",
+      "score": 1.85399673E-09,
+      "actions": [
+        {
+          "triggered": false,
+          "name": "Get",
+          "parameters": [
+            {
+              "name": "property",
+              "required": true,
+              "value": null
+            },
+            {
+              "name": "thing",
+              "required": false,
+              "value": [
+                {
+                  "entity": "tv",
+                  "type": "Thing",
+                  "score": 0.9999793
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "entity": "tv",
+      "type": "Thing",
+      "startIndex": 12,
+      "endIndex": 13,
+      "score": 0.9999793
+    },
+    {
+      "entity": "living room",
+      "type": "Room",
+      "startIndex": 22,
+      "endIndex": 32,
+      "score": 0.945437431
+    }
+  ]
+}

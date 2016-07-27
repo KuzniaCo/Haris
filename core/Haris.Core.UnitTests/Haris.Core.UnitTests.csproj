@@ -51,6 +51,9 @@
     <Content Include="TestData\CubesConfig.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="TestData\TurnOffTvInBedroomResponseWithActions.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\TurnOnTvInBedroomResponse.txt" />
     <Content Include="TestData\TurnOnTvResponse.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -72,4 +75,3 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
-
