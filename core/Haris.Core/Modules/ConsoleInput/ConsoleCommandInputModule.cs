@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Haris.Core.Events.Command;
-using Haris.Core.Events.System;
+using Haris.Core.Events.Intent;
 using Haris.Core.Services.Logging;
-using Haris.DataModel.Luis;
 
 namespace Haris.Core.Modules.ConsoleInput
 {
-	public class ConsoleCommandInputModule: HarisModuleBase<SystemActionRequest>
+	public class ConsoleCommandInputModule: HarisModuleBase<IntentRecognitionCompletionEvent>
 	{
 		private readonly IEventAggregator _eventAggregator;
 		private readonly CancellationTokenSource _cts;
@@ -48,23 +46,13 @@ namespace Haris.Core.Modules.ConsoleInput
 			_eventAggregator.Subscribe(this);
 		}
 
-		public override void Handle(SystemActionRequest message)
+		public override void Handle(IntentRecognitionCompletionEvent message)
 		{
 			Task.Run(() =>
 			{
-				var action = message.Payload;
-				if (action == null || action.OriginalIntent is LuisResponseDto == false)
-				{
-					Logger.LogError("Not a LUIS recognizer or empty result.");
-					return;
-				}
-				var intent = (LuisResponseDto) action.OriginalIntent;
-				Logger.LogInfo("{2}{3}: {0} {1}", intent.MostProbableIntent.Intent,
-					string.Join(", ",
-						intent.Entities.DefaultIfEmpty(new LuisEntity {Entity = "NONE"})
-							.OrderByDescending(e => e.Score)
-							.Select(e => string.Format("{0}:{1}", e.Entity, e.Type))),
-								action.TargetGuid == null ? "LUIS API response" : "", action.TargetGuid);
+				var result = message.Payload;
+				Logger.LogInfo(string.Format("{0} th:{1} r:{4} pr:{2} n:{3}", result.IntentLabel, result.ThingParameter,
+					result.PropertyParameter, result.NumericParameter, result.RoomParameter));
 			}, _cts.Token);
 		}
 	}

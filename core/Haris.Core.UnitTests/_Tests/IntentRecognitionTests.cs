@@ -80,7 +80,7 @@ namespace Haris.Core.UnitTests._Tests
 		{
 			var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
 
-			Assert.IsNotEmpty(response);
+			Assert.IsNotNull(response);
 		}
 
 		[Test]

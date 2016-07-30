@@ -47,6 +47,10 @@
     <Compile Include="Enums\MySensorsSensorType.cs" />
     <Compile Include="Enums\MySensorsStreamType.cs" />
     <Compile Include="IntentRecognition\CubeConfigDto.cs" />
+    <Compile Include="IntentRecognition\EntityConfigDto.cs" />
+    <Compile Include="IntentRecognition\IntentConfigDto.cs" />
+    <Compile Include="IntentRecognition\IntentLabel.cs" />
+    <Compile Include="IntentRecognition\IntentRecognitionResult.cs" />
     <Compile Include="Luis\LuisAction.cs" />
     <Compile Include="Luis\LuisEntity.cs" />
     <Compile Include="Luis\LuisIntent.cs" />
