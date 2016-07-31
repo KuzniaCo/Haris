@@ -4,6 +4,7 @@ using Caliburn.Micro;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
 using Haris.Core.Modules.IntentRecognition.Core;
+using Haris.Core.Services.Logging;
 using Haris.Core.Services.Luis;
 using SimpleInjector;
 
@@ -16,9 +17,17 @@ namespace Haris.Core
 		public void Run()
 		{
 			Container = new Container();
+			System.AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
 			ConfigureContainer();
 			InitializeMappings();
 			RunInitializers();
+		}
+
+		private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			var exception = e.ExceptionObject as Exception;
+			Logger.LogError("Unhandled exception: {0}\n{1}", exception?.Message, exception?.StackTrace);
+			Shutdown();
 		}
 
 		private void InitializeMappings()
@@ -64,11 +73,14 @@ namespace Haris.Core
 
 		public void Shutdown()
 		{
-			foreach (var module in Container.GetAllInstances<IHarisModule>())
+			if (Container != null)
 			{
-				module.Dispose();
+				foreach (var module in Container.GetAllInstances<IHarisModule>())
+				{
+					module.Dispose();
+				}
+				Container.Dispose();
 			}
-			Container.Dispose();
 		}
 
 	}

@@ -40,7 +40,6 @@ namespace Haris.Core.Modules.ConsoleInput
 					{
 						break;
 					}
-					
 				}
 			}, _cts.Token);
 			_eventAggregator.Subscribe(this);
