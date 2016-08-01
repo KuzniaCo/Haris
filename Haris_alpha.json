@@ -1,0 +1,1022 @@
+{
+  "luis_schema_version": "1.3.0",
+  "name": "Haris playground",
+  "desc": "htest",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "TurnOn"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "Get"
+    },
+    {
+      "name": "TurnOff"
+    },
+    {
+      "name": "Set"
+    }
+  ],
+  "entities": [
+    {
+      "name": "Room"
+    },
+    {
+      "name": "Thing"
+    },
+    {
+      "name": "Property"
+    }
+  ],
+  "composites": [],
+  "bing_entities": [
+    "number"
+  ],
+  "actions": [
+    {
+      "actionName": "Set",
+      "intentName": "Set",
+      "actionParameters": [
+        {
+          "parameterName": "thing",
+          "entityName": "Thing",
+          "required": false
+        },
+        {
+          "parameterName": "property",
+          "entityName": "Property",
+          "required": true
+        },
+        {
+          "parameterName": "value",
+          "entityName": "number",
+          "required": true
+        }
+      ]
+    },
+    {
+      "actionName": "Get",
+      "intentName": "Get",
+      "actionParameters": [
+        {
+          "parameterName": "property",
+          "entityName": "Property",
+          "required": true
+        },
+        {
+          "parameterName": "thing",
+          "entityName": "Thing",
+          "required": false
+        }
+      ]
+    },
+    {
+      "actionName": "TurnOn",
+      "intentName": "TurnOn",
+      "actionParameters": [
+        {
+          "parameterName": "room",
+          "entityName": "Room",
+          "required": false
+        },
+        {
+          "parameterName": "thing",
+          "entityName": "Thing",
+          "required": true
+        }
+      ]
+    },
+    {
+      "actionName": "TurnOff",
+      "intentName": "TurnOff",
+      "actionParameters": [
+        {
+          "parameterName": "thing",
+          "entityName": "Thing",
+          "required": true
+        },
+        {
+          "parameterName": "room",
+          "entityName": "Room",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "model_features": [
+    {
+      "name": "light",
+      "mode": true,
+      "words": "lamp,light,lighting,illumination,lights",
+      "activated": true
+    },
+    {
+      "name": "tv",
+      "mode": true,
+      "words": "tv,television",
+      "activated": true
+    },
+    {
+      "name": "room",
+      "mode": true,
+      "words": "bedroom,living room,my room",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "turn on the light in my bedroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "set",
+      "intent": "Set",
+      "entities": []
+    },
+    {
+      "text": "turn off the light in basement",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "turn off the lights in living room",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 5,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "play some music in dinner room",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "Room",
+          "startPos": 4,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "tv in the kitchen shall be turned off",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "Room",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "turn off the illumination in the kitchen",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn on a tv",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "please turn on the light",
+      "intent": "TurnOn",
+      "entities": []
+    },
+    {
+      "text": "turn off the lamp",
+      "intent": "TurnOff",
+      "entities": []
+    },
+    {
+      "text": "play a movie",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "turn off the lighting",
+      "intent": "TurnOff",
+      "entities": []
+    },
+    {
+      "text": "turn on the tv in my bedroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "switch off the lights in the basement",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn on the bed lamp",
+      "intent": "TurnOn",
+      "entities": []
+    },
+    {
+      "text": "switch off the light in the toilet",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn on the radio",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "turn on the tv in the bedroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "please turn on the lamp in the living room",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 7,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "please turn off the lights",
+      "intent": "TurnOff",
+      "entities": []
+    },
+    {
+      "text": "turn up the radio",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "switch on the lamp",
+      "intent": "TurnOn",
+      "entities": []
+    },
+    {
+      "text": "switch off the lights on my backyard",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn on kinect",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "start the television",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "start the xbox",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "turn off my playstation",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "turn all the lights off",
+      "intent": "TurnOff",
+      "entities": []
+    },
+    {
+      "text": "turn on my lamp in bedroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "turn up the discoball",
+      "intent": "TurnOn",
+      "entities": []
+    },
+    {
+      "text": "can you turn off the tv, please",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "start up the tv",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "turn off all of the lights in living room",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 7,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "switch off the lights",
+      "intent": "TurnOff",
+      "entities": []
+    },
+    {
+      "text": "turn on the tv",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "get temperature",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "turn the lights off",
+      "intent": "TurnOff",
+      "entities": []
+    },
+    {
+      "text": "what is the temperature?",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "check tv volume",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "get tv volume",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "close the tv",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "test",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "get humidity",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "turn on the lamp",
+      "intent": "TurnOn",
+      "entities": []
+    },
+    {
+      "text": "what is the humidity",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "check lamp brightness",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "what is the volume of the tv",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "Property",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "get lamp brightness",
+      "intent": "Get",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "set tv volume to 50",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "lamp turn on",
+      "intent": "TurnOn",
+      "entities": []
+    },
+    {
+      "text": "{2}",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "turn off the lights in the living room",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "set lamp brightness to 100 percent",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "dupa",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "zrob cos",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "set lamp brightness 95%",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "set television volume to 55",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "turn on the tv in bedroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "weather",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "set tv in bedroom volume to 60",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Property",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "Room",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "set tv volume to 60",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "turn off the light in my bedroom",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "ej luis",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "turn off the light in bedroom",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "hello",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "turn off the light in the bedroom",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn on the tv in the kitchen",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn off the lights in the bedroom",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn on the lamp in the bedroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "3",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "5",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "turn on the tv in the bathroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "set lamp brightness to 95%",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "set volume",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "turn off the tv in bedroom",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "turn on the lights in the bedroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "set temperature in the kitchen to 25 degrees",
+      "intent": "Set",
+      "entities": [
+        {
+          "entity": "Property",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Room",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "turn on the tv in the living room",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "turn off the light in the kitchen",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn on the light in bedroom",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "turn off the lights in the kitchen",
+      "intent": "TurnOff",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "turn on the lights in the living room",
+      "intent": "TurnOn",
+      "entities": [
+        {
+          "entity": "Thing",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Room",
+          "startPos": 6,
+          "endPos": 7
+        }
+      ]
+    }
+  ]
+}
