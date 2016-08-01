@@ -1,27 +1,52 @@
 ﻿[{
-		"CubeId" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
-		"Entities" : [{
-				"EntityTags" : ["tv", "television"],
-				"IntentConfigurations" : [{
-						"IntentLabel" : "TurnOn",
-						"Actions" : [{
-								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
-								"ActionId" : 1,
-								"ActionParameter" : true,
-								"OriginalIntent" : null
-							}
-						]
-					}, {
-						"IntentLabel" : "TurnOff",
-						"Actions" : [{
-								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
-								"ActionId" : 1,
-								"ActionParameter" : false,
-								"OriginalIntent" : null
-							}
-						]
-					}
-				]
+		"CubeId" : "cf5826fd-e044-47c3-a3b4-b54a6128d8c7",
+		"CubeLabel" : "Living room weather station",
+		"SupportedIntents" : [4],
+		"TurnOnIntentActions" : null,
+		"TurnOffIntentActions" : null,
+		"GetIntentActions" : [{
+				"IntentLabel" : 4,
+				"EntityLabel" : null,
+				"RoomLabel" : null,
+				"PropertyLabel" : "humidity"
+			}, {
+				"IntentLabel" : 4,
+				"EntityLabel" : null,
+				"RoomLabel" : null,
+				"PropertyLabel" : "temperature"
+			}
+		],
+		"SetIntentActions" : null
+	}, {
+		"CubeId" : "3a85f176-1a1a-43cc-8c35-b8b5a3592994",
+		"CubeLabel" : "Bedroom TV power control",
+		"SupportedIntents" : [1, 2],
+		"TurnOnIntentActions" : [{
+				"IntentLabel" : 1,
+				"EntityLabel" : "tv",
+				"RoomLabel" : "bedroom"
+			}
+		],
+		"TurnOffIntentActions" : [{
+				"IntentLabel" : 2,
+				"EntityLabel" : "tv",
+				"RoomLabel" : "bedroom"
+			}
+		],
+		"GetIntentActions" : null,
+		"SetIntentActions" : null
+	}, {
+		"CubeId" : "728fec77-7ecc-4d39-99cc-5c84a2350429",
+		"CubeLabel" : "Kitchen air conditioner",
+		"SupportedIntents" : [3],
+		"TurnOnIntentActions" : null,
+		"TurnOffIntentActions" : null,
+		"GetIntentActions" : null,
+		"SetIntentActions" : [{
+				"IntentLabel" : 3,
+				"EntityLabel" : null,
+				"RoomLabel" : "kitchen",
+				"PropertyLabel" : "temperature"
 			}
 		]
 	}

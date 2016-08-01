@@ -11,7 +11,7 @@ namespace Haris.DataModel.IntentRecognition
 		public Guid CubeId { get; set; }
 		public string CubeLabel { get; set; }
 		public HashSet<IntentLabel> SupportedIntents { get; set; }
-		public IList<PowerIntentDto> TurOnIntentActions { get; set; }
+		public IList<PowerIntentDto> TurnOnIntentActions { get; set; }
 		public IList<PowerIntentDto> TurnOffIntentActions { get; set; }
 		public IList<PropertyRelatedIntentDto> GetIntentActions { get; set; }
 		public IList<PropertyRelatedIntentDto> SetIntentActions { get; set; }

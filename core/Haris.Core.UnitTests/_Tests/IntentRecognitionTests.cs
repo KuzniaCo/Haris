@@ -60,6 +60,7 @@ namespace Haris.Core.UnitTests._Tests
 				{
 					CubeId = Guid.NewGuid(),
 					CubeLabel = "Living room weather station",
+					SupportedIntents = new HashSet<IntentLabel> {IntentLabel.Get},
 					GetIntentActions = new List<PropertyRelatedIntentDto>
 					{
 						new PropertyRelatedIntentDto
@@ -78,7 +79,8 @@ namespace Haris.Core.UnitTests._Tests
 				{
 					CubeId = Guid.NewGuid(),
 					CubeLabel = "Bedroom TV power control",
-					TurOnIntentActions = new List<PowerIntentDto>
+					SupportedIntents = new HashSet<IntentLabel> {IntentLabel.TurnOn, IntentLabel.TurnOff},
+					TurnOnIntentActions = new List<PowerIntentDto>
 					{
 						new PowerIntentDto
 						{
@@ -101,6 +103,7 @@ namespace Haris.Core.UnitTests._Tests
 				{
 					CubeId = Guid.NewGuid(),
 					CubeLabel = "Kitchen air conditioner",
+					SupportedIntents = new HashSet<IntentLabel> {IntentLabel.Set},
 					SetIntentActions = new List<PropertyRelatedIntentDto>
 					{
 						new PropertyRelatedIntentDto

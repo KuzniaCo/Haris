@@ -2,10 +2,10 @@ namespace Haris.DataModel.IntentRecognition
 {
 	public enum IntentLabel
 	{
-		None,
-		TurnOn,
-		TurnOff,
-		Set,
-		Get
+		None = 0,
+		TurnOn = 1,
+		TurnOff = 2,
+		Set = 3,
+		Get = 4
 	}
 }
