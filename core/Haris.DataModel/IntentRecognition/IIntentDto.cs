@@ -3,5 +3,7 @@
 	public interface IIntentDto
 	{
 		IntentLabel IntentLabel { get; }
+		string EntityLabel { get; }
+		string RoomLabel { get; }
 	}
 }

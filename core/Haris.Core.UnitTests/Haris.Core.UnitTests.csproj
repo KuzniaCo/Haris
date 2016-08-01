@@ -52,7 +52,7 @@
     <Content Include="TestData\CubesConfig.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\TurnOffTvInBedroomResponseWithActions.txt">
+    <Content Include="TestData\TurnOnTvInBedroomResponseWithActions.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TestData\TurnOnTvInBedroomResponse.txt" />

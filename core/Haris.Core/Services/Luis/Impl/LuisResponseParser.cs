@@ -1,30 +1,13 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Haris.Core.Events.Command;
-using Haris.Core.Modules.IntentRecognition.Core;
+using System.Linq;
 using Haris.DataModel.IntentRecognition;
+using Haris.DataModel.Luis;
 
-namespace Haris.Core.Services.Luis
+namespace Haris.Core.Services.Luis.Impl
 {
-	public class LuisIntentRecognizer: IIntentRecognizer
+	public class LuisResponseParser : ILuisResponseParser
 	{
-		private readonly ILuisClient _luisClient;
-
-		public LuisIntentRecognizer(ILuisClient luisClient)
+		public IntentRecognitionResult Parse(LuisResponseDto response)
 		{
-			_luisClient = luisClient;
-		}
-
-		public async Task<IntentRecognitionResult> InterpretIntent(CommandTextAcquiredEvent evt)
-		{
-			
-			return await InterpretIntent(evt, CancellationToken.None);
-		}
-
-		public async Task<IntentRecognitionResult> InterpretIntent(CommandTextAcquiredEvent evt, CancellationToken ct)
-		{
-			var response = await _luisClient.AskLuis(evt.Payload, ct);
 			var result = new IntentRecognitionResult();
 			var intent = response.MostProbableIntent;
 			result.OriginalIntent = intent;
@@ -33,7 +16,9 @@ namespace Haris.Core.Services.Luis
 			if (action != null)
 			{
 				result.PropertyParameter =
-					action.Parameters.FirstOrDefault(p => p.Value != null && p.Value.Any(v => v.Type == "Property"))?.Value.First().Entity;
+					action.Parameters.FirstOrDefault(p => p.Value != null && p.Value.Any(v => v.Type == "Property"))?
+						.Value.First()
+						.Entity;
 				result.RoomParameter =
 					action.Parameters.FirstOrDefault(p => p.Value != null && p.Value.Any(v => v.Type == "Room"))?.Value.First().Entity;
 				result.ThingParameter =

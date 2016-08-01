@@ -1,13 +1,7 @@
 ﻿using System.Net;
 
-namespace Haris.Core.Services.Luis
+namespace Haris.Core.Services.Luis.Impl
 {
-	public interface ILuisUrlProvider
-	{
-		string GetUrlForQuery(string query);
-		string BaseUrl { get; }
-	}
-
 	public class LuisUrlProvider : ILuisUrlProvider
 	{
 		private const string _baseUrl = "https://api.projectoxford.ai/luis/v1/";

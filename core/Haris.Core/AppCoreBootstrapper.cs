@@ -6,6 +6,7 @@ using Haris.Core.Modules;
 using Haris.Core.Modules.IntentRecognition.Core;
 using Haris.Core.Services.Logging;
 using Haris.Core.Services.Luis;
+using Haris.Core.Services.Luis.Impl;
 using SimpleInjector;
 
 namespace Haris.Core
@@ -40,6 +41,7 @@ namespace Haris.Core
 			Container.RegisterSingleton<ILuisUrlProvider, LuisUrlProvider>();
 			Container.RegisterSingleton<ILuisClient, LuisClient>();
 			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
+			Container.RegisterSingleton<ILuisResponseParser, LuisResponseParser>();
 			Container.RegisterSingleton<ILuisIntentToActionMappingRepository, LuisIntentToActionMappingRepository>();
 			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
 

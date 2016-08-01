@@ -1,10 +1,9 @@
-﻿
-{
-  "query": "turn on the tv in the living room",
+﻿{
+  "query": "turn on the tv in the bedroom",
   "intents": [
     {
       "intent": "TurnOn",
-      "score": 0.9950769,
+      "score": 0.995037,
       "actions": [
         {
           "triggered": true,
@@ -15,9 +14,9 @@
               "required": false,
               "value": [
                 {
-                  "entity": "living room",
+                  "entity": "bedroom",
                   "type": "Room",
-                  "score": 0.999618351
+                  "score": 0.999998
                 }
               ]
             },
@@ -28,7 +27,7 @@
                 {
                   "entity": "tv",
                   "type": "Thing",
-                  "score": 0.999998748
+                  "score": 0.9999981
                 }
               ]
             }
@@ -38,7 +37,7 @@
     },
     {
       "intent": "TurnOff",
-      "score": 0.006559004,
+      "score": 0.00593953533,
       "actions": [
         {
           "triggered": true,
@@ -51,7 +50,7 @@
                 {
                   "entity": "tv",
                   "type": "Thing",
-                  "score": 0.999998748
+                  "score": 0.9999981
                 }
               ]
             },
@@ -60,9 +59,9 @@
               "required": false,
               "value": [
                 {
-                  "entity": "living room",
+                  "entity": "bedroom",
                   "type": "Room",
-                  "score": 0.999618351
+                  "score": 0.999998
                 }
               ]
             }
@@ -72,11 +71,11 @@
     },
     {
       "intent": "None",
-      "score": 0.0011696174
+      "score": 0.00149883807
     },
     {
       "intent": "Set",
-      "score": 4.352924E-08,
+      "score": 3.69071E-07,
       "actions": [
         {
           "triggered": false,
@@ -89,7 +88,7 @@
                 {
                   "entity": "tv",
                   "type": "Thing",
-                  "score": 0.999998748
+                  "score": 0.9999981
                 }
               ]
             },
@@ -109,7 +108,7 @@
     },
     {
       "intent": "Get",
-      "score": 7.648399E-10,
+      "score": 3.84310445E-10,
       "actions": [
         {
           "triggered": false,
@@ -127,7 +126,7 @@
                 {
                   "entity": "tv",
                   "type": "Thing",
-                  "score": 0.999998748
+                  "score": 0.9999981
                 }
               ]
             }
@@ -138,18 +137,18 @@
   ],
   "entities": [
     {
+      "entity": "bedroom",
+      "type": "Room",
+      "startIndex": 22,
+      "endIndex": 28,
+      "score": 0.999998
+    },
+    {
       "entity": "tv",
       "type": "Thing",
       "startIndex": 12,
       "endIndex": 13,
-      "score": 0.999998748
-    },
-    {
-      "entity": "living room",
-      "type": "Room",
-      "startIndex": 22,
-      "endIndex": 32,
-      "score": 0.999618351
+      "score": 0.9999981
     }
   ]
 }

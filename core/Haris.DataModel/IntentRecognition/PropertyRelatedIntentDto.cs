@@ -6,5 +6,6 @@
 		public string EntityLabel { get; set; }
 		public string RoomLabel { get; set; }
 		public string PropertyLabel { get; set; }
+		public int NumericParameter { get; set; }
 	}
 }

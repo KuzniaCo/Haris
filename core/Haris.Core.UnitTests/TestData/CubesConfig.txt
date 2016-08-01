@@ -1,52 +1,55 @@
 ﻿[{
-		"CubeId" : "cf5826fd-e044-47c3-a3b4-b54a6128d8c7",
+		"CubeId" : "2311b38a-6c7f-4e3a-a3a9-f7e71040e417",
 		"CubeLabel" : "Living room weather station",
-		"SupportedIntents" : [4],
+		"SupportedIntents" : [16],
 		"TurnOnIntentActions" : null,
 		"TurnOffIntentActions" : null,
 		"GetIntentActions" : [{
-				"IntentLabel" : 4,
+				"IntentLabel" : 16,
 				"EntityLabel" : null,
 				"RoomLabel" : null,
-				"PropertyLabel" : "humidity"
+				"PropertyLabel" : "humidity",
+				"NumericParameter" : 0
 			}, {
-				"IntentLabel" : 4,
+				"IntentLabel" : 16,
 				"EntityLabel" : null,
 				"RoomLabel" : null,
-				"PropertyLabel" : "temperature"
+				"PropertyLabel" : "temperature",
+				"NumericParameter" : 0
 			}
 		],
 		"SetIntentActions" : null
 	}, {
-		"CubeId" : "3a85f176-1a1a-43cc-8c35-b8b5a3592994",
+		"CubeId" : "e191043f-84e6-4b0b-9e0b-39ba69dd0561",
 		"CubeLabel" : "Bedroom TV power control",
-		"SupportedIntents" : [1, 2],
+		"SupportedIntents" : [2, 4],
 		"TurnOnIntentActions" : [{
-				"IntentLabel" : 1,
-				"EntityLabel" : "tv",
-				"RoomLabel" : "bedroom"
-			}
-		],
-		"TurnOffIntentActions" : [{
 				"IntentLabel" : 2,
 				"EntityLabel" : "tv",
 				"RoomLabel" : "bedroom"
 			}
 		],
+		"TurnOffIntentActions" : [{
+				"IntentLabel" : 4,
+				"EntityLabel" : "tv",
+				"RoomLabel" : "bedroom"
+			}
+		],
 		"GetIntentActions" : null,
 		"SetIntentActions" : null
 	}, {
-		"CubeId" : "728fec77-7ecc-4d39-99cc-5c84a2350429",
+		"CubeId" : "c78f22bb-db67-45aa-94ca-7cae154daeb2",
 		"CubeLabel" : "Kitchen air conditioner",
-		"SupportedIntents" : [3],
+		"SupportedIntents" : [8],
 		"TurnOnIntentActions" : null,
 		"TurnOffIntentActions" : null,
 		"GetIntentActions" : null,
 		"SetIntentActions" : [{
-				"IntentLabel" : 3,
+				"IntentLabel" : 8,
 				"EntityLabel" : null,
 				"RoomLabel" : "kitchen",
-				"PropertyLabel" : "temperature"
+				"PropertyLabel" : "temperature",
+				"NumericParameter" : 0
 			}
 		]
 	}

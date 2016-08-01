@@ -1,17 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading;
 using Haris.DataModel.IntentRecognition;
 using Newtonsoft.Json;
 
-namespace Haris.Core.Services.Luis
+namespace Haris.Core.Services.Luis.Impl
 {
-	public interface ILuisIntentToActionMappingRepository
-	{
-		CubeConfigDto[] CurrentConfig { get; }
-		void ModifyConfig(CubeConfigDto[] config);
-	}
-
 	public class LuisIntentToActionMappingRepository : ILuisIntentToActionMappingRepository
 	{
 		private readonly string _configFileName = Path.Combine(Environment.CurrentDirectory, "Config", "intentsToActions.json");
