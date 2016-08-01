@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Caliburn.Micro;
 using Haris.Core.Events.Command;
 using Haris.Core.Events.Intent;
@@ -26,7 +25,7 @@ namespace Haris.Core.Modules.ConsoleInput
 
 		public override void Init()
 		{
-			Task.Run(() =>
+			RunInBusyContextWithErrorFeedback(() =>
 			{
 				while (_cts.IsCancellationRequested == false)
 				{
@@ -47,7 +46,7 @@ namespace Haris.Core.Modules.ConsoleInput
 
 		public override void Handle(IntentRecognitionCompletionEvent message)
 		{
-			Task.Run(() =>
+			RunInBusyContextWithErrorFeedback(() =>
 			{
 				var result = message.Payload;
 				Logger.LogInfo(string.Format("{0} th:{1} r:{4} pr:{2} n:{3}", result.IntentLabel, result.ThingParameter,
