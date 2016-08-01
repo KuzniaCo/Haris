@@ -1,9 +1,10 @@
-﻿{
+﻿
+{
   "query": "turn on the tv in the living room",
   "intents": [
     {
       "intent": "TurnOn",
-      "score": 0.9931204,
+      "score": 0.9950769,
       "actions": [
         {
           "triggered": true,
@@ -16,7 +17,7 @@
                 {
                   "entity": "living room",
                   "type": "Room",
-                  "score": 0.945437431
+                  "score": 0.999618351
                 }
               ]
             },
@@ -27,7 +28,7 @@
                 {
                   "entity": "tv",
                   "type": "Thing",
-                  "score": 0.9999793
+                  "score": 0.999998748
                 }
               ]
             }
@@ -37,19 +38,78 @@
     },
     {
       "intent": "TurnOff",
-      "score": 0.0109806564
+      "score": 0.006559004,
+      "actions": [
+        {
+          "triggered": true,
+          "name": "TurnOff",
+          "parameters": [
+            {
+              "name": "thing",
+              "required": true,
+              "value": [
+                {
+                  "entity": "tv",
+                  "type": "Thing",
+                  "score": 0.999998748
+                }
+              ]
+            },
+            {
+              "name": "room",
+              "required": false,
+              "value": [
+                {
+                  "entity": "living room",
+                  "type": "Room",
+                  "score": 0.999618351
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "intent": "None",
-      "score": 0.00328416075
+      "score": 0.0011696174
     },
     {
       "intent": "Set",
-      "score": 8.01052646E-09
+      "score": 4.352924E-08,
+      "actions": [
+        {
+          "triggered": false,
+          "name": "Set",
+          "parameters": [
+            {
+              "name": "thing",
+              "required": false,
+              "value": [
+                {
+                  "entity": "tv",
+                  "type": "Thing",
+                  "score": 0.999998748
+                }
+              ]
+            },
+            {
+              "name": "property",
+              "required": true,
+              "value": null
+            },
+            {
+              "name": "value",
+              "required": true,
+              "value": null
+            }
+          ]
+        }
+      ]
     },
     {
       "intent": "Get",
-      "score": 1.85399673E-09,
+      "score": 7.648399E-10,
       "actions": [
         {
           "triggered": false,
@@ -67,7 +127,7 @@
                 {
                   "entity": "tv",
                   "type": "Thing",
-                  "score": 0.9999793
+                  "score": 0.999998748
                 }
               ]
             }
@@ -82,14 +142,14 @@
       "type": "Thing",
       "startIndex": 12,
       "endIndex": 13,
-      "score": 0.9999793
+      "score": 0.999998748
     },
     {
       "entity": "living room",
       "type": "Room",
       "startIndex": 22,
       "endIndex": 32,
-      "score": 0.945437431
+      "score": 0.999618351
     }
   ]
 }

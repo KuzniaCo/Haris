@@ -1,26 +1,136 @@
-﻿{
-    query: "turn on the tv",
-    intents: [
+﻿
+{
+  "query": "turn on the tv",
+  "intents": [
+    {
+      "intent": "TurnOn",
+      "score": 0.995992839,
+      "actions": [
         {
-            intent: "TurnOn",
-            score: 0.9955859
-        },
-        {
-            intent: "None",
-            score: 0.0106267622
-        },
-        {
-            intent: "TurnOff",
-            score: 1.58084035e-7
+          "triggered": true,
+          "name": "TurnOn",
+          "parameters": [
+            {
+              "name": "room",
+              "required": false,
+              "value": null
+            },
+            {
+              "name": "thing",
+              "required": true,
+              "value": [
+                {
+                  "entity": "tv",
+                  "type": "Thing",
+                  "score": 0.999987245
+                }
+              ]
+            }
+          ]
         }
-    ],
-    entities: [
+      ]
+    },
+    {
+      "intent": "TurnOff",
+      "score": 0.00721920654,
+      "actions": [
         {
-            entity: "tv",
-            type: "Thing",
-            startIndex: 12,
-            endIndex: 13,
-            score: 0.982878864
+          "triggered": true,
+          "name": "TurnOff",
+          "parameters": [
+            {
+              "name": "thing",
+              "required": true,
+              "value": [
+                {
+                  "entity": "tv",
+                  "type": "Thing",
+                  "score": 0.999987245
+                }
+              ]
+            },
+            {
+              "name": "room",
+              "required": false,
+              "value": null
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "intent": "None",
+      "score": 0.00431644171
+    },
+    {
+      "intent": "Get",
+      "score": 1.12527879E-07,
+      "actions": [
+        {
+          "triggered": false,
+          "name": "Get",
+          "parameters": [
+            {
+              "name": "property",
+              "required": true,
+              "value": null
+            },
+            {
+              "name": "thing",
+              "required": false,
+              "value": [
+                {
+                  "entity": "tv",
+                  "type": "Thing",
+                  "score": 0.999987245
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "intent": "Set",
+      "score": 3.09162973E-11,
+      "actions": [
+        {
+          "triggered": false,
+          "name": "Set",
+          "parameters": [
+            {
+              "name": "thing",
+              "required": false,
+              "value": [
+                {
+                  "entity": "tv",
+                  "type": "Thing",
+                  "score": 0.999987245
+                }
+              ]
+            },
+            {
+              "name": "property",
+              "required": true,
+              "value": null
+            },
+            {
+              "name": "value",
+              "required": true,
+              "value": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "entity": "tv",
+      "type": "Thing",
+      "startIndex": 12,
+      "endIndex": 13,
+      "score": 0.999987245
+    }
+  ]
 }

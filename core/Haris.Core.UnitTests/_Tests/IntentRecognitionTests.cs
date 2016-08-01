@@ -167,7 +167,7 @@ namespace Haris.Core.UnitTests._Tests
 			var response = JsonConvert.DeserializeObject<LuisResponseDto>(file);
 
 			Assert.That(response, Is.Not.Null);
-			Assert.AreEqual(2, response.Intents.Count(i => i.Actions != null && i.Actions.Count > 0));
+			Assert.AreEqual(4, response.Intents.Count(i => i.Actions != null && i.Actions.Count > 0));
 		}
 	}
 }
