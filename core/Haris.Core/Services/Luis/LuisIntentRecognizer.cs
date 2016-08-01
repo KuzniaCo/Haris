@@ -29,7 +29,7 @@ namespace Haris.Core.Services.Luis
 			var intent = response.MostProbableIntent;
 			result.OriginalIntent = intent;
 			result.IntentLabel = intent.IntentLabel;
-			var action = intent.Actions.FirstOrDefault(a => a.Triggered);
+			var action = intent.Actions?.FirstOrDefault(a => a.Triggered);
 			if (action != null)
 			{
 				result.PropertyParameter =

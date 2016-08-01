@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Linq;
 using Haris.Core.Services.Logging;
 using Haris.DataModel.Action;

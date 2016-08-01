@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Haris.Core.Events.Command;
@@ -29,8 +31,7 @@ namespace Haris.Core.UnitTests._Tests
 			var turnOnTvFile = File.ReadAllText("TestData/TurnOnTvResponse.txt");
 			var turnOnTvIntent = JsonConvert.DeserializeObject<LuisResponseDto>(turnOnTvFile);
 
-			var luisIntentConfigFile = File.ReadAllText("TestData/CubesConfig.txt");
-			var luisIntentConfig = JsonConvert.DeserializeObject<CubeConfigDto[]>(luisIntentConfigFile);
+			var luisIntentConfig = GetLuisIntentConfig();
 			var luisClientMock = Substitute.For<ILuisClient>();
 			luisClientMock.AskLuis("", CancellationToken.None).ReturnsForAnyArgs(info =>
 			{
@@ -49,6 +50,68 @@ namespace Haris.Core.UnitTests._Tests
 			Container.RegisterSingleton(luisIntentToActionMappingRepoMock);
 			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
 			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
+		}
+
+		private CubeConfigDto[] GetLuisIntentConfig()
+		{
+			return new[]
+			{
+				new CubeConfigDto
+				{
+					CubeId = Guid.NewGuid(),
+					CubeLabel = "Living room weather station",
+					GetIntentActions = new List<PropertyRelatedIntentDto>
+					{
+						new PropertyRelatedIntentDto
+						{
+							IntentLabel = IntentLabel.Get,
+							PropertyLabel = "humidity"
+						},
+						new PropertyRelatedIntentDto
+						{
+							IntentLabel = IntentLabel.Get,
+							PropertyLabel = "temperature"
+						}
+					}
+				},
+				new CubeConfigDto
+				{
+					CubeId = Guid.NewGuid(),
+					CubeLabel = "Bedroom TV power control",
+					TurOnIntentActions = new List<PowerIntentDto>
+					{
+						new PowerIntentDto
+						{
+							IntentLabel = IntentLabel.TurnOn,
+							EntityLabel = "tv",
+							RoomLabel = "bedroom"
+						}
+					},
+					TurnOffIntentActions = new List<PowerIntentDto>
+					{
+						new PowerIntentDto
+						{
+							IntentLabel = IntentLabel.TurnOff,
+							EntityLabel = "tv",
+							RoomLabel = "bedroom"
+						}
+					}
+				},
+				new CubeConfigDto
+				{
+					CubeId = Guid.NewGuid(),
+					CubeLabel = "Kitchen air conditioner",
+					SetIntentActions = new List<PropertyRelatedIntentDto>
+					{
+						new PropertyRelatedIntentDto
+						{
+							IntentLabel = IntentLabel.Set,
+							RoomLabel = "kitchen",
+							PropertyLabel = "temperature"
+						}
+					}
+				}
+			};
 		}
 
 		[SetUp]
