@@ -71,8 +71,8 @@
     <Compile Include="Modules\MySensors\Cubes\BaseCube.cs" />
     <Compile Include="Modules\MySensors\Cubes\Implementations\GatewaySerialCube.cs" />
     <Compile Include="Modules\MySensors\Cubes\IGatewayCube.cs" />
+    <Compile Include="Modules\MySensors\MessageEngine.cs" />
     <Compile Include="Modules\MySensors\MySensorGatewayModule.cs" />
-    <Compile Include="Modules\MySensors\MySensorsMessage.cs" />
     <Compile Include="Modules\MySensors\MySensorsMessageEngineModule.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
@@ -99,5 +99,6 @@
       <Name>Haris.DataModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -53,6 +53,7 @@
     <Compile Include="Luis\LuisParameter.cs" />
     <Compile Include="Luis\LuisParameterValue.cs" />
     <Compile Include="Luis\LuisResponseDto.cs" />
+    <Compile Include="MySensors\MySensorsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
