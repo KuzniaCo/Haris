@@ -58,6 +58,9 @@
     <Compile Include="Events\Command\CommandTextAcquiredEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\LocationProperty.cs" />
+    <Compile Include="Events\MySensors\MessageReceivedEvent.cs" />
+    <Compile Include="Events\MySensors\DisconnectedGatewayEvent.cs" />
+    <Compile Include="Events\MySensors\ConnectedGatewayEvent.cs" />
     <Compile Include="Events\System\SystemActionRequest.cs" />
     <Compile Include="Infrastructure\ActionQueue.cs" />
     <Compile Include="Infrastructure\AsyncActionsQueue.cs" />
@@ -65,8 +68,12 @@
     <Compile Include="Modules\DisableModuleAttribute.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IIntentRecognizer.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IntentRecognitionHub.cs" />
-    <Compile Include="Modules\MySensors\Cubes\RelayCube.cs" />
-    <Compile Include="Modules\MySensors\MySensorControllerModule.cs" />
+    <Compile Include="Modules\MySensors\Cubes\BaseCube.cs" />
+    <Compile Include="Modules\MySensors\Cubes\Implementations\GatewaySerialCube.cs" />
+    <Compile Include="Modules\MySensors\Cubes\IGatewayCube.cs" />
+    <Compile Include="Modules\MySensors\MySensorGatewayModule.cs" />
+    <Compile Include="Modules\MySensors\MySensorsMessage.cs" />
+    <Compile Include="Modules\MySensors\MySensorsMessageEngineModule.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
     <Compile Include="Events\Samples\SampleTimeEvent.cs" />
@@ -92,5 +99,6 @@
       <Name>Haris.DataModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

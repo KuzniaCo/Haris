@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
 using Haris.Core.Modules.IntentRecognition.Core;
+using Haris.Core.Modules.MySensors.Cubes;
 using Haris.Core.Services.Luis;
 using SimpleInjector;
 
@@ -11,11 +13,11 @@ namespace Haris.Core
 {
 	public class AppCoreBootstrapper
 	{
-		public Container Container { get; private set; }
+		public SimpleInjector.Container Container { get; private set; }
 
 		public void Run()
 		{
-			Container = new Container();
+			Container = new SimpleInjector.Container();
 			ConfigureContainer();
 			InitializeMappings();
 			RunInitializers();
@@ -33,6 +35,7 @@ namespace Haris.Core
 			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
 			Container.RegisterSingleton<ILuisIntentToActionMappingRepository, LuisIntentToActionMappingRepository>();
 			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
+		    Container.RegisterSingleton<IGatewayCube>();
 
 			var types =
 				GetType()

@@ -1,6 +1,6 @@
 namespace Haris.DataModel.Enums
 {
-	internal enum MySensorsDataType
+	public enum MySensorsDataType
 	{
 		V_TEMP, // S_TEMP. Temperature S_TEMP, S_HEATER, S_HVAC
 		V_HUM, // S_HUM. Humidity
