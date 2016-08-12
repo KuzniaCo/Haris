@@ -7,7 +7,7 @@ using Haris.DataModel.MySensors;
 
 namespace Haris.Core.Modules.MySensors.Cubes
 {
-    public interface IGatewayCube
+    public interface IGateway
     {
         void Connect();
         void Disconnect();

@@ -1,12 +1,11 @@
 ﻿using Haris.Core.Modules.MySensors.Cubes;
-using Haris.Core.Modules.MySensors.Cubes.Implementations;
 
 namespace Haris.Core.Modules.MySensors
 {
     public class MySensorGatewayModule : IHarisModule
     {
-        private IGatewayCube _serialGateway;
-        public MySensorGatewayModule(GatewaySerialCube serialGateway)
+        private IGateway _serialGateway;
+        public MySensorGatewayModule(GatewaySerial serialGateway)
         {
             _serialGateway = serialGateway;
         }

@@ -2,22 +2,25 @@
 using System.IO.Ports;
 using Caliburn.Micro;
 using Haris.Core.Events.MySensors;
+using Haris.Core.Modules.MySensors.Cubes;
+using Haris.Core.Services.Logging;
 using Haris.DataModel.MySensors;
 
-namespace Haris.Core.Modules.MySensors.Cubes.Implementations
+namespace Haris.Core.Modules.MySensors
 {
-    public sealed class GatewaySerialCube : IGatewayCube
+    public sealed class GatewaySerial : IGateway
     {
         private readonly IEventAggregator _eventAggregator;
         private SerialPort _serialPort;
         private readonly int _baudRate;
         private readonly string _portName;
 
-        public GatewaySerialCube(int baudRate, string portName, IEventAggregator eventAggregator)
+        public GatewaySerial(int baudRate, string portName, IEventAggregator eventAggregator)
         {
             _baudRate = baudRate;
             _portName = portName;
             _eventAggregator = eventAggregator;
+            
         }
 
         public void Connect()
@@ -34,12 +37,15 @@ namespace Haris.Core.Modules.MySensors.Cubes.Implementations
                 _serialPort.DataReceived += OnDataReceived;
                 _serialPort.Open();
                 _eventAggregator.Publish(new ConnectedGatewayEvent("GATEWAY IS READY ON "+ _portName));
+                Logger.LogPrompt("Gateway connected");
             }
             catch (Exception ex)
             {
-                    //TODO:Add ErrorConnectionEvent
+                Logger.LogError(ex.Message);
             }
         }
+
+
 
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
