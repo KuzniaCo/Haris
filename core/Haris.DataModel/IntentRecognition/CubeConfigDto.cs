@@ -1,5 +1,7 @@
 ﻿using System;
-using Haris.DataModel.Action;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 // ReSharper disable InconsistentNaming
 
 namespace Haris.DataModel.IntentRecognition
@@ -7,27 +9,14 @@ namespace Haris.DataModel.IntentRecognition
 	public class CubeConfigDto
 	{
 		public Guid CubeId { get; set; }
+		public string CubeLabel { get; set; }
+		public HashSet<IntentLabel> SupportedIntents { get; set; }
+		public IList<PowerIntentDto> TurnOnIntentActions { get; set; }
+		public IList<PowerIntentDto> TurnOffIntentActions { get; set; }
+		public IList<PropertyRelatedIntentDto> GetIntentActions { get; set; }
+		public IList<PropertyRelatedIntentDto> SetIntentActions { get; set; }
+
+		[JsonIgnore, Obsolete]
 		public EntityConfigDto[] Entities { get; set; }
 	}
-
-	public class EntityConfigDto
-	{
-		public string[] EntityTags { get; set; }
-		public IntentConfigDto[] IntentConfigurations { get; set; }
-	}
-
-	public class IntentConfigDto
-	{
-		public IntentLabel IntentLabel { get; set; }
-		public ActionDescriptorDto[] Actions { get; set; }
-	}
-
-	public enum IntentLabel
-	{
-		None,
-		TurnOn,
-		TurnOff,
-		Set,
-		Get
-	} 
 }

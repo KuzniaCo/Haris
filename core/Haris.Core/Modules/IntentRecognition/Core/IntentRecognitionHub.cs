@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Haris.Core.Events.Command;
-using Haris.Core.Events.System;
+using Haris.Core.Events.Intent;
 
 namespace Haris.Core.Modules.IntentRecognition.Core
 {
@@ -28,13 +27,10 @@ namespace Haris.Core.Modules.IntentRecognition.Core
 
 		public override void Handle(CommandTextAcquiredEvent message)
 		{
-			Task.Run(async () =>
+			RunInBusyContextWithErrorFeedback(async () =>
 			{
-				var actions = await _intentRecognizer.InterpretIntent(message);
-				foreach (var action in actions)
-				{
-					_eventAggregator.Publish(new SystemActionRequest(action));
-				}
+				var recognitionResult = await _intentRecognizer.InterpretIntent(message);
+				_eventAggregator.Publish(new IntentRecognitionCompletionEvent(recognitionResult));
 			});
 		}
 	}

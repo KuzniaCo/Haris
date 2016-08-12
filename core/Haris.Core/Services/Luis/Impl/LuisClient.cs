@@ -6,7 +6,7 @@ using Haris.Core.Services.Logging;
 using Haris.DataModel.Luis;
 using RestSharp;
 
-namespace Haris.Core.Services.Luis
+namespace Haris.Core.Services.Luis.Impl
 {
 	public class LuisClient : ILuisClient
 	{
