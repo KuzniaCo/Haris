@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Haris.Core.Events.System;
+using Haris.Core.Services.Logging;
 
 namespace Haris.Core.Modules.MySensors
 {
@@ -12,7 +13,7 @@ namespace Haris.Core.Modules.MySensors
 
         public override void Init()
         {
-            throw new System.NotImplementedException();
+            Logger.LogPrompt("Initilize MySensorsController");
         }
 
         public override void Handle(SystemActionRequest message)

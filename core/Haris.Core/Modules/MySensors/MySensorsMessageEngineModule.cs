@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Haris.Core.Events.MySensors;
 using Haris.Core.Events.System;
+using Haris.Core.Services.Logging;
 
 namespace Haris.Core.Modules.MySensors
 {
@@ -22,7 +23,7 @@ namespace Haris.Core.Modules.MySensors
 
         public override void Init()
         {
-            throw new System.NotImplementedException();
+            Logger.LogPrompt("Initilized Message Engine Module");
         }
 
         public override void Handle(MessageReceivedEvent message)

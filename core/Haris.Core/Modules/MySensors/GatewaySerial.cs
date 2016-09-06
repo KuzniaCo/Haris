@@ -15,10 +15,8 @@ namespace Haris.Core.Modules.MySensors
         private readonly int _baudRate;
         private readonly string _portName;
 
-        public GatewaySerial(int baudRate, string portName, IEventAggregator eventAggregator)
+        public GatewaySerial(IEventAggregator eventAggregator)
         {
-            _baudRate = baudRate;
-            _portName = portName;
             _eventAggregator = eventAggregator;
             
         }

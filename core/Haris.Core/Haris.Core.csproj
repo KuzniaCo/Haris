@@ -71,9 +71,15 @@
     <Compile Include="Modules\IntentRecognition\Core\IIntentRecognizer.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IntentRecognitionHub.cs" />
     <Compile Include="Modules\MySensors\Cubes\BaseCube.cs" />
-    <Compile Include="Modules\MySensors\Cubes\Implementations\GatewaySerialCube.cs" />
-    <Compile Include="Modules\MySensors\Cubes\IGatewayCube.cs" />
+    <Compile Include="Modules\MySensors\Cubes\BinaryCube.cs" />
+    <Compile Include="Modules\MySensors\Cubes\LuisCube.cs" />
+    <Compile Include="Modules\MySensors\Cubes\LuisHub.cs" />
+    <Compile Include="Modules\MySensors\Cubes\SystemCube.cs" />
+    <Compile Include="Modules\MySensors\GatewaySerial.cs" />
+    <Compile Include="Modules\MySensors\HarisAction.cs" />
+    <Compile Include="Modules\MySensors\IGateway.cs" />
     <Compile Include="Modules\MySensors\MessageEngine.cs" />
+    <Compile Include="Modules\MySensors\MySensorControllerModule.cs" />
     <Compile Include="Modules\MySensors\MySensorGatewayModule.cs" />
     <Compile Include="Modules\MySensors\MySensorsMessageEngineModule.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
