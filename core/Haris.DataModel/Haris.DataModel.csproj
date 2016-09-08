@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +51,13 @@
     <Compile Include="Enums\MySensorsSensorType.cs" />
     <Compile Include="Enums\MySensorsStreamType.cs" />
     <Compile Include="IntentRecognition\CubeConfigDto.cs" />
+    <Compile Include="IntentRecognition\EntityConfigDto.cs" />
+    <Compile Include="IntentRecognition\IIntentDto.cs" />
+    <Compile Include="IntentRecognition\IntentConfigDto.cs" />
+    <Compile Include="IntentRecognition\IntentLabel.cs" />
+    <Compile Include="IntentRecognition\IntentRecognitionResult.cs" />
+    <Compile Include="IntentRecognition\PowerIntentDto.cs" />
+    <Compile Include="IntentRecognition\PropertyRelatedIntentDto.cs" />
     <Compile Include="Luis\LuisAction.cs" />
     <Compile Include="Luis\LuisEntity.cs" />
     <Compile Include="Luis\LuisIntent.cs" />
@@ -54,6 +65,9 @@
     <Compile Include="Luis\LuisParameterValue.cs" />
     <Compile Include="Luis\LuisResponseDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

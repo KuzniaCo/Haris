@@ -1,33 +1,155 @@
-﻿{
+﻿
+{
   "query": "turn off the light in the bedroom",
   "intents": [
     {
       "intent": "TurnOff",
-      "score": 0.994210839
+      "score": 0.9862481,
+      "actions": [
+        {
+          "triggered": true,
+          "name": "TurnOff",
+          "parameters": [
+            {
+              "name": "thing",
+              "required": true,
+              "value": [
+                {
+                  "entity": "light",
+                  "type": "Thing",
+                  "score": 0.641624033
+                }
+              ]
+            },
+            {
+              "name": "room",
+              "required": false,
+              "value": [
+                {
+                  "entity": "bedroom",
+                  "type": "Room",
+                  "score": 0.9999259
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "intent": "TurnOn",
-      "score": 0.19535391
+      "score": 0.0187854245,
+      "actions": [
+        {
+          "triggered": true,
+          "name": "TurnOn",
+          "parameters": [
+            {
+              "name": "room",
+              "required": false,
+              "value": [
+                {
+                  "entity": "bedroom",
+                  "type": "Room",
+                  "score": 0.9999259
+                }
+              ]
+            },
+            {
+              "name": "thing",
+              "required": true,
+              "value": [
+                {
+                  "entity": "light",
+                  "type": "Thing",
+                  "score": 0.641624033
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "intent": "None",
-      "score": 0.003775213
+      "score": 0.0014845496
+    },
+    {
+      "intent": "Set",
+      "score": 4.724153E-08,
+      "actions": [
+        {
+          "triggered": false,
+          "name": "Set",
+          "parameters": [
+            {
+              "name": "thing",
+              "required": false,
+              "value": [
+                {
+                  "entity": "light",
+                  "type": "Thing",
+                  "score": 0.641624033
+                }
+              ]
+            },
+            {
+              "name": "property",
+              "required": true,
+              "value": null
+            },
+            {
+              "name": "value",
+              "required": true,
+              "value": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "intent": "Get",
+      "score": 1.20072485E-12,
+      "actions": [
+        {
+          "triggered": false,
+          "name": "Get",
+          "parameters": [
+            {
+              "name": "property",
+              "required": true,
+              "value": null
+            },
+            {
+              "name": "thing",
+              "required": false,
+              "value": [
+                {
+                  "entity": "light",
+                  "type": "Thing",
+                  "score": 0.641624033
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "entities": [
+    {
+      "entity": "light",
+      "type": "Thing",
+      "startIndex": 13,
+      "endIndex": 17,
+      "score": 0.641624033
+    },
     {
       "entity": "bedroom",
       "type": "Room",
       "startIndex": 26,
       "endIndex": 32,
-      "score": 0.869963169
-    },
-    {
-      "entity": "light",
-      "type": "Illumination",
-      "startIndex": 13,
-      "endIndex": 17,
-      "score": 0.998248935
+      "score": 0.9999259
     }
   ]
 }
