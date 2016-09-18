@@ -1,13 +1,13 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Haris.Core.Events.Command;
+﻿using Haris.Core.Events.Command;
 using Haris.DataModel.IntentRecognition;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Haris.Core.Modules.IntentRecognition.Core
 {
 	public interface IIntentRecognizer
 	{
-		Task<IntentRecognitionResult> InterpretIntent(CommandTextAcquiredEvent evt);
-		Task<IntentRecognitionResult> InterpretIntent(CommandTextAcquiredEvent evt, CancellationToken ct);
+		Task<IntentRecognitionResultDto> InterpretIntent(CommandTextAcquiredEvent evt);
+		Task<IntentRecognitionResultDto> InterpretIntent(CommandTextAcquiredEvent evt, CancellationToken ct);
 	}
 }

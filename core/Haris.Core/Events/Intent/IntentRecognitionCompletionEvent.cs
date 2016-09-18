@@ -2,9 +2,9 @@
 
 namespace Haris.Core.Events.Intent
 {
-	public class IntentRecognitionCompletionEvent : BaseEvent<IntentRecognitionResult>
+	public class IntentRecognitionCompletionEvent : BaseEvent<IntentRecognitionResultDto>
 	{
-		public IntentRecognitionCompletionEvent(IntentRecognitionResult recognitionResult): base(recognitionResult)
+		public IntentRecognitionCompletionEvent(IntentRecognitionResultDto recognitionResult): base(recognitionResult)
 		{
 			
 		}

@@ -55,7 +55,7 @@
     <Compile Include="IntentRecognition\IIntentDto.cs" />
     <Compile Include="IntentRecognition\IntentConfigDto.cs" />
     <Compile Include="IntentRecognition\IntentLabel.cs" />
-    <Compile Include="IntentRecognition\IntentRecognitionResult.cs" />
+    <Compile Include="IntentRecognition\IntentRecognitionResultDto.cs" />
     <Compile Include="IntentRecognition\PowerIntentDto.cs" />
     <Compile Include="IntentRecognition\PropertyRelatedIntentDto.cs" />
     <Compile Include="Luis\LuisAction.cs" />

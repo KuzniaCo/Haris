@@ -2,7 +2,7 @@
 
 namespace Haris.DataModel.IntentRecognition
 {
-	public class IntentRecognitionResult
+	public class IntentRecognitionResultDto
 	{
 		public IntentLabel IntentLabel { get; set; }
 		public string ThingParameter { get; set; }

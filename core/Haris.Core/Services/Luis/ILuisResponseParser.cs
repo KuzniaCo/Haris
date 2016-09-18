@@ -5,6 +5,6 @@ namespace Haris.Core.Services.Luis
 {
 	public interface ILuisResponseParser
 	{
-		IntentRecognitionResult Parse(LuisResponseDto responseDto);
+		IntentRecognitionResultDto Parse(LuisResponseDto responseDto);
 	}
 }

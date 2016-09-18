@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Haris.Core.Services.Logging;
 using Haris.DataModel.IntentRecognition;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Haris.Core.Services.Luis.Impl
 {
@@ -14,7 +14,7 @@ namespace Haris.Core.Services.Luis.Impl
 			_intentToActionMappingRepository = intentToActionMappingRepository;
 		}
 
-		public IIntentDto[] GetActions(IntentRecognitionResult response, string defaultLocation = null)
+		public IIntentDto[] GetActions(IntentRecognitionResultDto response, string defaultLocation = null)
 		{
 			var thing = response.ThingParameter;
 			var property = response.PropertyParameter;
@@ -36,7 +36,7 @@ namespace Haris.Core.Services.Luis.Impl
 			return actions;
 		}
 
-		private IEnumerable<IIntentDto> WhereResponseIsMatch(CubeConfigDto cubeConfigDto, IntentRecognitionResult intent)
+		private IEnumerable<IIntentDto> WhereResponseIsMatch(CubeConfigDto cubeConfigDto, IntentRecognitionResultDto intent)
 		{
 			var result = new List<IIntentDto>();
 			if (intent.IntentLabel == IntentLabel.Get && cubeConfigDto.SupportedIntents.Contains(IntentLabel.Get))
@@ -75,7 +75,7 @@ namespace Haris.Core.Services.Luis.Impl
 			return result;
 		}
 
-		private IList<PropertyRelatedIntentDto> MatchGetActions(CubeConfigDto cubeConfigDto, IntentRecognitionResult intent)
+		private IList<PropertyRelatedIntentDto> MatchGetActions(CubeConfigDto cubeConfigDto, IntentRecognitionResultDto intent)
 		{
 			var actions = cubeConfigDto.GetIntentActions;
 			return
@@ -85,7 +85,7 @@ namespace Haris.Core.Services.Luis.Impl
 						OptionalMatch(intent.RoomParameter, a.RoomLabel)).ToArray();
 		}
 
-		private IList<PropertyRelatedIntentDto> MatchSetActions(CubeConfigDto cubeConfigDto, IntentRecognitionResult intent)
+		private IList<PropertyRelatedIntentDto> MatchSetActions(CubeConfigDto cubeConfigDto, IntentRecognitionResultDto intent)
 		{
 			var actions = cubeConfigDto.SetIntentActions.Where(
 				a =>
@@ -102,7 +102,7 @@ namespace Haris.Core.Services.Luis.Impl
 			return actions;
 		}
 
-		private IList<PowerIntentDto> MatchTurnOnActions(CubeConfigDto cubeConfigDto, IntentRecognitionResult intent)
+		private IList<PowerIntentDto> MatchTurnOnActions(CubeConfigDto cubeConfigDto, IntentRecognitionResultDto intent)
 		{
 			var actions = cubeConfigDto.TurnOnIntentActions;
 			return
@@ -112,7 +112,7 @@ namespace Haris.Core.Services.Luis.Impl
 						OptionalMatch(intent.RoomParameter, a.RoomLabel)).ToArray();
 		}
 
-		private IList<PowerIntentDto> MatchTurnOffActions(CubeConfigDto cubeConfigDto, IntentRecognitionResult intent)
+		private IList<PowerIntentDto> MatchTurnOffActions(CubeConfigDto cubeConfigDto, IntentRecognitionResultDto intent)
 		{
 			var actions = cubeConfigDto.TurnOffIntentActions;
 			return

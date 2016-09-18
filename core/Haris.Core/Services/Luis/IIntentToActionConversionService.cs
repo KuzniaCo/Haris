@@ -4,6 +4,6 @@ namespace Haris.Core.Services.Luis
 {
 	public interface IIntentToActionConversionService
 	{
-		IIntentDto[] GetActions(IntentRecognitionResult response, string defaultLocation = null);
+		IIntentDto[] GetActions(IntentRecognitionResultDto response, string defaultLocation = null);
 	}
 }

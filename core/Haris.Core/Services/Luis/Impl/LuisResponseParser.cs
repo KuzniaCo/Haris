@@ -1,14 +1,14 @@
-using System.Linq;
 using Haris.DataModel.IntentRecognition;
 using Haris.DataModel.Luis;
+using System.Linq;
 
 namespace Haris.Core.Services.Luis.Impl
 {
 	public class LuisResponseParser : ILuisResponseParser
 	{
-		public IntentRecognitionResult Parse(LuisResponseDto response)
+		public IntentRecognitionResultDto Parse(LuisResponseDto response)
 		{
-			var result = new IntentRecognitionResult();
+			var result = new IntentRecognitionResultDto();
 			var intent = response.MostProbableIntent;
 			result.OriginalIntent = intent;
 			result.IntentLabel = intent.IntentLabel;

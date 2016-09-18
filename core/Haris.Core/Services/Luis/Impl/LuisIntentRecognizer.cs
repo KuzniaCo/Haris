@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Haris.Core.Events.Command;
+﻿using Haris.Core.Events.Command;
 using Haris.Core.Modules.IntentRecognition.Core;
 using Haris.DataModel.IntentRecognition;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Haris.Core.Services.Luis.Impl
 {
@@ -17,13 +17,13 @@ namespace Haris.Core.Services.Luis.Impl
 			_luisResponseParser = luisResponseParser;
 		}
 
-		public async Task<IntentRecognitionResult> InterpretIntent(CommandTextAcquiredEvent evt)
+		public async Task<IntentRecognitionResultDto> InterpretIntent(CommandTextAcquiredEvent evt)
 		{
 			
 			return await InterpretIntent(evt, CancellationToken.None);
 		}
 
-		public async Task<IntentRecognitionResult> InterpretIntent(CommandTextAcquiredEvent evt, CancellationToken ct)
+		public async Task<IntentRecognitionResultDto> InterpretIntent(CommandTextAcquiredEvent evt, CancellationToken ct)
 		{
 			var response = await _luisClient.AskLuis(evt.Payload, ct);
 			var result = _luisResponseParser.Parse(response);
