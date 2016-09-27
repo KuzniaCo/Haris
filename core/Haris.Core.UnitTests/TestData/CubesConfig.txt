@@ -26,13 +26,15 @@
 		"TurnOnIntentActions" : [{
 				"IntentLabel" : 2,
 				"EntityLabel" : "tv",
-				"RoomLabel" : "bedroom"
+				"RoomLabel" : "bedroom",
+				"TargetPinNumber" : 0
 			}
 		],
 		"TurnOffIntentActions" : [{
 				"IntentLabel" : 4,
 				"EntityLabel" : "tv",
-				"RoomLabel" : "bedroom"
+				"RoomLabel" : "bedroom",
+				"TargetPinNumber" : 0
 			}
 		],
 		"GetIntentActions" : null,
