@@ -1,0 +1,4 @@
+[submodule "PiSharp"]
+	path = PiSharp
+	url = https://github.com/andycb/PiSharp.git
+	branch = master
