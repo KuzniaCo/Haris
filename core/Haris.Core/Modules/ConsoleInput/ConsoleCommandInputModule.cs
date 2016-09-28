@@ -4,6 +4,8 @@ using Haris.Core.Events.Intent;
 using Haris.Core.Services.Logging;
 using Haris.Core.Services.Luis;
 using Haris.DataModel.IntentRecognition;
+using PiSharp.LibGpio;
+using PiSharp.LibGpio.Entities;
 using Raspberry.IO.GeneralPurpose;
 using System;
 using System.Linq;
@@ -64,8 +66,10 @@ namespace Haris.Core.Modules.ConsoleInput
 					var pin = connectorPin.Output().Enable();
 					var connection = new GpioConnection(pin);
 					connection[pin] = result.IntentLabel == IntentLabel.TurnOn;
-				}
 
+					LibGpio.Gpio.SetupChannel((RaspberryPinNumber) intentDto.TargetPinNumber, Direction.Output);
+					LibGpio.Gpio.OutputValue((RaspberryPinNumber) intentDto.TargetPinNumber, result.IntentLabel == IntentLabel.TurnOn);
+				}
 			}, _cts.Token);
 		}
 	}

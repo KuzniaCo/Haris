@@ -109,6 +109,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PiSharp\src\PiSharp.LibGpio\PiSharp.LibGpio.csproj">
+      <Project>{2880be93-f857-4e19-af08-94af812fb3a8}</Project>
+      <Name>PiSharp.LibGpio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Haris.DataModel\Haris.DataModel.csproj">
       <Project>{329EDE23-6531-44A7-8D53-0A156A89AB7B}</Project>
       <Name>Haris.DataModel</Name>
