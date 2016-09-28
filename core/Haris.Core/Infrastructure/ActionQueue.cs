@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Haris.Core.Infrastructure
 {
@@ -38,7 +39,7 @@ namespace Haris.Core.Infrastructure
 				Mre.Reset();
 				_actionsQueue = _actionsQueue ?? new ConcurrentQueue<Action>(); 
 			}
-			ThreadPool.QueueUserWorkItem(_ => Run(), null);
+			Task.Factory.StartNew(Run, TaskCreationOptions.LongRunning);
 		}
 
 		void Run()

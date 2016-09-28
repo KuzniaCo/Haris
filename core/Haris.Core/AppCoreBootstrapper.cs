@@ -1,24 +1,28 @@
-﻿using System;
-using System.Linq;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
 using Haris.Core.Modules.IntentRecognition.Core;
+using Haris.Core.Services.Gpio;
+using Haris.Core.Services.Gpio.Impl;
 using Haris.Core.Services.Logging;
 using Haris.Core.Services.Luis;
 using Haris.Core.Services.Luis.Impl;
 using SimpleInjector;
+using System;
+using System.Linq;
 
 namespace Haris.Core
 {
 	public class AppCoreBootstrapper
 	{
 		public Container Container { get; private set; }
+		public bool IsTestMode { get; private set; }
 
-		public void Run()
+		public void Run(bool isTestMode = false)
 		{
 			Container = new Container();
-			System.AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+			IsTestMode = isTestMode;
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
 			ConfigureContainer();
 			InitializeMappings();
 			RunInitializers();
@@ -44,6 +48,15 @@ namespace Haris.Core
 			Container.RegisterSingleton<ILuisResponseParser, LuisResponseParser>();
 			Container.RegisterSingleton<ILuisIntentToActionMappingRepository, LuisIntentToActionMappingRepository>();
 			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
+
+			if (IsTestMode)
+			{
+				Container.Register<IGpioOutputService, PiSharpGpioOutputService>();
+			}
+			else
+			{
+				Container.Register<IGpioOutputService, SharpIoOutputService>();
+			}
 
 			var types =
 				GetType()

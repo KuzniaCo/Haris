@@ -1,32 +1,58 @@
 ﻿[{
-		"CubeId" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
-		"Entities" : [{
-				"EntityTags" : ["tv", "television"],
-				"IntentConfigurations" : [{
-						"IntentLabel" : "TurnOn",
-						"Actions" : [{
-								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
-								"ActionId" : 1,
-								"ActionParameter" : true
-							}
-						]
-					}, {
-						"IntentLabel" : "TurnOff",
-						"Actions" : [{
-								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
-								"ActionId" : 1,
-								"ActionParameter" : false
-							}
-						]
-					}, {
-						"IntentLabel" : "Set",
-						"Actions" : [{
-								"TargetGuid" : "1c458f1f-141b-4c1c-9fe6-0b6051029b74",
-								"ActionId" : 2
-							}
-						]
-					}
-				]
+		"CubeId" : "2311b38a-6c7f-4e3a-a3a9-f7e71040e417",
+		"CubeLabel" : "Living room weather station",
+		"SupportedIntents" : [16],
+		"TurnOnIntentActions" : null,
+		"TurnOffIntentActions" : null,
+		"GetIntentActions" : [{
+				"IntentLabel" : 16,
+				"EntityLabel" : null,
+				"RoomLabel" : null,
+				"PropertyLabel" : "humidity",
+				"NumericParameter" : 0
+			}, {
+				"IntentLabel" : 16,
+				"EntityLabel" : null,
+				"RoomLabel" : null,
+				"PropertyLabel" : "temperature",
+				"NumericParameter" : 0
+			}
+		],
+		"SetIntentActions" : null
+	}, {
+		"CubeId" : "e191043f-84e6-4b0b-9e0b-39ba69dd0561",
+		"CubeLabel" : "Bedroom lamp power control",
+		"SupportedIntents" : [2, 4],
+    "TurnOnIntentActions": [
+      {
+        "IntentLabel": 2,
+        "EntityLabel": "lamp",
+        "RoomLabel": "bedroom",
+        "TargetPinNumber": 6
+      }
+    ],
+		"TurnOffIntentActions" : [{
+				"IntentLabel" : 4,
+				"EntityLabel" : "lamp",
+				"RoomLabel" : "bedroom",
+				"TargetPinNumber" : 6
+			}
+		],
+		"GetIntentActions" : null,
+		"SetIntentActions" : null
+	}, {
+		"CubeId" : "c78f22bb-db67-45aa-94ca-7cae154daeb2",
+		"CubeLabel" : "Kitchen air conditioner",
+		"SupportedIntents" : [8],
+		"TurnOnIntentActions" : null,
+		"TurnOffIntentActions" : null,
+		"GetIntentActions" : null,
+		"SetIntentActions" : [{
+				"IntentLabel" : 8,
+				"EntityLabel" : null,
+				"RoomLabel" : "kitchen",
+				"PropertyLabel" : "temperature",
+				"NumericParameter" : 0
 			}
 		]
 	}

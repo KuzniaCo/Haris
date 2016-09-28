@@ -1,12 +1,10 @@
 ﻿using Caliburn.Micro;
 using Haris.Core.Events.Command;
 using Haris.Core.Events.Intent;
+using Haris.Core.Services.Gpio;
 using Haris.Core.Services.Logging;
 using Haris.Core.Services.Luis;
 using Haris.DataModel.IntentRecognition;
-using PiSharp.LibGpio;
-using PiSharp.LibGpio.Entities;
-using Raspberry.IO.GeneralPurpose;
 using System;
 using System.Linq;
 using System.Threading;
@@ -17,12 +15,15 @@ namespace Haris.Core.Modules.ConsoleInput
 	{
 		private readonly IEventAggregator _eventAggregator;
 		private readonly IIntentToActionConversionService _intentToActionConversionService;
+		private readonly IGpioOutputService _gpioOutputService;
 		private readonly CancellationTokenSource _cts;
 
-		public ConsoleCommandInputModule(IEventAggregator eventAggregator, IIntentToActionConversionService intentToActionConversionService)
+		public ConsoleCommandInputModule(IEventAggregator eventAggregator,
+			IIntentToActionConversionService intentToActionConversionService, IGpioOutputService gpioOutputService)
 		{
 			_eventAggregator = eventAggregator;
 			_intentToActionConversionService = intentToActionConversionService;
+			_gpioOutputService = gpioOutputService;
 			_cts = new CancellationTokenSource();
 		}
 
@@ -62,13 +63,7 @@ namespace Haris.Core.Modules.ConsoleInput
 					result.PropertyParameter, result.NumericParameter, result.RoomParameter, actions.OfType<PowerIntentDto>().FirstOrDefault()?.TargetPinNumber));
 				foreach (var intentDto in actions.OfType<PowerIntentDto>().Where(i => i.TargetPinNumber != null))
 				{
-					var connectorPin = ((ConnectorPin) intentDto.TargetPinNumber);
-					var pin = connectorPin.Output().Enable();
-					var connection = new GpioConnection(pin);
-					connection[pin] = result.IntentLabel == IntentLabel.TurnOn;
-
-					LibGpio.Gpio.SetupChannel((RaspberryPinNumber) intentDto.TargetPinNumber, Direction.Output);
-					LibGpio.Gpio.OutputValue((RaspberryPinNumber) intentDto.TargetPinNumber, result.IntentLabel == IntentLabel.TurnOn);
+					_gpioOutputService.SetPin(intentDto.TargetPinNumber.Value, intentDto.IntentLabel == IntentLabel.TurnOn);
 				}
 			}, _cts.Token);
 		}

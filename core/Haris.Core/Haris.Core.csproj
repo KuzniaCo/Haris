@@ -89,6 +89,9 @@
     <Compile Include="Events\Samples\SampleTimeEvent.cs" />
     <Compile Include="Modules\Samples\TestHarisModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Gpio\IGpioOutputService.cs" />
+    <Compile Include="Services\Gpio\Impl\PiSharpGpioOutputService.cs" />
+    <Compile Include="Services\Gpio\Impl\SharpIoOutputService.cs" />
     <Compile Include="Services\Logging\Logger.cs" />
     <Compile Include="Services\Luis\IIntentToActionConversionService.cs" />
     <Compile Include="Services\Luis\ILuisClient.cs" />
