@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Haris.Core.Services.Logging;
+using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Haris.Core.Infrastructure
 	{
 		private readonly object _syncObject = new object();
 
-		private ConcurrentQueue<Action> _actionsQueue;
+		private readonly ConcurrentQueue<Action> _actionsQueue = new ConcurrentQueue<Action>();
 		private bool _isStarted;
 
 		public ManualResetEvent Mre { get; private set; }
@@ -21,6 +22,7 @@ namespace Haris.Core.Infrastructure
 
 		public void Enqueue(Action action)
 		{
+			_actionsQueue.Enqueue(action);
 			lock (_syncObject)
 			{
 				if (_isStarted == false)
@@ -29,7 +31,6 @@ namespace Haris.Core.Infrastructure
 					_isStarted = true;
 				}
 			}
-			_actionsQueue.Enqueue(action);
 		}
 
 		public void Start()
@@ -37,7 +38,21 @@ namespace Haris.Core.Infrastructure
 			lock (_syncObject)
 			{
 				Mre.Reset();
-				_actionsQueue = _actionsQueue ?? new ConcurrentQueue<Action>(); 
+#if DEBUG
+				int minCompletionPort,
+					minWorker,
+					maxWorker,
+					maxCompletionPort,
+					availWorker,
+					availCompletionPort;
+				ThreadPool.GetMinThreads(out minWorker, out minCompletionPort);
+				ThreadPool.GetMaxThreads(out maxWorker, out maxCompletionPort);
+				ThreadPool.GetAvailableThreads(out availWorker, out availCompletionPort);
+
+				Logger.LogInfo($"Queue start\n" +
+				 $"Worker:  \t{minWorker}\t{availWorker}\t{maxWorker}\n"+
+				 $"CompPort:\t{minCompletionPort}\t{availCompletionPort}\t{maxCompletionPort}");
+#endif
 			}
 			Task.Factory.StartNew(Run, TaskCreationOptions.LongRunning);
 		}
@@ -55,8 +70,9 @@ namespace Haris.Core.Infrastructure
 						{
 							action();
 						}
-						catch (Exception)
+						catch (Exception e)
 						{
+							Logger.LogError("AAQ exception: {0}", e.Message);
 						}
 					}
 					else
@@ -70,8 +86,9 @@ namespace Haris.Core.Infrastructure
 					}
 				}
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
+				Logger.LogError("AAQ2 exception: {0}", e.Message);
 			}
 		}
 	}
