@@ -16,12 +16,12 @@ namespace Haris.Core
 	public class AppCoreBootstrapper
 	{
 		public Container Container { get; private set; }
-		public bool IsTestMode { get; private set; }
+		public bool IsDemoMode { get; private set; }
 
-		public void Run(bool isTestMode = false)
+		public void Run(bool isDemoMode = false)
 		{
 			Container = new Container();
-			IsTestMode = isTestMode;
+			IsDemoMode = isDemoMode;
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
 			ConfigureContainer();
 			InitializeMappings();
@@ -49,7 +49,7 @@ namespace Haris.Core
 			Container.RegisterSingleton<ILuisIntentToActionMappingRepository, LuisIntentToActionMappingRepository>();
 			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
 
-			if (IsTestMode)
+			if (IsDemoMode)
 			{
 				Container.Register<IGpioOutputService, PiSharpGpioOutputService>();
 			}
