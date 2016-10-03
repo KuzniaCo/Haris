@@ -50,6 +50,7 @@
     <Compile Include="Enums\MySensorsInternalMessageType.cs" />
     <Compile Include="Enums\MySensorsSensorType.cs" />
     <Compile Include="Enums\MySensorsStreamType.cs" />
+    <Compile Include="GpioStatusChangedDto.cs" />
     <Compile Include="IntentRecognition\CubeConfigDto.cs" />
     <Compile Include="IntentRecognition\EntityConfigDto.cs" />
     <Compile Include="IntentRecognition\IIntentDto.cs" />

@@ -74,6 +74,7 @@
     <Compile Include="Events\BaseEvent.cs" />
     <Compile Include="Events\AttachedProperties\IAttachedProperty.cs" />
     <Compile Include="Events\Command\CommandTextAcquiredEvent.cs" />
+    <Compile Include="Events\System\GpioStatusChangeEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\Intent\IntentRecognitionCompletionEvent.cs" />
     <Compile Include="Events\LocationProperty.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Modules\DisableModuleAttribute.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IIntentRecognizer.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IntentRecognitionHub.cs" />
+    <Compile Include="Modules\IntentRecognition\Core\IntentToActionHub.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
     <Compile Include="Events\Samples\SampleTimeEvent.cs" />

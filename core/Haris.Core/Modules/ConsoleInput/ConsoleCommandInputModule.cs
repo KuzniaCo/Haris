@@ -1,17 +1,15 @@
 ﻿using Caliburn.Micro;
 using Haris.Core.Events.Command;
-using Haris.Core.Events.Intent;
+using Haris.Core.Events.System;
 using Haris.Core.Services.Gpio;
 using Haris.Core.Services.Logging;
 using Haris.Core.Services.Luis;
-using Haris.DataModel.IntentRecognition;
 using System;
-using System.Linq;
 using System.Threading;
 
 namespace Haris.Core.Modules.ConsoleInput
 {
-	public class ConsoleCommandInputModule: HarisModuleBase<IntentRecognitionCompletionEvent>
+	public class ConsoleCommandInputModule: HarisModuleBase<GpioStatusChangeEvent>
 	{
 		private readonly IEventAggregator _eventAggregator;
 		private readonly IIntentToActionConversionService _intentToActionConversionService;
@@ -53,18 +51,13 @@ namespace Haris.Core.Modules.ConsoleInput
 			_eventAggregator.Subscribe(this);
 		}
 
-		public override void Handle(IntentRecognitionCompletionEvent message)
+		public override void Handle(GpioStatusChangeEvent message)
 		{
 			RunInBusyContextWithErrorFeedback(() =>
 			{
 				var result = message.Payload;
-				var actions = _intentToActionConversionService.GetActions(message.Payload);
-				Logger.LogInfo(string.Format("{0} th:{1} r:{4} pr:{2} n:{3} pin:{5}", result.IntentLabel, result.ThingParameter,
-					result.PropertyParameter, result.NumericParameter, result.RoomParameter, actions.OfType<PowerIntentDto>().FirstOrDefault()?.TargetPinNumber));
-				foreach (var intentDto in actions.OfType<PowerIntentDto>().Where(i => i.TargetPinNumber != null))
-				{
-					_gpioOutputService.SetPin(intentDto.TargetPinNumber.Value, intentDto.IntentLabel == IntentLabel.TurnOn);
-				}
+				var onOff = result.State ? "on" : "off";
+				Logger.LogInfo($"Pin {result.PinNumber} set to {onOff}");
 			}, _cts.Token);
 		}
 	}
