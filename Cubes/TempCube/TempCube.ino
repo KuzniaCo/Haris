@@ -26,18 +26,26 @@ void setup() {
 }
 
 void loop() {
-    unsigned long got_message;
     sensors.requestTemperatures();
     delay(500);
-    sendViaRF(sensors.getTempCByIndex(0));
+    sendViaRF(constructMessage(sensors.getTempCByIndex(0)));
+
     if ( Serial.available() )
     {
       //Something when data from serial. For example adresss of cube
     }
 }
 
-void sendViaRF(float tempValue){
-  if (!radio.write( &tempValue, sizeof(float) )){
-    Serial.println(F("failed"));
+void sendViaRF(String message){
+  if (!radio.write( &message, sizeof(message) )){
+    Serial.println(F("failed send "+ message));
   }
+}
+
+String constructMessage(float tempValue){
+  float tempValue;
+  String address = "adDs3"
+  String message = address + tempValue;
+
+  return message;
 }
