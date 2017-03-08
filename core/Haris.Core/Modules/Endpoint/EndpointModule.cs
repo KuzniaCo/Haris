@@ -1,6 +1,7 @@
-﻿using Haris.Core.Modules.MySensors.Cubes;
+﻿using Haris.Core.Services.Logging;
+using Haris.DataModel.Repositories;
 
-namespace Haris.Core.Modules.MySensors
+namespace Haris.Core.Modules.Endpoint
 {
     public class MySensorGatewayModule : IHarisModule
     {
@@ -17,6 +18,10 @@ namespace Haris.Core.Modules.MySensors
 
         public void Init()
         {
+            Logger.LogPrompt("EndpointModule ready");
+            var rep = new CubeRepository();
+            var cube = rep.GetCube("ad5ft");
+            Logger.LogPrompt(cube.CubeType);
             _serialGateway.Connect();   
         }
     }

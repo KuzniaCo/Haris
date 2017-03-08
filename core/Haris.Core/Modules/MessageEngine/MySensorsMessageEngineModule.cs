@@ -30,7 +30,7 @@ namespace Haris.Core.Modules.MySensors
         {
             Task.Run(() =>
             {
-                var msg = new MessageEngine(message.Payload);
+                var msg = new MessageEngine.MessageEngine(message.Payload);
             });
         }
     }

@@ -1,6 +1,4 @@
-﻿using Haris.DataModel.MySensors;
-
-namespace Haris.Core.Modules.MySensors
+﻿namespace Haris.Core.Modules.Endpoint
 {
     public interface IGateway
     {

@@ -30,12 +30,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=2.4.2.27, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.4.2\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.4.2.27, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.4.2\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.4.2.27, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.4.2\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,12 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action\ActionDescriptorDto.cs" />
-    <Compile Include="Enums\MySensorsPayloadType.cs" />
-    <Compile Include="Enums\MySensorsCommandType.cs" />
-    <Compile Include="Enums\MySensorsDataType.cs" />
-    <Compile Include="Enums\MySensorsInternalMessageType.cs" />
-    <Compile Include="Enums\MySensorsSensorType.cs" />
-    <Compile Include="Enums\MySensorsStreamType.cs" />
+    <Compile Include="Cubes\BaseCube.cs" />
+    <Compile Include="Cubes\RelayCube.cs" />
+    <Compile Include="Cubes\TempCube.cs" />
+    <Compile Include="DataModels\Cube.cs" />
+    <Compile Include="DataModels\Log.cs" />
+    <Compile Include="DataModels\WebHook.cs" />
     <Compile Include="IntentRecognition\CubeConfigDto.cs" />
     <Compile Include="IntentRecognition\EntityConfigDto.cs" />
     <Compile Include="IntentRecognition\IIntentDto.cs" />
@@ -64,12 +80,13 @@
     <Compile Include="Luis\LuisParameter.cs" />
     <Compile Include="Luis\LuisParameterValue.cs" />
     <Compile Include="Luis\LuisResponseDto.cs" />
-    <Compile Include="MySensors\MySensorsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CubeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

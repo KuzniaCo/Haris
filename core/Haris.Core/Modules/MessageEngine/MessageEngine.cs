@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Haris.DataModel.MySensors;
+﻿using Haris.Core.Modules.Endpoint;
 
-namespace Haris.Core.Modules.MySensors
+namespace Haris.Core.Modules.MessageEngine
 {
     internal sealed class MessageEngine
     {

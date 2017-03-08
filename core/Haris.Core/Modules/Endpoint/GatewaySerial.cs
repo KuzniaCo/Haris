@@ -2,11 +2,10 @@
 using System.IO.Ports;
 using Caliburn.Micro;
 using Haris.Core.Events.MySensors;
-using Haris.Core.Modules.MySensors.Cubes;
+using Haris.Core.Modules.MySensors;
 using Haris.Core.Services.Logging;
-using Haris.DataModel.MySensors;
 
-namespace Haris.Core.Modules.MySensors
+namespace Haris.Core.Modules.Endpoint
 {
     public sealed class GatewaySerial : IGateway
     {
@@ -43,8 +42,6 @@ namespace Haris.Core.Modules.MySensors
             }
         }
 
-
-
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string data = _serialPort.ReadExisting();
@@ -61,5 +58,9 @@ namespace Haris.Core.Modules.MySensors
         {
             throw new NotImplementedException();
         }
+    }
+
+    public class MySensorsMessage
+    {
     }
 }
