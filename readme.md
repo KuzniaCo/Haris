@@ -1,3 +1,16 @@
 # H.A.R.I.S
 
-IoT project
+IoT Experimental Platform
+
+## Getting Started
+
+### Endpoint Cube
+
+Opis jak zrobić Endpoint Cuba
+
+
+### Installation Haris Server
+
+Jak uruchomić i skonfigurować aplikację
+
+
