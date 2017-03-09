@@ -5,6 +5,7 @@ IoT Experimental Platform
 ## Getting Started
 
 ### Endpoint Cube
+It is Arduino based device. Haris Server can communicate with other wireless devices or sensors via Endpoint Cube, which is connected to PC via USB.
 
 #### Components:
  - Arduino 
