@@ -8,10 +8,14 @@ String CUBE_ADDRESS = "";
 byte CUBE_ADDRESS_BYTES[6] = "";
 byte RELAY_PIN_STATUS = 0;
 RF24 radio(9, 10);
-byte addresses[][6] = { "Gate" };
+String GatewayAddress = "00000";
 
 void getCubeAddress() {
 	// Zapytanie pamiêci w przeciwnym wypadku wys³anie wiadomoœci powitalnej
+	byte memoryValue = EEPROM.get(0, CUBE_ADDRESS_BYTES);
+	if (memoryValue != 255) {
+		//Przeczytaj adress z pamiêci;
+	}
 
 	//Mocked addresses
 	CUBE_ADDRESS = "aPd12";
@@ -22,7 +26,7 @@ void setup() {
 	Serial.begin(115200);
 	Serial.println(F("HARIS/CUBE/Relay"));
 
-	byte memoryValue = EEPROM.read(0);
+	byte memoryValue = EEPROM.read(10);
 	if (memoryValue != 255) {
 		RELAY_PIN_STATUS = memoryValue;
 	}
@@ -49,12 +53,12 @@ void loop() {
 		if (action == 1) {
 			RELAY_PIN_STATUS = 1;
 			digitalWrite(RELAY_PIN, RELAY_PIN_STATUS);
-			EEPROM.write(0, RELAY_PIN_STATUS);
+			EEPROM.write(10, RELAY_PIN_STATUS);
 		}
 		else if (action == 0) {
 			RELAY_PIN_STATUS = 0;
 			digitalWrite(RELAY_PIN, RELAY_PIN_STATUS);
-			EEPROM.write(0, RELAY_PIN_STATUS);
+			EEPROM.write(10, RELAY_PIN_STATUS);
 		}
 	}
 
