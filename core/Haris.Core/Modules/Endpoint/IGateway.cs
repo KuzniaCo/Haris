@@ -4,7 +4,7 @@
     {
         void Connect();
         void Disconnect();
-        void SendMessage(MySensorsMessage message);
+        void SendMessage(string message);
 
     }
 }

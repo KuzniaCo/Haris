@@ -1,4 +1,4 @@
-﻿using Haris.Core.Modules.MySensors;
+﻿
 
 namespace Haris.Core.Events.MySensors
 {

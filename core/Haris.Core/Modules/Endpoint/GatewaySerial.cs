@@ -2,7 +2,6 @@
 using System.IO.Ports;
 using Caliburn.Micro;
 using Haris.Core.Events.MySensors;
-using Haris.Core.Modules.MySensors;
 using Haris.Core.Services.Logging;
 
 namespace Haris.Core.Modules.Endpoint
@@ -17,29 +16,12 @@ namespace Haris.Core.Modules.Endpoint
         public GatewaySerial(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            
+
         }
 
         public void Connect()
         {
-            try
-            {
-                _serialPort = new SerialPort(_portName)
-                {
-                    BaudRate = _baudRate,
-                    Parity = Parity.None,
-                    StopBits = StopBits.One,
-                    DataBits = 8
-                };
-                _serialPort.DataReceived += OnDataReceived;
-                _serialPort.Open();
-                _eventAggregator.Publish(new ConnectedGatewayEvent("GATEWAY IS READY ON "+ _portName));
-                Logger.LogPrompt("Gateway connected");
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex.Message);
-            }
+
         }
 
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -54,13 +36,9 @@ namespace Haris.Core.Modules.Endpoint
             _serialPort = null;
         }
 
-        public void SendMessage(MySensorsMessage message)
+        public void SendMessage(string message)
         {
-            throw new NotImplementedException();
+            _serialPort.WriteLine(message);
         }
-    }
-
-    public class MySensorsMessage
-    {
     }
 }
