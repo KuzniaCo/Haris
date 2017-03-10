@@ -17,4 +17,12 @@
   <ItemGroup>
     <None Include="GatewayCube.ino" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".GatewayCube.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="__vm\.GatewayCube.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

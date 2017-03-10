@@ -60,6 +60,7 @@
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\Intent\IntentRecognitionCompletionEvent.cs" />
     <Compile Include="Events\LocationProperty.cs" />
+    <Compile Include="Events\MySensors\AttributedMessageEvent.cs" />
     <Compile Include="Events\MySensors\MessageReceivedEvent.cs" />
     <Compile Include="Events\MySensors\DisconnectedGatewayEvent.cs" />
     <Compile Include="Events\MySensors\ConnectedGatewayEvent.cs" />
@@ -71,12 +72,9 @@
     <Compile Include="Modules\IntentRecognition\Core\IIntentRecognizer.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IntentRecognitionHub.cs" />
     <Compile Include="Modules\Endpoint\GatewaySerial.cs" />
-    <Compile Include="Modules\Endpoint\HarisAction.cs" />
     <Compile Include="Modules\Endpoint\IGateway.cs" />
-    <Compile Include="Modules\MessageEngine\MessageEngine.cs" />
-    <Compile Include="Modules\MessageEngine\MySensorControllerModule.cs" />
     <Compile Include="Modules\Endpoint\EndpointModule.cs" />
-    <Compile Include="Modules\MessageEngine\MySensorsMessageEngineModule.cs" />
+    <Compile Include="Modules\MessageEngine\MessageEngineModule.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
     <Compile Include="Modules\IHarisModule.cs" />
     <Compile Include="Events\Samples\SampleTimeEvent.cs" />

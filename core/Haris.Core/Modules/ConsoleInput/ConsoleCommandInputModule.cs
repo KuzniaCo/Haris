@@ -3,6 +3,7 @@ using System.Threading;
 using Caliburn.Micro;
 using Haris.Core.Events.Command;
 using Haris.Core.Events.Intent;
+using Haris.Core.Events.MySensors;
 using Haris.Core.Services.Logging;
 
 namespace Haris.Core.Modules.ConsoleInput
@@ -33,7 +34,8 @@ namespace Haris.Core.Modules.ConsoleInput
 					var cmd = Console.ReadLine();
 					if (string.IsNullOrWhiteSpace(cmd) == false)
 					{
-						_eventAggregator.Publish(new CommandTextAcquiredEvent(cmd));
+						//_eventAggregator.Publish(new CommandTextAcquiredEvent(cmd));
+						_eventAggregator.Publish(new AttributedMessageEvent(cmd));
 					}
 					else if(cmd == null)
 					{
