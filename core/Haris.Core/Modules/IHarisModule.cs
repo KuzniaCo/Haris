@@ -35,7 +35,7 @@ namespace Haris.Core.Modules
 			ResetBusy();
 		}
 
-		protected async void RunInBusyContextWithErrorFeedback(Func<Task> action)
+		protected async void RunInBusyContextWithErrorFeedback(Action action1, Func<Task> action)
 		{
 			SetBusy();
 			await WrapAsync(action);

@@ -29,8 +29,8 @@ namespace Haris.Core.Modules.IntentRecognition.Core
 		{
 			RunInBusyContextWithErrorFeedback(async () =>
 			{
-				var recognitionResult = await _intentRecognizer.InterpretIntent(message);
-				_eventAggregator.Publish(new IntentRecognitionCompletionEvent(recognitionResult));
+			    var recognitionResult = await _intentRecognizer.InterpretIntent(message);
+			    _eventAggregator.Publish(new IntentRecognitionCompletionEvent(recognitionResult));
 			});
 		}
 	}
