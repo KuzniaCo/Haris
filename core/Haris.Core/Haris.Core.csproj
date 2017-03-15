@@ -71,8 +71,6 @@
     <Compile Include="Modules\DisableModuleAttribute.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IIntentRecognizer.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IntentRecognitionHub.cs" />
-    <Compile Include="Modules\Endpoint\GatewaySerial.cs" />
-    <Compile Include="Modules\Endpoint\IGateway.cs" />
     <Compile Include="Modules\Endpoint\EndpointModule.cs" />
     <Compile Include="Modules\MessageEngine\MessageEngineModule.cs" />
     <Compile Include="Modules\Samples\ClockModule.cs" />
