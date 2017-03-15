@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+using System.Web.Http;
 using Haris.WebApi;
 using Microsoft.Owin;
 using Owin;
@@ -13,19 +13,14 @@ namespace Haris.WebApi
 		public void Configuration(IAppBuilder app)
 		{
 
-			app.Run(context =>
-			{
-				context.Response.ContentType = "text/plain";
+            HttpConfiguration config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
-				string output = string.Format(
-					"I'm running on {0} nFrom assembly {1}",
-					Environment.OSVersion,
-					System.Reflection.Assembly.GetEntryAssembly().FullName
-					);
-
-				return context.Response.WriteAsync(output);
-
-			});
+            app.UseWebApi(config);
 		}
 	}
 }

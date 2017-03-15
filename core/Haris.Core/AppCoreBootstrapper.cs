@@ -44,7 +44,6 @@ namespace Haris.Core
 			Container.RegisterSingleton<ILuisResponseParser, LuisResponseParser>();
 			Container.RegisterSingleton<ILuisIntentToActionMappingRepository, LuisIntentToActionMappingRepository>();
 			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
-		    Container.RegisterSingleton<IGateway, GatewaySerial>();
 
 			var types =
 				GetType()

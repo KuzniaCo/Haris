@@ -8,6 +8,7 @@ using Haris.Core.Services.Logging;
 
 namespace Haris.Core.Modules.ConsoleInput
 {
+    [DisableModule]
 	public class ConsoleCommandInputModule: HarisModuleBase<IntentRecognitionCompletionEvent>
 	{
 		private readonly IEventAggregator _eventAggregator;
