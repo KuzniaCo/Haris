@@ -17,7 +17,6 @@ namespace Haris.Core.Modules.MessageEngine
 
         public override void Dispose()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void Init()
