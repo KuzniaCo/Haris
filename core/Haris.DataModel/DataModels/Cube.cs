@@ -18,6 +18,8 @@ namespace Haris.DataModel.DataModels
         [BsonElement("CubeType")]
         public string CubeType { get; set; }
 
+        public string Name { get; set; }
+
         [BsonElement("Logs")]
         public List<Log> Logs { get; set; }
 
