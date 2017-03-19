@@ -32,7 +32,7 @@ namespace Haris.Core.Modules.MessageEngine
 //            {
 //                var msg = new Modules.MessageEngine.MessageEngine(message.Payload);
 //            });
-            Logger.LogPrompt("Recived message: " + message.Payload);
+            //Logger.LogPrompt("Recived message: " + message.Payload);
         }
     }
 }
