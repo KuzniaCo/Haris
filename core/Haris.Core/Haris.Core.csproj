@@ -69,6 +69,7 @@
     <Compile Include="Infrastructure\AsyncActionsQueue.cs" />
     <Compile Include="Modules\ConsoleInput\ConsoleCommandInputModule.cs" />
     <Compile Include="Modules\DisableModuleAttribute.cs" />
+    <Compile Include="Modules\Endpoint\EndpointSocketModule.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IIntentRecognizer.cs" />
     <Compile Include="Modules\IntentRecognition\Core\IntentRecognitionHub.cs" />
     <Compile Include="Modules\Endpoint\EndpointModule.cs" />
