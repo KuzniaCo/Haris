@@ -35,6 +35,7 @@ namespace Haris.Core.Modules.Endpoint
         {
             RunInBusyContextWithErrorFeedback(() =>
             {
+ 
 
                 _eventAggregator.Subscribe(this);
                 _baudRate = 115200;

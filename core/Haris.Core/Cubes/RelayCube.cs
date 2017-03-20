@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+using Caliburn.Micro;
+using Haris.DataModel.DataModels;
+using Haris.DataModel.Repositories.Implementation;
 
-namespace Haris.DataModel.Cubes
+namespace Haris.Core.Cubes
 {
     public sealed class RelayCube : BaseCube
     {
@@ -31,6 +32,14 @@ namespace Haris.DataModel.Cubes
         {
             throw new NotImplementedException();
         }
-    
+
+        public RelayCube(IEventAggregator eventAggregator, Cube cubeEntity, CubeRepository cubeRepository) : base(eventAggregator, cubeEntity, cubeRepository)
+        {
+        }
+
+        public override void ProcessMessage(string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
