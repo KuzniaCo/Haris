@@ -24,8 +24,11 @@ namespace Haris.Core.Modules.Endpoint
         public override void Dispose()
         {
             Logger.LogInfo("Dispose Endpoint module");
-            _serialPort.Close();
-            _serialPort.Dispose();
+            if (_serialPort != null)
+            {
+                _serialPort.Close();
+                _serialPort.Dispose();
+            }
         }
 
         public override void Init()
