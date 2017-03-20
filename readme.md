@@ -1,3 +1,4 @@
+![Status](https://sebcza.visualstudio.com/_apis/public/build/definitions/46ac18f7-a64a-49e8-a7b3-baae13fd7f42/2/badge)
 # H.A.R.I.S
 
 IoT Experimental Platform
