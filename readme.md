@@ -7,10 +7,10 @@ Projekt Haris to sieć czujników i urządzeń oparta na protokole HTTP. Urządz
 
 ### Słownik pojęć:
 
-Cube/Kostka — urządzenie lub czujnik
-Cube Server — Aplikacja, która zarządza wiadomościami przesyłanymi w sieci. Tworzy usługę sieciową WebApi za pomocą której użytkownik może zarządzać urządzeniami.
-Endpoint Cube — urządzenie podłączone do PC lub Raspberry PI, dzięki niemu HarisServer komunikuje się z Kostkami przez moduł bezprzewodowy nRF24
-nRF24 - moduł bezprzewodowy, dzięki któremu możliwa jest bezprzewodowa komunikacja między urządzeniami. Pracuję on na częstotliwości 2.4 GHz tak jak WiFi oraz Bluetooth jednak wykorzystuje on najprostszą możliwą komunikację, co daje nam bardzo niskie zużycie energii i jest bardzo ważne w przypadku sensorów zasilanych bateriami.
+- Cube/Kostka — urządzenie lub czujnik 
+- Cube Server — Aplikacja, która zarządza wiadomościami przesyłanymi w sieci. Tworzy usługę sieciową WebApi za pomocą której użytkownik może zarządzać urządzeniami. 
+- Endpoint Cube — urządzenie podłączone do PC lub Raspberry PI, dzięki niemu HarisServer komunikuje się z Kostkami przez moduł bezprzewodowy nRF24 
+- nRF24 - moduł bezprzewodowy, dzięki któremu możliwa jest bezprzewodowa komunikacja między urządzeniami. Pracuję on na częstotliwości 2.4 GHz tak jak WiFi oraz Bluetooth jednak wykorzystuje on najprostszą możliwą komunikację, co daje nam bardzo niskie zużycie energii i jest bardzo ważne w przypadku sensorów zasilanych bateriami. 
 
 ### Cube Server funkcje:
 
