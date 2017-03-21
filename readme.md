@@ -3,7 +3,7 @@
 
 IoT Experimental Platform
 
-Projekt Haris to sieć czujników i urządzeń oparta na protokole HTTP. Urządzenia i czujniki oparte są o urządzenia Arduino oraz moduł bezprzewodowy nRF24.
+Projekt Haris to sieć czujników i urządzeń oparta na protokole HTTP. Urządzenia i czujniki bazują na urządzeniach Arduino oraz modułach bezprzewodowy nRF24.
 
 ### Słownik pojęć:
 
