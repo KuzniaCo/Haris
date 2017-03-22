@@ -1,21 +1,34 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Haris.Core.Infrastructure
 {
-	class ActionQueue
+	public class ActionQueue
 	{
 		private readonly object _syncObject = new object();
 
 		private ConcurrentQueue<Action> _actionsQueue;
 		private bool _isStarted;
+		private Task _taskReference;
 
-		public ManualResetEvent Mre { get; private set; }
+		private readonly ManualResetEvent _mre;
+
+		public ManualResetEvent Mre
+		{
+			get
+			{
+				lock (_syncObject)
+				{
+					return _mre;
+				}
+			}
+		}
 
 		public ActionQueue()
 		{
-			Mre = new ManualResetEvent(false);
+			_mre = new ManualResetEvent(false);
 		}
 
 		public void Enqueue(Action action)
@@ -24,6 +37,7 @@ namespace Haris.Core.Infrastructure
 			{
 				if (_isStarted == false)
 				{
+					_taskReference?.Wait();
 					Start();
 					_isStarted = true;
 				}
@@ -36,9 +50,9 @@ namespace Haris.Core.Infrastructure
 			lock (_syncObject)
 			{
 				Mre.Reset();
-				_actionsQueue = _actionsQueue ?? new ConcurrentQueue<Action>(); 
+				_actionsQueue = _actionsQueue ?? new ConcurrentQueue<Action>();
 			}
-			ThreadPool.QueueUserWorkItem(_ => Run(), null);
+			_taskReference = Task.Run(() => Run()).ContinueWith(t => Mre.Set());
 		}
 
 		void Run()
@@ -48,7 +62,12 @@ namespace Haris.Core.Infrastructure
 				while (true)
 				{
 					Action action;
-					if (_actionsQueue.TryDequeue(out action))
+					bool dequeued;
+					lock (_syncObject)
+					{
+						dequeued = _actionsQueue.TryDequeue(out action);
+					}
+					if (dequeued)
 					{
 						try
 						{
@@ -62,8 +81,11 @@ namespace Haris.Core.Infrastructure
 					{
 						lock (_syncObject)
 						{
+							if (_actionsQueue.IsEmpty == false)
+							{
+								continue;
+							}
 							_isStarted = false;
-							Mre.Set();
 							return;
 						}
 					}

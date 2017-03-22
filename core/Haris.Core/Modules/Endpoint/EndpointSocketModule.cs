@@ -1,19 +1,16 @@
-﻿using System;
-using System.IO.Ports;
+﻿using Caliburn.Micro;
+using Haris.Core.Events.MySensors;
+using Haris.Core.Services.Logging;
+using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Caliburn.Micro;
-using Haris.Core.Events.MySensors;
-using Haris.Core.Services.Logging;
-using Haris.DataModel.Repositories;
 
 namespace Haris.Core.Modules.Endpoint
 {
-    public class EndpointSocketModule : HarisModuleBase<AttributedMessageEvent>
+	public class EndpointSocketModule : HarisModuleBase<AttributedMessageEvent>
     {
         private readonly IEventAggregator _eventAggregator;
 
@@ -24,7 +21,7 @@ namespace Haris.Core.Modules.Endpoint
 
         public override void Dispose()
         {
-            throw new NotImplementedException();
+            //TODO throw new NotImplementedException();
         }
 
         public override void Init()
