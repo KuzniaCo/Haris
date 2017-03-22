@@ -54,6 +54,7 @@
     <Compile Include="Caliburn.Micro\EventAggregator.cs" />
     <Compile Include="Caliburn.Micro\ExtensionMethods.cs" />
     <Compile Include="Cubes\BaseCube.cs" />
+    <Compile Include="Cubes\Logic\AndCube.cs" />
     <Compile Include="Cubes\RelayCube.cs" />
     <Compile Include="Cubes\TempCube.cs" />
     <Compile Include="Events\AttachedProperties\AttachedPropertyKey.cs" />

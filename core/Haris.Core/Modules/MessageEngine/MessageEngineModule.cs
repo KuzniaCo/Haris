@@ -39,7 +39,7 @@ namespace Haris.Core.Modules.MessageEngine
         public override void Handle(MessageReceivedEvent message)
         {
 
-            RunInBusyContextWithErrorFeedback(() =>
+            Task.Run(() =>
             {
                 Logger.LogPrompt("Recived message: " + message.Payload);
                 var engineCube = CreateDeliveryCube(GetAddress(message.Payload));
