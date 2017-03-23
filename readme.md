@@ -27,7 +27,7 @@ Projekt Haris to sieć czujników i urządzeń oparta na protokole HTTP. Urządz
 - Kostka Termometr — Kostka z termometrem zasilana bateriami. Dzięki optymalizacji Arduino baterie 2x AAA powinny zasilać urządzenie ok. 1 rok. Wysyła co pewien czas informację do CubeServera z aktualną wartością. Czas jest konfigurowalny. Użytkownik może zapisać wartość w bazie lub/i przesłać na Kostkę Wyświetlacza 
 - Kostka Włącznik 230 V - Kostka, za pomocą której możemy sterować urządzeniami 230 V. Zaprojektowany w celu sterownia oświetleniem 
 
-## Getting Started
+## Szybki start
 
 ### Endpoint Cube
 It is Arduino based device. Haris Server can communicate with other wireless devices or sensors via Endpoint Cube, which is connected to PC via USB.
@@ -47,3 +47,11 @@ Connect the nrf24 to Arduino in this way:
 Jak uruchomić i skonfigurować aplikację
 
 
+
+## Tworzenie własnej kostki
+
+Najważniejsze zasady: 
+ - W pamięci EEPROM pierwsze 5 bytów jest zarezerwowane na adres urządzenia 
+ - Reszta pamięci jest do dyspozycji kostki i programisty 
+ - Adres kostki to pięcioznakowy string składający się z małych i dużych liter oraz cyfr np. aRd6s 
+ - Jedynym ustrukturyzowaniem wiadomości z kostki jest konieczność umieszczenie adresu na 5 pierwszych bytach i oddzielnie go znakiem "|". Kostka termometra przesyła wiadomości w postaci "aRd6s|23.8" itp. 
