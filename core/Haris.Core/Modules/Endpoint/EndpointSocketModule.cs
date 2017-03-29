@@ -50,7 +50,13 @@ namespace Haris.Core.Modules.Endpoint
             // Dns.GetHostName returns the name of the   
             // host running the application.  
             IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
+
+#if !DEBUG
+            IPAddress ipAddress = IPAddress.Parse("193.70.84.40");
+#endif
+#if DEBUG
             IPAddress ipAddress = ipHostInfo.AddressList[1];
+#endif
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
 
             // Create a TCP/IP socket.  
