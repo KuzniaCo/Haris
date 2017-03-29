@@ -16,30 +16,23 @@ void getCubeAddress() {
 void setup() {
 	Serial.begin(115200);
 	Serial.println(F("HARIS/CUBE/Relay"));
-
-	//radio.begin();
-	//radio.setPALevel(RF24_PA_LOW);
-	//radio.openReadingPipe(1, CUBE_ADDRESS_BYTES);
-	//radio.startListening();
+  getCubeAddress();
+	radio.begin();
+	radio.setPALevel(RF24_PA_LOW);
+	radio.openReadingPipe(1, CUBE_ADDRESS_BYTES);
+	radio.startListening();
 }
 
 void loop() {
-	//char raw_message[30];
-
-	//if (radio.available()) {
-	//	while (radio.available()) {
-	//		radio.read(&raw_message, PAYLOAD_SIZE);
-	//	}
-	//	String message(raw_message);
-	//	Serial.println(message);
-	//}
-
-	if (Serial.available())
-	{
-		//String outCommingMessage = Serial.readString();
-		Serial.println(Serial.read());
-		//sendViaRf(outCommingMessage);
+	char raw_message[30];
+	if (radio.available()) {
+		while (radio.available()) {
+			radio.read(&raw_message, 30);
+		}
+		//String message(raw_message);
+		Serial.println(raw_message);
 	}
+
 }
 
 //void sendViaRf(String message) {

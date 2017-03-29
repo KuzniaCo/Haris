@@ -5,16 +5,16 @@
 int PAYLOAD_SIZE = 30;
 int RELAY_PIN = 6;
 String CUBE_ADDRESS = "";
-byte CUBE_ADDRESS_BYTES[6] = "";
 byte RELAY_PIN_STATUS = 0;
 RF24 radio(9, 10);
+byte CUBE_ADDRESS_BYTES[6] = "";
 String GatewayAddress = "00000";
 
 void getCubeAddress() {
-	// Zapytanie pamiêci w przeciwnym wypadku wys³anie wiadomoœci powitalnej
+	// Zapytanie pamiï¿½ci w przeciwnym wypadku wysï¿½anie wiadomoï¿½ci powitalnej
 	byte memoryValue = EEPROM.get(0, CUBE_ADDRESS_BYTES);
 	if (memoryValue != 255) {
-		//Przeczytaj adress z pamiêci;
+		//Przeczytaj adress z pamiï¿½ci;
 	}
 
 	//Mocked addresses

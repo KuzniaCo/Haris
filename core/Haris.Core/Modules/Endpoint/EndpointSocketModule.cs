@@ -131,7 +131,7 @@ namespace Haris.Core.Modules.Endpoint
                 Logger.LogInfo("Read {0} bytes from socket. \n Data : {1}",
                     content.Length, content);
                 // Echo the data back to the client.  
-                Send(handler, content);
+               // Send(handler, "");
             }
         }
 
@@ -156,7 +156,7 @@ namespace Haris.Core.Modules.Endpoint
                 var bytesSent = handler.EndSend(ar);
                 Logger.LogInfo("Sent {0} bytes to client.", bytesSent);
 
-                handler.Shutdown(SocketShutdown.Both);
+                handler.Shutdown(SocketShutdown.Receive);
                 handler.Close();
             }
             catch (Exception e)

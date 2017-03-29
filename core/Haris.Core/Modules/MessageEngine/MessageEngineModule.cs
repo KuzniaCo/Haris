@@ -9,6 +9,7 @@ using Haris.Core.Events.MySensors;
 using Haris.Core.Services.Logging;
 using Haris.DataModel.DataModels;
 using Haris.DataModel.Repositories;
+using TempCube = Haris.Core.Cubes.TempCube;
 
 namespace Haris.Core.Modules.MessageEngine
 {
