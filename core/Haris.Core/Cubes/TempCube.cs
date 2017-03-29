@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Caliburn.Micro;
-using Haris.Core.Events.MySensors;
 using Haris.DataModel.DataModels;
 using Haris.DataModel.Repositories.Implementation;
 
@@ -30,25 +28,8 @@ namespace Haris.Core.Cubes
                 OriginMessage = message,
                 Value = value
             };
-            if (_cubeEntity.Logs == null)
-            {
-                _cubeEntity.Logs = new List<Log>();
-            }
-            _cubeEntity.Logs.Add(log);
-            _cubeRepository.UpdateCube(_cubeEntity);
-        }
-
-
-        public void SetInterval(int timeInSeconds)
-        {
-            _eventAggregator.Publish(new AttributedMessageEvent(_cubeEntity + "|" + TempCubeActions.SET_INTERVAL + "|"));
-        }
-
-        public enum TempCubeActions
-        {
-            GET_CURRENT_TEMP = 0,
-            GET_BATTERY_LEVEL = 1,
-            SET_INTERVAL = 2
+            _cubeRepository.AddLog(log, messageItems[0]);
+            
         }
     }
 }

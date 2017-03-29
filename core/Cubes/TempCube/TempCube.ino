@@ -34,7 +34,7 @@ void setup() {
 
 void loop() {
     sensors.requestTemperatures();
-    sendViaRF(messageConstructor(String(sensors.getTempCByIndex(0))));
+    //sendViaRF(messageConstructor(String(sensors.getTempCByIndex(0))));
     Serial.println(messageConstructor(String(sensors.getTempCByIndex(0))));
     delay(500);
     radio.powerDown();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Threading;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Haris.Core.Events.MySensors;
 using Haris.Core.Services.Logging;
@@ -34,13 +35,13 @@ namespace Haris.Core.Modules.Endpoint
 
         public override void Init()
         {
-            RunInBusyContextWithErrorFeedback(() =>
+            Task.Run(() =>
             {
  
 
                 _eventAggregator.Subscribe(this);
                 _baudRate = 115200;
-                _portName = "COM5";
+                _portName = "COM3";
 
                 try
                 {
@@ -48,9 +49,13 @@ namespace Haris.Core.Modules.Endpoint
                     {
                         BaudRate = _baudRate,
                     };
-                    _serialPort.DataReceived += OnDataReceived;
                     _serialPort.Open();
                     Logger.LogPrompt("Gateway connected");
+                    while (true)
+                    {
+                        var message = _serialPort.ReadLine();
+                        _eventAggregator.Publish(new MessageReceivedEvent(message));
+                    }
                 }
                 catch (Exception ex)
                 {

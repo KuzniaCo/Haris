@@ -1,4 +1,5 @@
-﻿using Haris.DataModel.DataModels;
+﻿using System;
+using Haris.DataModel.DataModels;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -21,6 +22,16 @@ namespace Haris.DataModel.Repositories.Implementation
         public Cube GetCube(string address)
         {
             return _cubes.FindSync(x => x.CubeAddress.Contains(address)).FirstOrDefault();
+        }
+
+        public void AddLog(Log log, string address)
+        {
+            var filtr = Builders<Cube>
+                .Filter.Eq(e => e.CubeAddress, address);
+            var update = Builders<Cube>.Update
+            .Push<Log>(e => e.Logs, log);
+            _cubes.FindOneAndUpdate<Cube>(filtr, update);
+            
         }
 
         public void UpdateCube(Cube cube)

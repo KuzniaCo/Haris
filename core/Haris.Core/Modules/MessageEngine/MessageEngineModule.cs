@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -65,8 +66,8 @@ namespace Haris.Core.Modules.MessageEngine
             var cubeType = GetType().Assembly.GetTypes()
                 .FirstOrDefault(x=>x.Name.Contains(addressedCube.CubeType));
             Object[] args = {_eventAggregator, addressedCube, _cubeRepository};
-            TempCube tempCube = (TempCube)Activator.CreateInstance(cubeType, args);
-            return tempCube;
+            BaseCube cube = (BaseCube)Activator.CreateInstance(cubeType, args);
+            return cube;
         }
     }
 }

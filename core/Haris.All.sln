@@ -18,7 +18,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cubes", "Cubes", "{F2D5AB35-4FDF-43D3-A0B5-C9DBE6774308}"
 	ProjectSection(SolutionItems) = preProject
 		Cubes\EndpointCube.ino = Cubes\EndpointCube.ino
+		Cubes\EndpointCube\EndpointCube.ino = Cubes\EndpointCube\EndpointCube.ino
 		Cubes\RelayCube.ino = Cubes\RelayCube.ino
+		Cubes\TempCube\TempCube.ino = Cubes\TempCube\TempCube.ino
 	EndProjectSection
 EndProject
 Global

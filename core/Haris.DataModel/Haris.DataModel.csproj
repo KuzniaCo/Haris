@@ -63,8 +63,6 @@
     <Compile Include="Action\ActionDescriptorDto.cs" />
     <Compile Include="DataModels\Cube.cs" />
     <Compile Include="DataModels\Log.cs" />
-    <Compile Include="DataModels\Reaction.cs" />
-    <Compile Include="DataModels\TempCube.cs" />
     <Compile Include="DataModels\WebHook.cs" />
     <Compile Include="IntentRecognition\CubeConfigDto.cs" />
     <Compile Include="IntentRecognition\EntityConfigDto.cs" />
