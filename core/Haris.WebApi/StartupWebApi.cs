@@ -8,10 +8,10 @@ using Owin;
 namespace Haris.WebApi
 {
 
-	public class StartupWebApi
-	{
-		public void Configuration(IAppBuilder app)
-		{
+    public class StartupWebApi
+    {
+        public void Configuration(IAppBuilder app)
+        {
 
             HttpConfiguration config = new HttpConfiguration();
             config.Routes.MapHttpRoute(
@@ -19,8 +19,8 @@ namespace Haris.WebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            app.UseWebApi(config).UseNancy();
 
-            app.UseWebApi(config);
-		}
-	}
+        }
+    }
 }

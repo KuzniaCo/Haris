@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Haris.Core.Modules.Endpoint
 {
+    [DisableModule]
     public class EndpointSocketModule : HarisModuleBase<AttributedMessageEvent>
     {
         private readonly IEventAggregator _eventAggregator;
