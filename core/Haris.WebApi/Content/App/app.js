@@ -7,25 +7,13 @@ harisApp.config(function ($routeProvider) {
             templateUrl: 'Content/App/views/home.html',
             controller: 'mainController'
         })
-        .when('/about', {
-            templateUrl: 'Content/App/views/about.html',
-            controller: 'aboutController'
+        .when('/devices', {
+            templateUrl: 'Content/App/views/devices.html',
+            controller: 'devicesController'
         })
 
-        .when('/contact', {
-            templateUrl: 'Content/App/views/contact.html',
-            controller: 'contactController'
+        .when('/logs', {
+            templateUrl: 'Content/App/views/logs.html',
+            controller: 'logsController'
         });
-});
-
-harisApp.controller('mainController', function ($scope) {
-    $scope.message = 'Everyone come and see how good I look!';
-});
-
-harisApp.controller('aboutController', function ($scope) {
-    $scope.message = 'Look! I am an about page.';
-});
-
-harisApp.controller('contactController', function ($scope) {
-    $scope.message = 'Contact us! JK. This is just a demo.';
 });

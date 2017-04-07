@@ -1,0 +1,16 @@
+﻿body
+{
+}
+
+#main {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.enabled {
+    color: green;
+}
+
+.disabled {
+    color: red;
+}

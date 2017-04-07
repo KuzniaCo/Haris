@@ -5,12 +5,16 @@
       <!-- load bootstrap and fontawesome via CDN -->
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+       <link rel="stylesheet" href="/Content/Assets/css/Site.css" />
 
       <!-- SPELLS -->
       <!-- load angular via CDN -->
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-          <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
       <script type="text/javascript" src="/Content/App/app.js"></script>
+      <script type="text/javascript" src="/Content/App/controllers/mainController.js"></script>
+      <script type="text/javascript" src="/Content/App/controllers/devicesController.js"></script>
+      <script type="text/javascript" src="/Content/App/controllers/logsController.js"></script>
     </head>
 
     <!-- define angular controller -->
@@ -21,13 +25,13 @@
             <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">Angular Routing Example</a>
+                    <a class="navbar-brand" href="/">Haris Sensors Network</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
-                    <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                    <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+                    <li><a href="#devices"><i class="fa fa-shield"></i> Devices</a></li>
+                    <li><a href="#logs"><i class="fa fa-comment"></i> Logs</a></li>
                 </ul>
             </div>
             </nav>
