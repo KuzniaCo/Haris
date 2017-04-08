@@ -4,7 +4,7 @@
 #include <EEPROM.h>
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-byte server[] = { 192, 168, 0, 4 }; // Local
+byte server[] = { 193, 70, 84, 40 }; // Local 193.70.84.40
 
 EthernetClient client;
 
@@ -52,7 +52,7 @@ void loop()
       radio.read(&raw_message, 30);
     }
     Serial.println(raw_message);
-    client.println(String(raw_message));
+    client.println(raw_message);
   }
   if (client.available()) {
     String message="";
