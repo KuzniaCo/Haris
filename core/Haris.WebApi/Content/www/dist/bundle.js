@@ -44855,6 +44855,10 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 })(window, window.angular);
 
 var harisApp = angular.module('harisApp', ['ngRoute']);
+
+harisApp.config(['$locationProvider', function ($locationProvider) {
+    $locationProvider.hashPrefix('');
+}]);
 harisApp.config(function ($routeProvider) {
     $routeProvider
 

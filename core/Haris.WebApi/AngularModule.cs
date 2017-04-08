@@ -6,7 +6,7 @@ namespace Haris.WebApi
     {
         public AngularModule()
         {
-            Get["/"] = parameters => View["index.html", new {Title = " Strona główna "}];
+            Get["/"] = parameters => View["Content/www/index.html", new {Title = " Strona główna "}];
         }
     }
 }
