@@ -95,38 +95,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CubeController.cs" />
-    <Compile Include="Controllers\AngularModule.cs" />
+    <Compile Include="AngularModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartupWebApi.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include=".bowerrc" />
     <None Include="app.config" />
+    <None Include="bower.json" />
+    <None Include="package.json" />
     <None Include="packages.config" />
-    <None Include="Views\Angular\Index.sshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\App\directives\" />
-    <Folder Include="Content\App\services\" />
+    <Folder Include="Content\www\App\directives\" />
+    <Folder Include="Content\www\App\services\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\App\app.js">
+    <Content Include="Content\www\App\app.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\App\controllers\logsController.js" />
-    <Content Include="Content\App\controllers\devicesController.js" />
-    <Content Include="Content\App\controllers\mainController.js" />
-    <Content Include="Content\App\views\logs.html">
+    <Content Include="Content\www\App\app.route.js" />
+    <Content Include="Content\www\App\controllers\logsController.js" />
+    <Content Include="Content\www\App\controllers\devicesController.js" />
+    <Content Include="Content\www\App\controllers\mainController.js" />
+    <Content Include="Content\www\App\views\logs.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\App\views\devices.html">
+    <Content Include="Content\www\App\views\devices.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\App\views\home.html">
+    <Content Include="Content\www\App\views\home.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\css\Site.css">
+    <Content Include="Content\www\Assets\css\Site.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="gulpfile.js" />
@@ -140,7 +144,8 @@
     <Error Condition="!Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(SolutionDir)Content/**" "$(TargetDir)" /S</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

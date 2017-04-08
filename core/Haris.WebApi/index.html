@@ -1,0 +1,31 @@
+﻿    <!DOCTYPE html>
+    <html ng-app="harisApp">
+    <head>
+      <link rel="stylesheet" href="/Content/www/dist/bundle.css" />
+
+      <script type="text/javascript" src="/Content/www/dist/bundle.js"></script>
+    </head>
+
+    <body>
+
+        <header>
+            <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Haris Sensors Network</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+                    <li><a href="#devices"><i class="fa fa-shield"></i> Devices</a></li>
+                    <li><a href="#logs"><i class="fa fa-comment"></i> Logs</a></li>
+                </ul>
+            </div>
+            </nav>
+        </header>
+    <div id="main">
+        <div ng-view></div>
+    </div>
+
+    </body>
+    </html>
