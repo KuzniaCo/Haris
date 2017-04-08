@@ -100,6 +100,8 @@
     <Compile Include="StartupWebApi.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\www\dist\bundle.css" />
+    <Content Include="Content\www\dist\bundle.js" />
     <Content Include="Content\www\libs\angular-route\angular-route.js" />
     <Content Include="Content\www\libs\angular-route\angular-route.min.js" />
     <Content Include="Content\www\libs\angular-route\index.js" />

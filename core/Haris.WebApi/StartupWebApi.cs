@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Http;
 using Haris.WebApi;
 using Microsoft.Owin;
@@ -14,11 +15,11 @@ namespace Haris.WebApi
         {
 
             HttpConfiguration config = new HttpConfiguration();
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            config.MapHttpAttributeRoutes();
+            config.EnsureInitialized();
+            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+
             app.UseWebApi(config).UseNancy();
 
         }

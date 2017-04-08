@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 
 namespace Haris.WebApi.Controllers
 {
-    [RoutePrefix("api/cube/relay")]
-    public class RelayCubeController : ApiController
+    [RoutePrefix("api/cube/temperature")]
+    public class TemperatureCubeController : ApiController
     {
         // GET api/values 
         [Route("")]
@@ -22,16 +18,6 @@ namespace Haris.WebApi.Controllers
         public string Get(string address)
         {
             return address;
-        }
-
-        // POST api/values 
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5 
-        public void Put(int id, [FromBody]string value)
-        {
         }
 
         // DELETE api/values/5 
