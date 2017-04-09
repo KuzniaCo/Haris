@@ -4,7 +4,7 @@
 #include <EEPROM.h>
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-byte server[] = { 193, 70, 84, 40 }; // Local 193.70.84.40
+byte server[] = { 192, 168, 0, 4 }; // Local 193.70.84.40
 
 EthernetClient client;
 
@@ -33,15 +33,7 @@ void setup()
   radio.startListening();  
 
   delay(1000);
-
-  Serial.println("connecting...");
-
-  if (client.connect(server, 11000)) {
-    Serial.println("connected");
-    client.println("aDs6g|12.2|");
-  } else {
-    Serial.println("connection failed");
-  }
+  connect();
 }
 
 void loop()
@@ -52,7 +44,7 @@ void loop()
       radio.read(&raw_message, 30);
     }
     Serial.println(raw_message);
-    client.println(raw_message);
+    client.print(raw_message);
   }
   if (client.available()) {
     String message="";
@@ -63,14 +55,24 @@ void loop()
     Serial.println(message);
     //sendViaRF(message);
   }
-
   if (!client.connected()) {
     Serial.println();
     Serial.println("disconnecting.");
     client.stop();
     Serial.println("try connect again.");
-    setup();
+    connect();
     }
+}
+
+void connect(){
+  Serial.println("connecting...");
+
+  if (client.connect(server, 11000)) {
+    Serial.println("connected");
+    client.print("aDs6g|12.2|");
+  } else {
+    Serial.println("connection failed");
+  }
 }
 
 void sendViaRF(String message){

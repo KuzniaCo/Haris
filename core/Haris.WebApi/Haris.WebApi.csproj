@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CubeController.cs" />
+    <Compile Include="Controllers\TemperatureCubeController.cs" />
     <Compile Include="AngularModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartupWebApi.cs" />
