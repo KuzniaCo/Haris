@@ -6,13 +6,11 @@ namespace Haris.Core.Cubes
 {
     public abstract class BaseCube
     {
-        protected readonly IEventAggregator _eventAggregator;
         protected readonly Cube _cubeEntity;
         protected readonly CubeRepository _cubeRepository;
 
-        public BaseCube(IEventAggregator eventAggregator, Cube cubeEntity, CubeRepository cubeRepository)
+        public BaseCube(Cube cubeEntity, CubeRepository cubeRepository)
         {
-            _eventAggregator = eventAggregator;
             _cubeEntity = cubeEntity;
             _cubeRepository = cubeRepository;
         }

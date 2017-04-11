@@ -1,28 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using Haris.DataModel;
+using Haris.DataModel.DataModels;
+using Haris.DataModel.Repositories;
+using Haris.DataModel.Repositories.Implementation;
 
 namespace Haris.WebApi.Controllers
 {
     [RoutePrefix("api/cube/temperature")]
     public class TemperatureCubeController : ApiController
     {
-        // GET api/values 
-        [Route("")]
-        public IEnumerable<string> Get()
+        private readonly ICubeRepository _cubeRepository;
+
+        public TemperatureCubeController()
         {
-            return new string[] { "value1", "value2" };
+            _cubeRepository = new CubeRepository(new HarisDbContext());
         }
 
         // GET api/values/5 
         [Route("{address}")]
-        public string Get(string address)
+        public List<Log> Get(string address)
         {
-            return address;
+            return _cubeRepository.GetValues(address);
         }
 
-        // DELETE api/values/5 
-        public void Delete(int id)
-        {
-        }
     }
 }

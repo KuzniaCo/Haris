@@ -15,23 +15,25 @@ void getCubeAddress() {
 
 void setup() {
 	Serial.begin(115200);
-	Serial.println(F("HARIS/CUBE/Relay"));
-  getCubeAddress();
-	radio.begin();
-	radio.setPALevel(RF24_PA_LOW);
-	radio.openReadingPipe(1, CUBE_ADDRESS_BYTES);
-	radio.startListening();
+//	Serial.println(F("HARIS/CUBE/Relay"));
+//  getCubeAddress();
+//	radio.begin();
+//	radio.setPALevel(RF24_PA_LOW);
+//	radio.openReadingPipe(1, CUBE_ADDRESS_BYTES);
+//	radio.startListening();
 }
 
 void loop() {
-	char raw_message[30];
-	if (radio.available()) {
-		while (radio.available()) {
-			radio.read(&raw_message, 30);
-		}
-		//String message(raw_message);
-		Serial.println(raw_message);
-	}
+//	char raw_message[30];
+//	if (radio.available()) {
+//		while (radio.available()) {
+//			radio.read(&raw_message, 30);
+//		}
+//		//String message(raw_message);
+//		Serial.println(raw_message);
+//	}
+Serial.println("aDs6g|13.2|");
+delay(3000);
 
 }
 

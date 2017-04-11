@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Haris.Core.Events.MySensors;
+using Haris.Core.Services;
 using Haris.Core.Services.Logging;
 
 namespace Haris.Core.Modules.Endpoint
@@ -12,14 +13,16 @@ namespace Haris.Core.Modules.Endpoint
     public class EndpointModule : HarisModuleBase<AttributedMessageEvent>
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly EngineService _engineService;
         private SerialPort _serialPort;
         private int _baudRate;
         private string _portName;
         private readonly CancellationTokenSource _cts;
 
-        public EndpointModule(IEventAggregator eventAggregator)
+        public EndpointModule(IEventAggregator eventAggregator, EngineService engineService)
         {
             _eventAggregator = eventAggregator;
+            _engineService = engineService;
             _cts = new CancellationTokenSource();
         }
 
@@ -42,9 +45,6 @@ namespace Haris.Core.Modules.Endpoint
                 _eventAggregator.Subscribe(this);
                 _baudRate = 115200;
                 _portName = "COM3";
-
-                try
-                {
                     _serialPort = new SerialPort(_portName)
                     {
                         BaudRate = _baudRate,
@@ -54,14 +54,12 @@ namespace Haris.Core.Modules.Endpoint
                     while (true)
                     {
                         var message = _serialPort.ReadLine();
-                        _eventAggregator.Publish(new MessageReceivedEvent(message));
+                        //_eventAggregator.Publish(new MessageReceivedEvent(message));
+                        _engineService.ProccessMessage(new MessageReceivedEvent(message));
                     }
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError(ex.Message);
-                }
-                Logger.LogPrompt("EndpointModule ready");
+                
+ 
+              
             }, _cts.Token);
 
         }

@@ -8,18 +8,21 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Haris.Core.Services;
 
 namespace Haris.Core.Modules.Endpoint
 {
     public class EndpointSocketModule : HarisModuleBase<AttributedMessageEvent>
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly EngineService _engineService;
 
         private List<Socket> Endpoints = new List<Socket>();
 
-        public EndpointSocketModule(IEventAggregator eventAggregator)
+        public EndpointSocketModule(IEventAggregator eventAggregator, EngineService engineService)
         {
             _eventAggregator = eventAggregator;
+            _engineService = engineService;
         }
 
         public override void Dispose()
@@ -75,8 +78,6 @@ namespace Haris.Core.Modules.Endpoint
                     Endpoints.Add(handler);
                     Task.Run(() =>
                     {
-                        handler.ReceiveTimeout = 900000;
-
                         while (true)
                         {
                             byte[]  bytes = new byte[1024];
@@ -84,8 +85,9 @@ namespace Haris.Core.Modules.Endpoint
                             {
                                 int bytesRec = handler.Receive(bytes);
                                 var data = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                                _eventAggregator.Publish(new MessageReceivedEvent(data));
-                                Console.WriteLine("Text received : {0}", data);
+                                //_eventAggregator.Publish(new MessageReceivedEvent(data));
+                                _engineService.ProccessMessage(new MessageReceivedEvent(data));
+                               
 
                             }
                             catch (SocketException se)

@@ -40,34 +40,34 @@ namespace Haris.Core.Modules.MessageEngine
 
         public override void Handle(MessageReceivedEvent message)
         {
-
-            Task.Run(() =>
-            {
-                Logger.LogPrompt("Recived message: " + message.Payload);
-                var engineCube = CreateDeliveryCube(GetAddress(message.Payload));
-                engineCube.ProcessMessage(message.Payload);
-            }, _cts.Token);
+//
+//            Task.Run(() =>
+//            {
+//                Logger.LogPrompt("Recived message: " + message.Payload);
+//                var engineCube = CreateDeliveryCube(GetAddress(message.Payload));
+//                engineCube.ProcessMessage(message.Payload);
+//            }, _cts.Token);
            
         }
 
-        private string GetAddress(string message)
-        {
-            String[] messageItems = message.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-            return messageItems[0];
-        }
-
-        private BaseCube CreateDeliveryCube(string address)
-        {
-            Cube addressedCube = _cubeRepository.GetCube(address);
-            if (addressedCube == null)
-            {
-                Logger.LogError("Not found cube addressed: " + address);
-            } 
-            var cubeType = GetType().Assembly.GetTypes()
-                .FirstOrDefault(x=>x.Name.Contains(addressedCube.CubeType));
-            Object[] args = {_eventAggregator, addressedCube, _cubeRepository};
-            BaseCube cube = (BaseCube)Activator.CreateInstance(cubeType, args);
-            return cube;
-        }
+//        private string GetAddress(string message)
+//        {
+//            String[] messageItems = message.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+//            return messageItems[0];
+//        }
+//
+//        private async BaseCube CreateDeliveryCube(string address)
+//        {
+//            Cube addressedCube = await _cubeRepository.GetCube(address);
+//            if (addressedCube == null)
+//            {
+//                Logger.LogError("Not found cube addressed: " + address);
+//            } 
+//            var cubeType = GetType().Assembly.GetTypes()
+//                .FirstOrDefault(x=>x.Name.Contains(addressedCube.CubeType));
+//            Object[] args = {_eventAggregator, addressedCube, _cubeRepository};
+//            BaseCube cube = (BaseCube)Activator.CreateInstance(cubeType, args);
+//            return cube;
+//        }
     }
 }

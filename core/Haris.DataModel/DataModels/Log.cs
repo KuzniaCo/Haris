@@ -16,6 +16,5 @@ namespace Haris.DataModel.DataModels
 
         public DateTime Date { get; set; }
 
-        public Cube Cube { get; set; }
     }
 }

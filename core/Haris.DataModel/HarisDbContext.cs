@@ -12,7 +12,7 @@ namespace Haris.DataModel
     {
         public HarisDbContext():base(nameOrConnectionString: "HarisConnectionString")
         {
-            
+            this.Configuration.LazyLoadingEnabled = false;
         }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Cube> Cubes { get; set; }

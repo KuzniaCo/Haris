@@ -5,6 +5,7 @@ using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
 using Haris.Core.Modules.Endpoint;
 using Haris.Core.Modules.IntentRecognition.Core;
+using Haris.Core.Services;
 using Haris.Core.Services.Logging;
 using Haris.Core.Services.Luis;
 using Haris.Core.Services.Luis.Impl;
@@ -48,7 +49,8 @@ namespace Haris.Core
             Container.RegisterSingleton<ILuisIntentToActionMappingRepository, LuisIntentToActionMappingRepository>();
             Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
             Container.RegisterSingleton<ICubeRepository, CubeRepository>();
-            Container.RegisterSingleton<HarisDbContext>(new HarisDbContext());
+            Container.RegisterSingleton<HarisDbContext>();
+            Container.RegisterSingleton<EngineService>();
 
             var types =
                 GetType()

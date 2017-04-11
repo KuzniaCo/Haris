@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Haris.DataModel.DataModels;
@@ -31,6 +32,13 @@ namespace Haris.DataModel.Repositories.Implementation
         public void AddLog(Log log)
         {
             _context.Logs.Add(log);
+            _context.SaveChanges();
+        }
+
+        public List<Log> GetValues(string address)
+        {
+            var cube = _context.Cubes.Include(x => x.Logs).FirstOrDefault(x => x.CubeAddress.Equals(address));
+            return cube.Logs.Take(20).ToList();
         }
 
         public void UpdateCube(Cube cube)

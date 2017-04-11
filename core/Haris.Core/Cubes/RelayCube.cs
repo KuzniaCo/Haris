@@ -33,7 +33,7 @@ namespace Haris.Core.Cubes
             throw new NotImplementedException();
         }
 
-        public RelayCube(IEventAggregator eventAggregator, Cube cubeEntity, CubeRepository cubeRepository) : base(eventAggregator, cubeEntity, cubeRepository)
+        public RelayCube(IEventAggregator eventAggregator, Cube cubeEntity, CubeRepository cubeRepository) : base(cubeEntity, cubeRepository)
         {
         }
 

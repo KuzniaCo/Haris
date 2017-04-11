@@ -7,8 +7,8 @@ namespace Haris.Core.Cubes
 {
     public sealed class TempCube : BaseCube
     {
-        public TempCube(IEventAggregator eventAggregator, Cube cubeEntity, CubeRepository cubeRepository)
-            : base(eventAggregator, cubeEntity, cubeRepository)
+        public TempCube(Cube cubeEntity, CubeRepository cubeRepository)
+            : base( cubeEntity, cubeRepository)
         {
         }
 
