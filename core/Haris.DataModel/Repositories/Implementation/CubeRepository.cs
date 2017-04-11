@@ -38,7 +38,7 @@ namespace Haris.DataModel.Repositories.Implementation
         public List<Log> GetValues(string address)
         {
             var cube = _context.Cubes.Include(x => x.Logs).FirstOrDefault(x => x.CubeAddress.Equals(address));
-            return cube.Logs.Take(20).ToList();
+            return cube.Logs.OrderByDescending(x=>x.Date).Take(20).ToList();
         }
 
         public void UpdateCube(Cube cube)
