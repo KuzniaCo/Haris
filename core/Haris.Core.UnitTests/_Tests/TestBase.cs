@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SimpleInjector;
+﻿using SimpleInjector;
 
 namespace Haris.Core.UnitTests._Tests
 {
@@ -7,7 +6,6 @@ namespace Haris.Core.UnitTests._Tests
 	{
 		protected Container Container;
 
-		[TestFixtureSetUp]
 		public virtual void TestFixtureSetUp()
 		{
 			Container = new Container();
