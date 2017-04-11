@@ -24,11 +24,12 @@ namespace Haris.Core.Cubes
         {
             var log = new Log()
             {
+                CubeId = _cubeEntity.Id,
                 Date = DateTime.Now,
                 OriginMessage = message,
                 Value = value
             };
-            _cubeRepository.AddLog(log, messageItems[0]);
+            _cubeRepository.AddLog(log);
             
         }
     }

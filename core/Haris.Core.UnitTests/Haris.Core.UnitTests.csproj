@@ -48,6 +48,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <Content Include="TestData\CubesConfig.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
