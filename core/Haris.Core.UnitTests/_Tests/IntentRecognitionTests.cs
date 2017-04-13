@@ -17,7 +17,7 @@ using Assert = Xunit.Assert;
 
 namespace Haris.Core.UnitTests._Tests
 {
-	public class IntentRecognitionTests: TestBase
+	public class IntentRecognitionTests : TestBase
 	{
 		protected const string TurnOnTheTvCommand = "turn on the tv";
 
@@ -121,8 +121,8 @@ namespace Haris.Core.UnitTests._Tests
 
 		public void Init()
 		{
-            TestFixtureSetUp();
-            _recognizer = Container.GetInstance<IIntentRecognizer>();
+			TestFixtureSetUp();
+			_recognizer = Container.GetInstance<IIntentRecognizer>();
 			_luisClientMock = Container.GetInstance<ILuisClient>();
 			_luisIntentToActionMappingRepoMock = Container.GetInstance<ILuisIntentToActionMappingRepository>();
 		}
@@ -133,31 +133,31 @@ namespace Haris.Core.UnitTests._Tests
 			var file = File.ReadAllText("TestData/TurnOnTvResponse.txt");
 
 			LuisResponseDto obj = null;
-            obj = JsonConvert.DeserializeObject<LuisResponseDto>(file);
-            Assert.NotNull(obj);
+			obj = JsonConvert.DeserializeObject<LuisResponseDto>(file);
+			Assert.NotNull(obj);
 		}
 
 		[Fact]
 		public void IntentRecognizerGetsInitialized()
 		{
-            Init();
+			Init();
 			Assert.NotNull(_recognizer);
 		}
 
 		[Fact]
 		public async void ResponseIsNotEmpty()
 		{
-            Init();
-            var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
+			Init();
+			var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
 
-            Assert.NotNull(response);
-        }
+			Assert.NotNull(response);
+		}
 
 		[Fact]
 		public async void LuisGetsAsked()
 		{
-            Init();
-            var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
+			Init();
+			var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
 
 			await _luisClientMock.Received(1).AskLuis(TurnOnTheTvCommand, CancellationToken.None);
 		}
@@ -165,9 +165,9 @@ namespace Haris.Core.UnitTests._Tests
 		[Fact]
 		public void CubesConfigIsRead()
 		{
-            Init();
-            Assert.NotEmpty(_luisIntentToActionMappingRepoMock.CurrentConfig);
-        }
+			Init();
+			Assert.NotEmpty(_luisIntentToActionMappingRepoMock.CurrentConfig);
+		}
 
 		[Fact]
 		public void ActionsGetDeserialized()
@@ -182,8 +182,8 @@ namespace Haris.Core.UnitTests._Tests
 		[Fact]
 		public void TvInBedroomWouldBeTurnedOn()
 		{
-            Init();
-            var file = File.ReadAllText("TestData/TurnOnTvInBedroomResponseWithActions.txt");
+			Init();
+			var file = File.ReadAllText("TestData/TurnOnTvInBedroomResponseWithActions.txt");
 			var response = JsonConvert.DeserializeObject<LuisResponseDto>(file);
 
 			var inte = Container.GetInstance<ILuisResponseParser>();
@@ -191,7 +191,7 @@ namespace Haris.Core.UnitTests._Tests
 			var service = Container.GetInstance<IIntentToActionConversionService>();
 			var actions = service.GetActions(intentRecognitionResult);
 			var action = actions.Single();
-			
+
 			Assert.NotNull(action);
 			Assert.Equal("tv", action.EntityLabel);
 		}
