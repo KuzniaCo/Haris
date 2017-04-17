@@ -17,7 +17,7 @@ namespace Haris.Core.Modules.IntentRecognition.Core
 
 		public override void Dispose()
 		{
-			
+			_eventAggregator.Unsubscribe(this);
 		}
 
 		public override void Init()
