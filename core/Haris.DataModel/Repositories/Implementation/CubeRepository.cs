@@ -26,7 +26,8 @@ namespace Haris.DataModel.Repositories.Implementation
 
         public Cube GetCube(string address)
         {
-            return _cubes.FirstOrDefault(x => x.CubeAddress.Contains(address));
+            return _cubes.Include(x=>x.OutputCubes)
+                .FirstOrDefault(x => x.CubeAddress.Contains(address));
         }
 
         public IQueryable<Cube> GetCubes()
@@ -50,6 +51,11 @@ namespace Haris.DataModel.Repositories.Implementation
         {
             _context.Cubes.Attach(cube);
             _context.Entry(cube).Property(x => x.Id == cube.Id).IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
             _context.SaveChanges();
         }
 

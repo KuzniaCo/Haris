@@ -9,6 +9,7 @@ using Haris.Core.Services.Logging;
 
 namespace Haris.Core.Modules.Endpoint
 {
+    [DisableModule]
     public class EndpointModule : HarisModuleBase<AttributedMessageEvent>
     {
         private readonly IEventAggregator _eventAggregator;

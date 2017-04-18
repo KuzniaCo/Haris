@@ -12,7 +12,6 @@ using Haris.Core.Services;
 
 namespace Haris.Core.Modules.Endpoint
 {
-    [DisableModule]
     public class EndpointSocketModule : HarisModuleBase<AttributedMessageEvent>
     {
         private readonly IEventAggregator _eventAggregator;
@@ -31,6 +30,7 @@ namespace Haris.Core.Modules.Endpoint
 
         public override void Init()
         {
+            Logger.Log("Endpoint Socket module ready");
             Task.Run(() =>
             {
                 _engineService.StartSocketServer();

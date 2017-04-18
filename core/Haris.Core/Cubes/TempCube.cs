@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Haris.Core.Services;
 using Haris.DataModel.DataModels;
 using Haris.DataModel.Repositories.Implementation;
@@ -22,15 +23,11 @@ namespace Haris.Core.Cubes
 
         public void OnReceivedTemp(string value, string message)
         {
-            var log = new Log()
-            {
-                CubeId = _cubeEntity.Id,
-                Date = DateTime.Now,
-                OriginMessage = message,
-                Value = value
-            };
-            _cubeRepository.AddLog(log);
-            
+            var temp = _cubeEntity.OutputCubes.FirstOrDefault(x => x.ValueName == "Temp");
+            var date = _cubeEntity.OutputCubes.FirstOrDefault(x => x.ValueName == "Date");
+            date.Value = DateTime.Now.ToString("G");
+            temp.Value = messageItems[1];
+            _cubeRepository.SaveChanges();
         }
     }
 }

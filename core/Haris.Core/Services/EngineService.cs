@@ -44,8 +44,8 @@ namespace Haris.Core.Services
         {
             Logger.LogInfo("Send message: " + message);
             byte[] msg = Encoding.ASCII.GetBytes(message);
-            //_connectedSocketEndpoint.Send(msg);
-            _serialEndpoint.Write(message);
+            _connectedSocketEndpoint.Send(msg);
+            //_serialEndpoint.Write(message);
         }
 
         public BaseCube CreateDeliveryCube(string address)
@@ -86,7 +86,7 @@ namespace Haris.Core.Services
             IPAddress ipAddress = IPAddress.Parse("193.70.84.40");
 #endif
 #if DEBUG
-            IPAddress ipAddress = IPAddress.Parse("193.70.84.40");
+            IPAddress ipAddress = IPAddress.Parse("192.168.0.14");
 #endif
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
 
