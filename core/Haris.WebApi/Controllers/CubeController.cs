@@ -1,42 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
+using Haris.DataModel;
+using Haris.DataModel.DataModels;
+using Haris.DataModel.Repositories.Implementation;
+using Haris.DataModel.WebApiContracts;
 
 namespace Haris.WebApi.Controllers
 {
-    [RoutePrefix("api/cube/relay")]
+    [RoutePrefix("api/cubes")]
     public class RelayCubeController : ApiController
     {
-        // GET api/values 
+        private CubeRepository _cubeRepository;
+
+        public RelayCubeController()
+        {
+            _cubeRepository = new CubeRepository(new HarisDbContext());
+        }
+
+        // GET api/cubes 
         [Route("")]
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public IEnumerable<CubeResponse> Get()
         {
-            return new string[] { "value1", "value2" };
+           var data = _cubeRepository.GetCubes();
+           var result = data.ToList().Select(x => new CubeResponse()
+            {
+                CubeAddress = x.CubeAddress,
+                CubeType = x.CubeType,
+                Name = x.Name,
+                Outputs = MapOutputs(x.OutputCubes)
+            });
+
+            return result;
         }
 
-        // GET api/values/5 
+        // GET api/cubes/{address}
+        [HttpGet]
         [Route("{address}")]
-        public string Get(string address)
+        public Cube Get(string address)
         {
-            return address;
+            return _cubeRepository.GetCube(address);
         }
 
-        // POST api/values 
-        public void Post([FromBody]string value)
+        private Dictionary<string, string> MapOutputs(List<OutputCube>  outputCubes)
         {
-        }
-
-        // PUT api/values/5 
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5 
-        public void Delete(int id)
-        {
+            var result = new Dictionary<string,string>();
+            foreach (var outputCube in outputCubes)
+            {
+                result.Add(outputCube.ValueName, outputCube.Value);
+            }
+            return result;
         }
     }
 }

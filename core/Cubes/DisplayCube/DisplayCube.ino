@@ -23,7 +23,7 @@ void getCubeAddress() {
 
 void setup() {
 	Serial.begin(115200);
-	Serial.println(F("HARIS/CUBE/DISPLAY"));
+	//Serial.println(F("HARIS/CUBE/DISPLAY"));
   getCubeAddress();
 	radio.begin();
 	radio.setPALevel(RF24_PA_LOW);
@@ -47,8 +47,13 @@ void loop() {
   {
     String serialMsg = Serial.readString();
     decodeMessage(serialMsg);
-    Serial.println("Recived:"+serialMsg);
+    //Serial.println("Recived:"+serialMsg);
   }
+}
+
+void clearLine(int line){
+   lcd.setCursor(0,line);
+   lcd.print("                ");
 }
 
 void sendViaRF(String message){
@@ -56,7 +61,7 @@ void sendViaRF(String message){
   char charArray[30];
   message.toCharArray(charArray, 30);
   if (!radio.write( &charArray, 30 )){
-    Serial.println("failed send "+ message);
+    //Serial.println("failed send "+ message);
   }
   radio.startListening();
 }
@@ -67,19 +72,19 @@ void decodeMessage(String message){
     String row = getValue(message, '|', 2);
     String content = getValue(message, '|', 3);
     setDisplay(row, content);
-    Serial.println("Action: Set Display");
-    Serial.println("Row: " + row);
-    Serial.println("Content: " + content);
+    //Serial.println("Action: Set Display");
+    //Serial.println("Row: " + row);
+    //Serial.println("Content: " + content);
   }
   else if(action == "2"){
     String newState = getValue(message, '|', 2);
     setBacklight(newState);
-    Serial.println("Action: Backlight");
+    //Serial.println("Action: Backlight");
     //sendViaRF("OK");
   }
   else{
     //sendViaRF("ERROR");
-    Serial.println("Action: Error action");
+    //Serial.println("Action: Error action");
   }
 }
 
@@ -97,6 +102,7 @@ void setBacklight(String newState){
 
 void setDisplay(String row, String content){
    int rowInt = row.toInt();
+   clearLine(rowInt);
    lcd.setCursor(0,rowInt);
    lcd.print(content);
 }

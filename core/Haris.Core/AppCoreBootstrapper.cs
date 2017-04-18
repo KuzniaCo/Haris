@@ -17,7 +17,7 @@ namespace Haris.Core
 {
     public class AppCoreBootstrapper
     {
-        public SimpleInjector.Container Container { get; private set; }
+        public static SimpleInjector.Container Container { get; private set; }
 
         public void Run()
         {

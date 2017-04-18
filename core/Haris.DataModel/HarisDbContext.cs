@@ -16,5 +16,7 @@ namespace Haris.DataModel
         }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Cube> Cubes { get; set; }
+
+        public DbSet<OutputCube> OutputCubes { get; set; }
     }
 }

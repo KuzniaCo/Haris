@@ -4,6 +4,7 @@ using System.Web.Http;
 using Haris.WebApi;
 using Microsoft.Owin;
 using Owin;
+using SimpleInjector.Integration.WebApi;
 
 [assembly: OwinStartup(typeof(StartupWebApi))]
 namespace Haris.WebApi
@@ -20,6 +21,7 @@ namespace Haris.WebApi
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
             app.UseWebApi(config).UseNancy();
+            
 
         }
     }

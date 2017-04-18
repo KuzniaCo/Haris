@@ -9,6 +9,7 @@ var runSequence = require('run-sequence');
 
 var libsJs = [
     'bower_components/jquery/dist/jquery.js',
+    'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/angular/angular.js',
     'bower_components/angular-route/angular-route.js'
 ];

@@ -1,5 +1,5 @@
 ﻿using System;
-using Caliburn.Micro;
+using Haris.Core.Services;
 using Haris.DataModel.DataModels;
 using Haris.DataModel.Repositories.Implementation;
 
@@ -7,8 +7,8 @@ namespace Haris.Core.Cubes
 {
     public sealed class TempCube : BaseCube
     {
-        public TempCube(Cube cubeEntity, CubeRepository cubeRepository)
-            : base( cubeEntity, cubeRepository)
+        public TempCube(Cube cubeEntity, CubeRepository cubeRepository, EngineService engineService)
+            : base( cubeEntity, cubeRepository, engineService)
         {
         }
 

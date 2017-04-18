@@ -14,6 +14,7 @@ using TempCube = Haris.Core.Cubes.TempCube;
 
 namespace Haris.Core.Modules.MessageEngine
 {
+    [DisableModule]
     public class MessageEngineModule : HarisModuleBase<MessageReceivedEvent>
     {
         private readonly IEventAggregator _eventAggregator;

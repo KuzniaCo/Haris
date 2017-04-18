@@ -18,6 +18,7 @@ namespace Haris.HostApp
 			string WebApiUrl = "http://*:88";
 			bootstrapper.Run();
 			var owinHost = WebApp.Start<StartupWebApi>(WebApiUrl);
+           
 
 			var mre = new ManualResetEvent(false);
 			Console.CancelKeyPress += delegate

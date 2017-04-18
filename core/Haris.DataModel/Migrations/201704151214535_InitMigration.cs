@@ -33,6 +33,20 @@ namespace Haris.DataModel.Migrations
                 .Index(t => t.CubeId);
             
             CreateTable(
+                "dbo.OutputCubes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ValueType = c.String(),
+                        Value = c.String(),
+                        ValueName = c.String(),
+                        CubeId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Cubes", t => t.CubeId, cascadeDelete: true)
+                .Index(t => t.CubeId);
+            
+            CreateTable(
                 "dbo.WebHooks",
                 c => new
                     {
@@ -50,10 +64,13 @@ namespace Haris.DataModel.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.WebHooks", "CubeId", "dbo.Cubes");
+            DropForeignKey("dbo.OutputCubes", "CubeId", "dbo.Cubes");
             DropForeignKey("dbo.Logs", "CubeId", "dbo.Cubes");
             DropIndex("dbo.WebHooks", new[] { "CubeId" });
+            DropIndex("dbo.OutputCubes", new[] { "CubeId" });
             DropIndex("dbo.Logs", new[] { "CubeId" });
             DropTable("dbo.WebHooks");
+            DropTable("dbo.OutputCubes");
             DropTable("dbo.Logs");
             DropTable("dbo.Cubes");
         }

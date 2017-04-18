@@ -16,5 +16,7 @@ namespace Haris.DataModel.DataModels
         public virtual List<Log> Logs { get; set; }
 
         public virtual List<WebHook> WebHooks { get; set; }
+
+        public virtual List<OutputCube> OutputCubes { get; set; }
     }
 }

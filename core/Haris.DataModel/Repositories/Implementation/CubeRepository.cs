@@ -29,6 +29,11 @@ namespace Haris.DataModel.Repositories.Implementation
             return _cubes.FirstOrDefault(x => x.CubeAddress.Contains(address));
         }
 
+        public IQueryable<Cube> GetCubes()
+        {
+            return _cubes.Include(x=>x.OutputCubes);
+        }
+
         public void AddLog(Log log)
         {
             _context.Logs.Add(log);

@@ -72,6 +72,7 @@
     <Compile Include="Caliburn.Micro\ExtensionMethods.cs" />
     <Compile Include="Cubes\BaseCube.cs" />
     <Compile Include="Cubes\RelayCube.cs" />
+    <Compile Include="Cubes\DisplayCube.cs" />
     <Compile Include="Cubes\TempCube.cs" />
     <Compile Include="Events\AttachedProperties\AttachedPropertyKey.cs" />
     <Compile Include="Events\BaseEvent.cs" />

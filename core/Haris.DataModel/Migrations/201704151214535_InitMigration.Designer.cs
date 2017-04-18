@@ -13,7 +13,7 @@ namespace Haris.DataModel.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704111654315_InitMigration"; }
+            get { return "201704151214535_InitMigration"; }
         }
         
         string IMigrationMetadata.Source

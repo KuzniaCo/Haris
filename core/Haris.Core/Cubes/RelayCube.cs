@@ -1,5 +1,5 @@
-﻿using System;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
+using Haris.Core.Services;
 using Haris.DataModel.DataModels;
 using Haris.DataModel.Repositories.Implementation;
 
@@ -7,39 +7,24 @@ namespace Haris.Core.Cubes
 {
     public sealed class RelayCube : BaseCube
     {
-        private bool _status;
-        public bool Status
-        {
-            get { return _status; }
-        }
+        public bool Status { get; set; }
 
-        public void ChangeStatus()
+        public RelayCube(IEventAggregator eventAggregator, Cube cubeEntity, CubeRepository cubeRepository, EngineService engineService) : base(cubeEntity, cubeRepository, engineService)
         {
-            //TODO: Send message
         }
 
         public void TurnOn()
         {
-            throw new NotImplementedException();
+            _engineService.SendMessage(_cubeEntity.CubeAddress + "|1");
         }
 
         public void TurnOff()
         {
-            throw new NotImplementedException();
-        }
-
-        public void OnChangedStatus()
-        {
-            throw new NotImplementedException();
-        }
-
-        public RelayCube(IEventAggregator eventAggregator, Cube cubeEntity, CubeRepository cubeRepository) : base(cubeEntity, cubeRepository)
-        {
+            _engineService.SendMessage(_cubeEntity.CubeAddress + "|0");
         }
 
         public override void ProcessMessage(string message)
         {
-            throw new NotImplementedException();
         }
     }
 }
