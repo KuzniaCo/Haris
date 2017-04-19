@@ -27,6 +27,7 @@ namespace Haris.DataModel.Repositories.Implementation
         public Cube GetCube(string address)
         {
             return _cubes.Include(x=>x.OutputCubes)
+                .Include(x => x.WebHooks)
                 .FirstOrDefault(x => x.CubeAddress.Contains(address));
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Haris.Core.Services;
 using Haris.DataModel.DataModels;
 using Haris.DataModel.Repositories.Implementation;
@@ -21,7 +22,11 @@ namespace Haris.Core.Cubes
 
         public void SetDisplayText(int row, string content)
         {
+            int line = row + 1;
             _engineService.SendMessage(_cubeEntity.CubeAddress + "|" + (int)DisplayCube.Actions.SetDisplay + "|" + row + "|" + content);
+            var lineEntity = _cubeEntity.OutputCubes.FirstOrDefault(x => x.ValueName == "Line "+ line);
+            lineEntity.Value = content;
+            _cubeRepository.SaveChanges();
         }
 
         public void TurnOnBacklight()

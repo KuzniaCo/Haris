@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using Haris.DataModel;
 using Haris.DataModel.DataModels;
@@ -19,9 +20,9 @@ namespace Haris.WebApi.Controllers
 
         // GET api/values/5 
         [Route("{address}")]
-        public List<Log> Get(string address)
+        public string Get(string address)
         {
-            return _cubeRepository.GetValues(address);
+            return _cubeRepository.GetCube(address).OutputCubes.FirstOrDefault(x => x.ValueName == "Temp").Value;
         }
 
     }

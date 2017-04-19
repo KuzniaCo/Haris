@@ -41,7 +41,6 @@ void loop() {
 		String message(raw_message);
     decodeMessage(message);
 		Serial.println(raw_message);
-    lcd.begin(16,2);
 	}
   if (Serial.available())
   {

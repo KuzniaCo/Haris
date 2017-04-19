@@ -86,7 +86,7 @@ namespace Haris.Core.Services
             IPAddress ipAddress = IPAddress.Parse("193.70.84.40");
 #endif
 #if DEBUG
-            IPAddress ipAddress = IPAddress.Parse("192.168.0.14");
+            IPAddress ipAddress = IPAddress.Parse("192.168.0.4");
 #endif
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
 

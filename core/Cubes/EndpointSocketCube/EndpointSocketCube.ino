@@ -53,7 +53,7 @@ void loop()
       message.concat(String(recived));
     }
     Serial.println(message);
-    //sendViaRF(message);
+    sendViaRF(message);
   }
   if (!client.connected()) {
     Serial.println();
@@ -83,11 +83,4 @@ void sendViaRF(String message){
     Serial.println("failed send "+ message);
   }
   radio.startListening();
-}
-
-String messageConstructor(String content){
-  String separator = "|";
-  String message = CUBE_ADDRESS + separator + content + separator;
-
-  return message;
 }
