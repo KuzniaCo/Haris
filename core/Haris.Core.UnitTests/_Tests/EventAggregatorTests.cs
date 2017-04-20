@@ -80,6 +80,48 @@ namespace Haris.Core.UnitTests._Tests
 			}
 		}
 
+		[TestCase(1, 1)]
+		[TestCase(20, 1)]
+		[TestCase(40, 100)]
+		[TestCase(60, 100)]
+		[TestCase(80, 100)]
+		[TestCase(100, 100)]
+		public void PassesAllEventsRaisedExplicitlyInDifferentTasksForward(int numBunches, int itemsPerBunch)
+		{
+			var sut = new EventAggregator { PublicationThreadMarshaller = QueueAsync };
+
+			var bag = new ConcurrentBag<int>();
+			var parallelPublishAction = new Action<IEnumerable<TestEvent>>(async events =>
+			{
+				await Task.Run(() =>
+				{
+					foreach (var e in events)
+					{
+						sut.Publish(e);
+					}
+				});
+			});
+			var bunches =
+				Enumerable.Range(0, numBunches)
+					.Select(
+						i =>
+							new Action(
+								() =>
+									parallelPublishAction(Enumerable.Range(itemsPerBunch * i, itemsPerBunch).Select(j => new TestEvent(j)).ToArray())));
+
+
+			var handler = new TestEventHandler(bag);
+			sut.Subscribe(handler);
+			Parallel.Invoke(bunches.ToArray());
+			AsyncActionsQueue._waitForDrying();
+			sut.Unsubscribe(handler);
+
+			for (var i = 0; i < itemsPerBunch * numBunches; i++)
+			{
+				Assert.True(bag.Contains(i), $"element {i} not found");
+			}
+		}
+
 		private void QueueAsync(Action action) //copied from Core
 		{
 			AsyncActionsQueue.Enqueue(action);
