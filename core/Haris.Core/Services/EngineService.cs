@@ -44,8 +44,16 @@ namespace Haris.Core.Services
         {
             Logger.LogInfo("Send message: " + message);
             byte[] msg = Encoding.ASCII.GetBytes(message);
-            _connectedSocketEndpoint.Send(msg);
-            //_serialEndpoint.Write(message);
+            try
+            {
+                _connectedSocketEndpoint.Send(msg);
+                //_serialEndpoint.Write(message);
+            }
+            catch (NullReferenceException)
+            {
+                
+                Logger.LogError("Any endpoint is not connected");
+            }
         }
 
         public BaseCube CreateDeliveryCube(string address)

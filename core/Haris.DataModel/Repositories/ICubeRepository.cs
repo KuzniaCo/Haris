@@ -8,6 +8,7 @@ namespace Haris.DataModel.Repositories
         void CreateCube(Cube cube);
         Cube GetCube(string address);
         void UpdateCube(Cube cube);
+        void UpdateOutput(OutputCube outputCube);
         List<Log> GetValues(string address);
     }
 }

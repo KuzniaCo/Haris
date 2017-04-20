@@ -42,6 +42,13 @@ namespace Haris.DataModel.Repositories.Implementation
             _context.SaveChanges();
         }
 
+        public void UpdateOutput(OutputCube outputCube)
+        {
+            _context.OutputCubes.Attach(outputCube);
+            _context.Entry(outputCube).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
         public List<Log> GetValues(string address)
         {
             var cube = _context.Cubes.Include(x => x.Logs).FirstOrDefault(x => x.CubeAddress.Equals(address));
@@ -51,7 +58,7 @@ namespace Haris.DataModel.Repositories.Implementation
         public void UpdateCube(Cube cube)
         {
             _context.Cubes.Attach(cube);
-            _context.Entry(cube).Property(x => x.Id == cube.Id).IsModified = true;
+            _context.Entry(cube).State = EntityState.Modified;;
             _context.SaveChanges();
         }
 

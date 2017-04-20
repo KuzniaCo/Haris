@@ -26,7 +26,7 @@ namespace Haris.Core.Cubes
             _engineService.SendMessage(_cubeEntity.CubeAddress + "|" + (int)DisplayCube.Actions.SetDisplay + "|" + row + "|" + content);
             var lineEntity = _cubeEntity.OutputCubes.FirstOrDefault(x => x.ValueName == "Line "+ line);
             lineEntity.Value = content;
-            _cubeRepository.SaveChanges();
+            _cubeRepository.UpdateOutput(lineEntity);
         }
 
         public void TurnOnBacklight()
