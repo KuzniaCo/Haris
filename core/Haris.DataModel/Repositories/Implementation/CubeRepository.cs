@@ -1,42 +1,43 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using Haris.DataModel.DataModels;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace Haris.DataModel.Repositories.Implementation
 {
-    public class CubeRepository : MongoRepository, ICubeRepository
+    public class CubeRepository : ICubeRepository
     {
-        private IMongoCollection<Cube> _cubes;
+        private readonly HarisDbContext _context;
+        private IDbSet<Cube> _cubes;
 
-        public CubeRepository()
+
+        public CubeRepository(HarisDbContext context)
         {
-            _cubes = _db.GetCollection<Cube>("cubes");
+            _context = context;
+            _cubes = _context.Cubes;
         }
 
         public void CreateCube(Cube cube)
         {
-            _cubes.InsertOne(cube);
+            _cubes.Add(cube);
+            _context.SaveChangesAsync();
         }
 
         public Cube GetCube(string address)
         {
-            return _cubes.FindSync(x => x.CubeAddress.Contains(address)).FirstOrDefault();
+            return _cubes.FirstOrDefault(x => x.CubeAddress.Contains(address));
         }
 
-        public void AddLog(Log log, string address)
+        public void AddLog(Log log)
         {
-            var filtr = Builders<Cube>
-                .Filter.Eq(e => e.CubeAddress, address);
-            var update = Builders<Cube>.Update
-            .Push<Log>(e => e.Logs, log);
-            _cubes.FindOneAndUpdate<Cube>(filtr, update);
-            
+            _context.Logs.Add(log);
         }
 
         public void UpdateCube(Cube cube)
         {
-            _cubes.ReplaceOne(x=>x.Id == cube.Id, cube);
+            _context.Cubes.Attach(cube);
+            _context.Entry(cube).Property(x => x.Id == cube.Id).IsModified = true;
+            _context.SaveChanges();
         }
 
     }

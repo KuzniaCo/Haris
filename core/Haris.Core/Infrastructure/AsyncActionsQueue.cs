@@ -1,4 +1,7 @@
 using System;
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("Haris.Core.UnitTests")]
 
 namespace Haris.Core.Infrastructure
 {

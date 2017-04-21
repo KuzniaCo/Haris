@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <Content Include="TestData\CubesConfig.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -93,6 +94,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="_Tests\EventAggregatorTests.cs" />
     <Compile Include="_Tests\IntentRecognitionTests.cs" />
     <Compile Include="_Tests\TestBase.cs" />
   </ItemGroup>
