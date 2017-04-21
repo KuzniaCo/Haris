@@ -7,11 +7,11 @@ using Caliburn.Micro;
 using Haris.Core.Events;
 using Haris.Core.Infrastructure;
 using Haris.Core.Modules;
-using NUnit.Framework;
+using Xunit;
+using Assert = Xunit.Assert;
 
 namespace Haris.Core.UnitTests._Tests
 {
-	[TestFixture]
 	public class EventAggregatorTests
 	{
 		#region helper classes
@@ -48,11 +48,12 @@ namespace Haris.Core.UnitTests._Tests
 		}
 		#endregion
 
-		[TestCase(1, 1)]
-		[TestCase(5, 1)]
-		[TestCase(5, 100)]
-		[TestCase(5, 1000)]
-		[TestCase(3, 3000)]
+		[Theory]
+		[InlineData(1, 1)]
+		[InlineData(5, 1)]
+		[InlineData(5, 100)]
+		[InlineData(5, 1000)]
+		[InlineData(3, 3000)]
 		public void PassesAllEventsForward(int numBunches, int itemsPerBunch)
 		{
 			var sut = new EventAggregator { PublicationThreadMarshaller = QueueAsync };
@@ -80,12 +81,13 @@ namespace Haris.Core.UnitTests._Tests
 			}
 		}
 
-		[TestCase(1, 1)]
-		[TestCase(20, 1)]
-		[TestCase(40, 100)]
-		[TestCase(60, 100)]
-		[TestCase(80, 100)]
-		[TestCase(100, 100)]
+		[Theory]
+		[InlineData(1, 1)]
+		[InlineData(20, 1)]
+		[InlineData(40, 100)]
+		[InlineData(60, 100)]
+		[InlineData(80, 100)]
+		[InlineData(100, 100)]
 		public void PassesAllEventsRaisedExplicitlyInDifferentTasksForward(int numBunches, int itemsPerBunch)
 		{
 			var sut = new EventAggregator { PublicationThreadMarshaller = QueueAsync };
