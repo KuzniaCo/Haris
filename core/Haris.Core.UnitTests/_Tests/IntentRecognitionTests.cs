@@ -11,13 +11,13 @@ using Haris.DataModel.Luis;
 using Newtonsoft.Json;
 using NSubstitute;
 using System.Linq;
+using FluentAssertions;
 using Haris.Core.Services.Luis.Impl;
 using Xunit;
-using Assert = Xunit.Assert;
 
 namespace Haris.Core.UnitTests._Tests
 {
-	public class IntentRecognitionTests : TestBase
+	public class IntentRecognitionTests : TestBase, IDisposable
 	{
 		protected const string TurnOnTheTvCommand = "turn on the tv";
 
@@ -25,9 +25,8 @@ namespace Haris.Core.UnitTests._Tests
 		private ILuisClient _luisClientMock;
 		private ILuisIntentToActionMappingRepository _luisIntentToActionMappingRepoMock;
 
-		public override void TestFixtureSetUp()
+		public IntentRecognitionTests()
 		{
-			base.TestFixtureSetUp();
 			var turnOnTvFile = File.ReadAllText("TestData/TurnOnTvResponse.txt");
 			var turnOnTvIntent = JsonConvert.DeserializeObject<LuisResponseDto>(turnOnTvFile);
 
@@ -52,6 +51,10 @@ namespace Haris.Core.UnitTests._Tests
 			Container.RegisterSingleton<ILuisResponseParser, LuisResponseParser>();
 			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
 			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
+
+			_recognizer = Container.GetInstance<IIntentRecognizer>();
+			_luisClientMock = Container.GetInstance<ILuisClient>();
+			_luisIntentToActionMappingRepoMock = Container.GetInstance<ILuisIntentToActionMappingRepository>();
 		}
 
 		private CubeConfigDto[] GetLuisIntentConfig()
@@ -119,14 +122,6 @@ namespace Haris.Core.UnitTests._Tests
 			};
 		}
 
-		public void Init()
-		{
-			TestFixtureSetUp();
-			_recognizer = Container.GetInstance<IIntentRecognizer>();
-			_luisClientMock = Container.GetInstance<ILuisClient>();
-			_luisIntentToActionMappingRepoMock = Container.GetInstance<ILuisIntentToActionMappingRepository>();
-		}
-
 		[Fact]
 		public void JsonIsProperlyLoaded()
 		{
@@ -134,29 +129,26 @@ namespace Haris.Core.UnitTests._Tests
 
 			LuisResponseDto obj = null;
 			obj = JsonConvert.DeserializeObject<LuisResponseDto>(file);
-			Assert.NotNull(obj);
+			obj.Should().NotBeNull();
 		}
 
 		[Fact]
 		public void IntentRecognizerGetsInitialized()
 		{
-			Init();
-			Assert.NotNull(_recognizer);
+			_recognizer.Should().NotBeNull();
 		}
 
 		[Fact]
 		public async void ResponseIsNotEmpty()
 		{
-			Init();
 			var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
 
-			Assert.NotNull(response);
+			response.Should().NotBeNull();
 		}
 
 		[Fact]
 		public async void LuisGetsAsked()
 		{
-			Init();
 			var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
 
 			await _luisClientMock.Received(1).AskLuis(TurnOnTheTvCommand, CancellationToken.None);
@@ -165,8 +157,7 @@ namespace Haris.Core.UnitTests._Tests
 		[Fact]
 		public void CubesConfigIsRead()
 		{
-			Init();
-			Assert.NotEmpty(_luisIntentToActionMappingRepoMock.CurrentConfig);
+			_luisIntentToActionMappingRepoMock.CurrentConfig.Should().NotBeNullOrEmpty();
 		}
 
 		[Fact]
@@ -175,14 +166,13 @@ namespace Haris.Core.UnitTests._Tests
 			var file = File.ReadAllText("TestData/TurnOnTvInBedroomResponseWithActions.txt");
 			var response = JsonConvert.DeserializeObject<LuisResponseDto>(file);
 
-			Assert.NotNull(response);
-			Assert.Equal(4, response.Intents.Count(i => i.Actions != null && i.Actions.Count > 0));
+			response.Should().NotBeNull();
+			response.Intents.Count(i => i.Actions != null && i.Actions.Count > 0).Should().Be(4);
 		}
 
 		[Fact]
 		public void TvInBedroomWouldBeTurnedOn()
 		{
-			Init();
 			var file = File.ReadAllText("TestData/TurnOnTvInBedroomResponseWithActions.txt");
 			var response = JsonConvert.DeserializeObject<LuisResponseDto>(file);
 
@@ -192,8 +182,13 @@ namespace Haris.Core.UnitTests._Tests
 			var actions = service.GetActions(intentRecognitionResult);
 			var action = actions.Single();
 
-			Assert.NotNull(action);
-			Assert.Equal("tv", action.EntityLabel);
+			action.Should().NotBeNull();
+			action.EntityLabel.Should().Be("tv");
+		}
+
+		public void Dispose()
+		{
+			Container.Dispose();
 		}
 	}
 }
