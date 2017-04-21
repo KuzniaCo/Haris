@@ -11,13 +11,13 @@ using Haris.DataModel.Luis;
 using Newtonsoft.Json;
 using NSubstitute;
 using System.Linq;
+using FluentAssertions;
 using Haris.Core.Services.Luis.Impl;
-using NUnit.Framework;
+using Xunit;
 
 namespace Haris.Core.UnitTests._Tests
 {
-	[TestFixture]
-	public class IntentRecognitionTests: TestBase
+	public class IntentRecognitionTests : TestBase, IDisposable
 	{
 		protected const string TurnOnTheTvCommand = "turn on the tv";
 
@@ -25,10 +25,8 @@ namespace Haris.Core.UnitTests._Tests
 		private ILuisClient _luisClientMock;
 		private ILuisIntentToActionMappingRepository _luisIntentToActionMappingRepoMock;
 
-		[TestFixtureSetUp]
-		public override void TestFixtureSetUp()
+		public IntentRecognitionTests()
 		{
-			base.TestFixtureSetUp();
 			var turnOnTvFile = File.ReadAllText("TestData/TurnOnTvResponse.txt");
 			var turnOnTvIntent = JsonConvert.DeserializeObject<LuisResponseDto>(turnOnTvFile);
 
@@ -53,6 +51,10 @@ namespace Haris.Core.UnitTests._Tests
 			Container.RegisterSingleton<ILuisResponseParser, LuisResponseParser>();
 			Container.RegisterSingleton<IIntentToActionConversionService, IntentToActionConversionService>();
 			Container.RegisterSingleton<IIntentRecognizer, LuisIntentRecognizer>();
+
+			_recognizer = Container.GetInstance<IIntentRecognizer>();
+			_luisClientMock = Container.GetInstance<ILuisClient>();
+			_luisIntentToActionMappingRepoMock = Container.GetInstance<ILuisIntentToActionMappingRepository>();
 		}
 
 		private CubeConfigDto[] GetLuisIntentConfig()
@@ -120,39 +122,31 @@ namespace Haris.Core.UnitTests._Tests
 			};
 		}
 
-		[SetUp]
-		public void Init()
-		{
-			_recognizer = Container.GetInstance<IIntentRecognizer>();
-			_luisClientMock = Container.GetInstance<ILuisClient>();
-			_luisIntentToActionMappingRepoMock = Container.GetInstance<ILuisIntentToActionMappingRepository>();
-		}
-
-		[Test]
+		[Fact]
 		public void JsonIsProperlyLoaded()
 		{
 			var file = File.ReadAllText("TestData/TurnOnTvResponse.txt");
 
 			LuisResponseDto obj = null;
-			Assert.DoesNotThrow(() => obj = JsonConvert.DeserializeObject<LuisResponseDto>(file));
-			Assert.That(obj, Is.Not.Null);
+			obj = JsonConvert.DeserializeObject<LuisResponseDto>(file);
+			obj.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void IntentRecognizerGetsInitialized()
 		{
-			Assert.That(_recognizer, Is.Not.Null);
+			_recognizer.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public async void ResponseIsNotEmpty()
 		{
 			var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
 
-			Assert.IsNotNull(response);
+			response.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public async void LuisGetsAsked()
 		{
 			var response = await _recognizer.InterpretIntent(new CommandTextAcquiredEvent(TurnOnTheTvCommand));
@@ -160,23 +154,23 @@ namespace Haris.Core.UnitTests._Tests
 			await _luisClientMock.Received(1).AskLuis(TurnOnTheTvCommand, CancellationToken.None);
 		}
 
-		[Test]
+		[Fact]
 		public void CubesConfigIsRead()
 		{
-			Assert.IsNotEmpty(_luisIntentToActionMappingRepoMock.CurrentConfig);
+			_luisIntentToActionMappingRepoMock.CurrentConfig.Should().NotBeNullOrEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void ActionsGetDeserialized()
 		{
 			var file = File.ReadAllText("TestData/TurnOnTvInBedroomResponseWithActions.txt");
 			var response = JsonConvert.DeserializeObject<LuisResponseDto>(file);
 
-			Assert.That(response, Is.Not.Null);
-			Assert.AreEqual(4, response.Intents.Count(i => i.Actions != null && i.Actions.Count > 0));
+			response.Should().NotBeNull();
+			response.Intents.Count(i => i.Actions != null && i.Actions.Count > 0).Should().Be(4);
 		}
 
-		[Test]
+		[Fact]
 		public void TvInBedroomWouldBeTurnedOn()
 		{
 			var file = File.ReadAllText("TestData/TurnOnTvInBedroomResponseWithActions.txt");
@@ -187,9 +181,14 @@ namespace Haris.Core.UnitTests._Tests
 			var service = Container.GetInstance<IIntentToActionConversionService>();
 			var actions = service.GetActions(intentRecognitionResult);
 			var action = actions.Single();
-			
-			Assert.That(action, Is.Not.Null);
-			Assert.AreEqual("tv", action.EntityLabel);
+
+			action.Should().NotBeNull();
+			action.EntityLabel.Should().Be("tv");
+		}
+
+		public void Dispose()
+		{
+			Container.Dispose();
 		}
 	}
 }
