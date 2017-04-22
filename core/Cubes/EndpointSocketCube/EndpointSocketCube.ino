@@ -27,7 +27,7 @@ void setup()
   Serial.println(F("HARIS/CUBE/SocketEndpoint"));
   getCubeAddress();
   radio.begin();
-  radio.setPALevel(RF24_PA_LOW);
+  radio.setPALevel(RF24_PA_HIGH);
   radio.openReadingPipe(1, CUBE_ADDRESS_BYTES);
   radio.openWritingPipe(CUBE_ADDRESS_BYTES);
   radio.startListening();  
