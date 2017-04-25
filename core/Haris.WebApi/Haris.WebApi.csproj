@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CubeController.cs" />
+    <Compile Include="Controllers\RelayCubeController.cs" />
     <Compile Include="Controllers\DisplayCubeController.cs" />
     <Compile Include="Controllers\SetDisplayRequest.cs" />
     <Compile Include="Controllers\TemperatureCubeController.cs" />

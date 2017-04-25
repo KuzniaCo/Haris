@@ -9,7 +9,7 @@ namespace Haris.Core.Cubes
     {
         public bool Status { get; set; }
 
-        public RelayCube(IEventAggregator eventAggregator, Cube cubeEntity, CubeRepository cubeRepository, EngineService engineService) : base(cubeEntity, cubeRepository, engineService)
+        public RelayCube( Cube cubeEntity, CubeRepository cubeRepository, EngineService engineService) : base(cubeEntity, cubeRepository, engineService)
         {
         }
 

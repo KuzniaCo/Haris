@@ -47296,7 +47296,7 @@ harisApp.directive('displayCube', function (cubeService) {
         }
     }
 });
-harisApp.directive('relayCube', function () {
+harisApp.directive('relayCube', function (cubeService) {
 
     return {
         scope: {
@@ -47304,8 +47304,16 @@ harisApp.directive('relayCube', function () {
         },
         restrict: 'E',
         templateUrl: '/Content/www/App/views/relayCube.html',
+        controller: function($scope) {
+            $scope.turnOn = function () {
+                cubeService.turnOnRelay($scope.cube.CubeAddress);
+            }
+            $scope.turnOff = function () {
+                cubeService.turnOffRelay($scope.cube.CubeAddress);
+            }
+        },
         link: function($scope, $element) {
-            
+
         }
     }
 });
@@ -47318,7 +47326,6 @@ harisApp.directive('tempCube', function () {
         restrict: 'E',
         templateUrl: '/Content/www/App/views/tempCube.html',
         link: function($scope, $element) {
-            
         }
     }
 });
@@ -47330,5 +47337,13 @@ harisApp.service('cubeService', function ($http) {
 
     this.setDisplay = function (address, data) {
         return $http.post("/api/cube/display/"+address, data);
+    }
+
+    this.turnOnRelay = function(address) {
+        return $http.get("/api/cube/relay/" + address + "/TurnOn/");
+    }
+
+    this.turnOffRelay = function (address) {
+        return $http.get("/api/cube/relay/" + address + "/TurnOff/");
     }
 });

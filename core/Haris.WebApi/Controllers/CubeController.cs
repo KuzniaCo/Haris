@@ -9,11 +9,11 @@ using Haris.DataModel.WebApiContracts;
 namespace Haris.WebApi.Controllers
 {
     [RoutePrefix("api/cubes")]
-    public class RelayCubeController : ApiController
+    public class CubeController : ApiController
     {
         private CubeRepository _cubeRepository;
 
-        public RelayCubeController()
+        public CubeController()
         {
             _cubeRepository = new CubeRepository(new HarisDbContext());
         }

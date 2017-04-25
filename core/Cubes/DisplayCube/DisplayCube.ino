@@ -17,7 +17,7 @@ byte CUBE_ADDRESS_BYTES[6] = "";
 RF24 radio(9, 10);
 
 void getCubeAddress() {
-	CUBE_ADDRESS = "00000";
+	CUBE_ADDRESS = "t6G9P";
 	CUBE_ADDRESS.getBytes(CUBE_ADDRESS_BYTES, 6);
 }
 

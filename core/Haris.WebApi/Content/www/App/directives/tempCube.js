@@ -7,7 +7,6 @@
         restrict: 'E',
         templateUrl: '/Content/www/App/views/tempCube.html',
         link: function($scope, $element) {
-            
         }
     }
 });

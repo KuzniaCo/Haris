@@ -1,6 +1,11 @@
 #include <SPI.h>
 #include "RF24.h"
 #include <EEPROM.h>
+#include <IRremote.h>
+#define irPin 3
+IRrecv irrecv(irPin);
+decode_results results;
+ 
 
 long randomNumber;
 
@@ -18,13 +23,20 @@ void setup() {
   radio.begin();
   radio.setPALevel(RF24_PA_MAX);
   radio.openWritingPipe(ENDPOINT_ADDRESS_BYTES);
+  irrecv.enableIRIn();
 }
 
 void loop() {
-    randomNumber = random(1000);
-    sendViaRF(messageConstructor(String(randomNumber)));
-    Serial.println(messageConstructor(String(randomNumber)));
-    delay(1000);
+//    randomNumber = random(1000);
+//    sendViaRF(messageConstructor(String(randomNumber)));
+//    Serial.println(messageConstructor(String(randomNumber)));
+//    delay(1000);
+   if (irrecv.decode(&results)) {
+      Serial.print("0x");
+      Serial.println(results.value, HEX);
+      delay(250);
+      irrecv.resume();
+      }
 }
 
 void sendViaRF(String message){

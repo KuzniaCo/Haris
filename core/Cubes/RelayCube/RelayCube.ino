@@ -12,10 +12,10 @@ String GatewayAddress = "00000";
 
 void getCubeAddress() {
 	// Zapytanie pami�ci w przeciwnym wypadku wys�anie wiadomo�ci powitalnej
-	byte memoryValue = EEPROM.get(0, CUBE_ADDRESS_BYTES);
-	if (memoryValue != 255) {
-		//Przeczytaj adress z pami�ci;
-	}
+//	byte memoryValue = EEPROM.get(0, CUBE_ADDRESS_BYTES);
+//	if (memoryValue != 255) {
+//		//Przeczytaj adress z pami�ci;
+//	}
 
 	//Mocked addresses
 	CUBE_ADDRESS = "aPd12";
@@ -68,17 +68,17 @@ void loop() {
 }
 
 String messageDecode(String message) {
-	onPing(message);
+//	onPing(message);
 	return message.substring(7, 8);
 }
 
-void onPing(String message) {
-	if (message.substring(1, 6) == "ping") {
-		radio.stopListening();
-		String pongMsg = messageConstructor("pong");
-		sendViaRf(pongMsg);
-	}
-}
+//void onPing(String message) {
+//	if (message.substring(1, 6) == "ping") {
+//		radio.stopListening();
+//		String pongMsg = messageConstructor("pong");
+//		sendViaRf(pongMsg);
+//	}
+//}
 
 void sendViaRf(String message) {
 	radio.stopListening();
