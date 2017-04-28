@@ -86,6 +86,7 @@
     <Compile Include="Events\MySensors\DisconnectedGatewayEvent.cs" />
     <Compile Include="Events\MySensors\ConnectedGatewayEvent.cs" />
     <Compile Include="Events\System\SystemActionRequest.cs" />
+    <Compile Include="Helpers\Hashids.cs" />
     <Compile Include="Infrastructure\ActionQueue.cs" />
     <Compile Include="Infrastructure\AsyncActionsQueue.cs" />
     <Compile Include="Modules\ConsoleInput\ConsoleCommandInputModule.cs" />

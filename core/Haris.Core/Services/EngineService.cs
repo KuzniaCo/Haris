@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Haris.Core.Cubes;
 using Haris.Core.Events.MySensors;
+using Haris.Core.Helpers;
 using Haris.Core.Services.Logging;
 using Haris.DataModel.DataModels;
 using Haris.DataModel.Repositories;
@@ -30,14 +32,45 @@ namespace Haris.Core.Services
         public void ProccessMessage(MessageReceivedEvent message)
         {
             Logger.LogPrompt("Recived message: " + message.Payload);
-            var engineCube = CreateDeliveryCube(GetAddress(message.Payload));
-            engineCube.ProcessMessage(message.Payload);
+            var decodedMessage = DecodeMessage(message.Payload);
+            var address = decodedMessage[0];
+            
+
+            if (address.Length == 0)
+            {
+                var cubeType = decodedMessage[2];
+                var tempAddress = decodedMessage[1];
+                RegisterNewCube(tempAddress, cubeType);
+            }
+            else
+            {
+                var engineCube = CreateDeliveryCube(address);
+                engineCube.ProcessMessage(message.Payload);
+            }
         }
 
-        public string GetAddress(string message)
+        public List<string> DecodeMessage(string message)
         {
-            String[] messageItems = message.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-            return messageItems[0];
+            String[] messageItems = message.Split(new char[] { '|' });
+            return messageItems.ToList();
+        }
+
+        public void RegisterNewCube(string tempAddress, string cubeType)
+        {
+            Logger.LogInfo("Starting register new "+ cubeType);
+            Cube newDevice = new Cube()
+            {
+                CubeType = cubeType,
+                Name = ""
+            };
+            _cubeRepository.CreateCube(newDevice);
+            var hashids = new Hashids("HarisIotHub", 6);
+            newDevice.CubeAddress = hashids.Encode(newDevice.Id);
+            
+            _cubeRepository.UpdateCube(newDevice);
+            Logger.LogInfo("New device was addressed. Address is:  " + newDevice.CubeAddress);
+            SendMessage(tempAddress+"|"+newDevice.CubeAddress);
+            Logger.LogInfo("New address was send to device.");
         }
 
         public void SendMessage(string message)

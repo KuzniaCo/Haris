@@ -21,7 +21,7 @@ namespace Haris.DataModel.Repositories.Implementation
         public void CreateCube(Cube cube)
         {
             _cubes.Add(cube);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public Cube GetCube(string address)

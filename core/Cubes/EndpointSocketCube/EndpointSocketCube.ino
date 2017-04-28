@@ -27,7 +27,7 @@ void setup()
   Serial.println(F("HARIS/CUBE/SocketEndpoint"));
   getCubeAddress();
   radio.begin();
-  radio.setPALevel(RF24_PA_HIGH);
+  radio.setPALevel(RF24_PA_LOW);
   radio.openReadingPipe(1, CUBE_ADDRESS_BYTES);
   radio.openWritingPipe(CUBE_ADDRESS_BYTES);
   radio.startListening();  
@@ -101,8 +101,22 @@ void sendViaRF(String message){
   radio.stopListening();
   char charArray[30];
   message.toCharArray(charArray, 30);
-  if (!radio.write( &charArray, 30 )){
-    Serial.println("failed send "+ message);
+
+  bool isSend = false;
+  int counter = 0;
+
+  while(!isSend){
+    if (radio.write(&charArray, 30)) {
+      isSend = true;
+    }
+    else{
+      Serial.println(F("failed send "));
+    }
+    delay(1000);   
+    counter++;
+    if(counter >5) {
+      break; 
+    }
   }
   radio.startListening();
 }
