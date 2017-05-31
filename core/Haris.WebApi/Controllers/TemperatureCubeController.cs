@@ -24,7 +24,7 @@ namespace Haris.WebApi.Controllers
         {
             return new {
 				Value = _cubeRepository.GetCube(address).OutputCubes.FirstOrDefault(x => x.ValueName == "Temp").Value,
-				Date = Value = _cubeRepository.GetCube(address).OutputCubes.FirstOrDefault(x => x.ValueName == "Date").Value
+				Date = _cubeRepository.GetCube(address).OutputCubes.FirstOrDefault(x => x.ValueName == "Date").Value
 			};
 
 		}
