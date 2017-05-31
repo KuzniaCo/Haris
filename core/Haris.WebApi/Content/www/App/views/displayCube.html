@@ -9,11 +9,14 @@
                 <span>Address:</span><strong> {{cube.CubeAddress}}</strong><br/>
                 <span>Line 1:</span><strong>{{cube.Outputs['Line 1']}}</strong><br/>
                 <span>Line 2:</span><strong>{{cube.Outputs['Line 2']}}</strong><br/>
-                <button class="btn btn-default"> Show logs</button><br/>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                    Set text on display
-                </button>
-                <hr/>
+
+				<div class="btn-group" role="group">
+                    <button type="button" ng-click="turnOnBacklight()" class="btn btn-default">Turn On Backlight</button>
+                    <button type="button" ng-click="turnOffBacklight()" class="btn btn-default">Turn Off Backlight</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+						Set text 
+					</button>					
+                </div>
                 <h3 ng-hide="true">WebHooks <small>On temperature recived</small>
                 </h3>
                 <table ng-hide="true" class="table table-striped">

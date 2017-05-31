@@ -16,6 +16,12 @@
             $scope.setDisplay = function () {
                 cubeService.setDisplay($scope.cube.CubeAddress, { Row: $scope.row, Content: $scope.content });
             }
+			$scope.turnOnBacklight = function () {
+				cubeService.turnOnBacklight($scope.cube.CubeAddress);
+			}
+			$scope.turnOffBacklight = function () {
+				cubeService.turnOffBacklight($scope.cube.CubeAddress);
+			}			
         }
     }
 });

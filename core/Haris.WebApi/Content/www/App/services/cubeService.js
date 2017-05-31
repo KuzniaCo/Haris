@@ -8,6 +8,14 @@
         return $http.post("/api/cube/display/"+address, data);
     }
 
+    this.turnOnBacklight = function(address) {
+        return $http.get("/api/cube/display/" + address + "/TurnOnBacklight/");
+    }
+	
+    this.turnOffBacklight = function(address) {
+        return $http.get("/api/cube/display/" + address + "/TurnOffBacklight/");
+    }	
+
     this.turnOnRelay = function(address) {
         return $http.get("/api/cube/relay/" + address + "/TurnOn/");
     }

@@ -20,10 +20,12 @@ namespace Haris.WebApi.Controllers
 
         // GET api/values/5 
         [Route("{address}")]
-        public string Get(string address)
+        public object Get(string address)
         {
-            return _cubeRepository.GetCube(address).OutputCubes.FirstOrDefault(x => x.ValueName == "Temp").Value;
-        }
+            return new {
+				Value = _cubeRepository.GetCube(address).OutputCubes.FirstOrDefault(x => x.ValueName == "Temp").Value,
+				Date = Value = _cubeRepository.GetCube(address).OutputCubes.FirstOrDefault(x => x.ValueName == "Date").Value
+			};
 
     }
 }
