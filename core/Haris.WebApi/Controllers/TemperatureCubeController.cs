@@ -27,5 +27,6 @@ namespace Haris.WebApi.Controllers
 				Date = Value = _cubeRepository.GetCube(address).OutputCubes.FirstOrDefault(x => x.ValueName == "Date").Value
 			};
 
-    }
+		}
+	}
 }
