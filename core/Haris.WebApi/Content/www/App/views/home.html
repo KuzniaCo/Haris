@@ -1,6 +1,24 @@
-﻿<div class="col-md-12">
-    <h2>Module health</h2>
-    <p>Currently system show module with status. Version 1.0 not allow to start, stop or restart module.</p>
+﻿<div class="row">
+	<div class="jumbotron">
+		<h3>O aplikacji</h3>
+		<p>
+			Witaj w aplikacji "Haris Web Client Sample". Jest to przykładowy klient, pokazujący możliwości wykonanych urządzeń sieci Haris w pracu "Architketura bezprzewodowej sieci czujników i urządzeń bazująca na protokole HTTP".
+		</p>
+		<p>Poniżej są dwie sekcje.</p>
+        <p>
+		<ol>
+			<li>Pierwsza dostarcza informacji o stanie modułów</li>
+			<li>Druga to lista urządzeń i czujników podłączonych do sieci. Każdy boks odpowiada jednemu czujnikowi bądź urządzeniu. Niektóre boksy posiadą przyciski za pomocą, których można 
+			wykonać akcje na urządzeniach</li>
+		</ol>
+        </p>
+		<p><strong>Aplikacja "Haris Web Client Sample" jest przykładem użycia sieci czujników i ma charakter poglądowy. Posiada zaimplementowane tylko najważniejsze funkcje.</strong></p>
+	</div>
+</div>
+
+<div class="col-md-12">
+    <h2>Stan modułów</h2>
+    <p>Poniżej znajdują się informacje o stanie modułów.</p>
 
     <div class="col-md-12 row">
         <div class="col-md-3">
@@ -9,28 +27,16 @@
                     <h3 class="panel-title">Ethernet Endpoint Module</h3>
                 </div>
                 <div class="panel-body">
-                    <button type="button" class="btn btn-default enabled" aria-label="Left Align">
+                    <button type="button" class="btn btn-default" disabled="disabled" aria-label="Left Align">
                         <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Enabled
                     </button>
                     <br/>
                     <br/>
                     <p>
                         <span>
-                            <strong>Connected Endpoint:</strong> 2
+                            <strong>Connected Endpoint:</strong> 1
                         </span>
                     </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Serial Endpoint Module</h3>
-                </div>
-                <div class="panel-body">
-                    <button type="button" class="btn btn-default disabled" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Disabled
-                    </button>
                 </div>
             </div>
         </div>
@@ -40,24 +46,24 @@
                     <h3 class="panel-title">Message Engine Module</h3>
                 </div>
                 <div class="panel-body">
-                    <button type="button" class="btn btn-default enabled" aria-label="Left Align">
+                    <button disabled="disabled" type="button" class="btn btn-default" aria-label="Left Align">
                         <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Enabled
                     </button>
                 </div>
             </div>
         </div>
-        
-        <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Cube Registration Module</h3>
-                </div>
-                <div class="panel-body">
-                    <button type="button" class="btn btn-default enabled" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Enabled
-                    </button>
-                </div>
-            </div>
+    </div>
+</div>
+
+<div class="col-md-12" ng-controller="devicesController">
+    <h2>Zarejestrowane urządzenia</h2>
+    <p>Znajdziesz tutaj informacje z Serwera Kostek o zarejestrowanych urządzeniach w sieci.</p>
+
+    <div class="col-md-12 row">
+        <div ng-repeat="cube in cubes">
+            <temp-cube ng-if="cube.CubeType == 'TempCube'" cube="cube"></temp-cube>
+            <display-cube ng-if="cube.CubeType == 'DisplayCube'" cube="cube"></display-cube>
+            <relay-cube ng-if="cube.CubeType == 'RelayCube'" cube="cube"></relay-cube>
         </div>
     </div>
 </div>
