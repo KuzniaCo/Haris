@@ -7,7 +7,12 @@
         </div>
         <div class="panel-body">
             <div class="text-center">
-                <span>Address:</span><strong> {{cube.CubeAddress}}</strong><br />
+                <table class="table">
+                    <tr>
+                        <td>Adres urządzenia:</td>
+                        <td><strong> {{cube.CubeAddress}}</strong></td>
+                    </tr>                                     
+                </table>
                 <div class="btn-group" role="group">
                     <button type="button" ng-click="turnOn()" class="btn btn-default">Turn On</button>
                     <button type="button" ng-click="turnOff()" class="btn btn-default">Turn Off</button>

@@ -6,14 +6,27 @@
         </div>
         <div class="panel-body">
             <div class="text-center">
-                <span>Address:</span><strong> {{cube.CubeAddress}}</strong><br/>
-                <span>Line 1:</span><strong>{{cube.Outputs['Line 1']}}</strong><br/>
-                <span>Line 2:</span><strong>{{cube.Outputs['Line 2']}}</strong><br/>
+                <table class="table">
+                    <tr>
+                        <td>Adres urządzenia:</td>
+                        <td><strong> {{cube.CubeAddress}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Linia 1:</td>
+                        <td><strong> {{cube.Outputs['Line 1']}}</strong></td>
+                    </tr>  
+                    <tr>
+                        <td>Linia 2:</td>
+                        <td><strong>{{cube.Outputs['Line 2']}}</strong></td>
+                    </tr>                                        
+                </table>
 
 				<div class="btn-group" role="group">
                     <button type="button" ng-click="turnOnBacklight()" class="btn btn-default">Turn On Backlight</button>
                     <button type="button" ng-click="turnOffBacklight()" class="btn btn-default">Turn Off Backlight</button>				
                 </div>
+                <br>
+                <br>
 				<div class="btn-group" role="group">
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 						Set text 

@@ -6,9 +6,20 @@
         </div>
         <div class="panel-body">
             <div class="text-center">
-                <span>Address:</span><strong> {{cube.CubeAddress}}</strong><br/>
-                <span>Value:</span><strong>{{cube.Outputs.Temp}}</strong><br/>
-                <strong>{{cube.Outputs.Date}}</strong><br/>
+                <table class="table">
+                    <tr>
+                        <td>Adres urządzenia:</td>
+                        <td><strong> {{cube.CubeAddress}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Temperatura:</td>
+                        <td><strong> {{cube.Outputs.Temp}}</strong></td>
+                    </tr>  
+                    <tr>
+                        <td>Data odczytu</td>
+                        <td><strong>{{cube.Outputs.Date}}</strong></td>
+                    </tr>                                        
+                </table>
                 <h3 ng-hide="true">WebHooks <small>On temperature recived</small>
                 </h3>
                 <table ng-hide="true" class="table table-striped">
