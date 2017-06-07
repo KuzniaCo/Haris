@@ -47293,6 +47293,12 @@ harisApp.directive('displayCube', function (cubeService) {
             $scope.setDisplay = function () {
                 cubeService.setDisplay($scope.cube.CubeAddress, { Row: $scope.row, Content: $scope.content });
             }
+			$scope.turnOnBacklight = function () {
+				cubeService.turnOnBacklight($scope.cube.CubeAddress);
+			}
+			$scope.turnOffBacklight = function () {
+				cubeService.turnOffBacklight($scope.cube.CubeAddress);
+			}			
         }
     }
 });
@@ -47338,6 +47344,14 @@ harisApp.service('cubeService', function ($http) {
     this.setDisplay = function (address, data) {
         return $http.post("/api/cube/display/"+address, data);
     }
+
+    this.turnOnBacklight = function(address) {
+        return $http.get("/api/cube/display/" + address + "/TurnOnBacklight/");
+    }
+	
+    this.turnOffBacklight = function(address) {
+        return $http.get("/api/cube/display/" + address + "/TurnOffBacklight/");
+    }	
 
     this.turnOnRelay = function(address) {
         return $http.get("/api/cube/relay/" + address + "/TurnOn/");
