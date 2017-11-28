@@ -16,6 +16,7 @@ namespace Haris.Core.Cubes
             _cubeEntity = cubeEntity;
             _cubeRepository = cubeRepository;
             _engineService = engineService;
+            
         }
 
         public string Id { get; set; }
